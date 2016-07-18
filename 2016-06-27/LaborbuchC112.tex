@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt,titlepage,fleqn]{article}%,twoside
+\input{Laborbuch.pre}
+\usepackage{hyperref}%[bookmarksopen]
+\usepackage{ifthen}
+\hypersetup{%
+bookmarksnumbered=true,
+pdftitle = {Photodetachment},
+pdfsubject = {Laborbuch},
+pdfauthor = {C112 Crew},
+pdfkeywords = {},
+pdfcreator = {pdflatex},
+pdfproducer = {pdflatex},
+linktocpage = {true}
+}
+\hyphenation{Pump-strahls New-port Spec-tra}
+
+\usepackage{mathtools}
+
+\usepackage{color}
+\usepackage{tocloft} % keine POC-Puenktchen
+\renewcommand{\cftdotsep}{\cftnodots}
+\let\thepage=\relax % keine TOC-Seitenzahlen
+
+\usepackage{setspace}
+\usepackage{placeins}
+\usepackage{textcomp}
+
+\newenvironment{Liste}[1][$\bullet$] % Liste mit großem linken Abstand
+{\begin{list}{#1}{\setlength{\labelwidth}{2cm}\setlength{\labelsep}{0.5cm}\setlength{\itemindent}{0cm}\setlength{\leftmargin}{2.5cm}}\setlength{\itemsep}{0cm}}
+{\end{list}}	
+\newenvironment{Liste2}[1][$\bullet$] % Liste mit kleinem linken Abstand
+{\begin{list}{#1}{\setlength{\labelwidth}{0.5cm}\setlength{\labelsep}{0.5cm}\setlength{\itemindent}{0cm}\setlength{\leftmargin}{1.5cm}}}
+{\end{list}}	
+
+% Gleichungsnummerierung
+\newcounter{EqnNr}
+\renewcommand{\theequation}{\thesubsection.\arabic{EqnNr}
+}
+%\newcommand{\refeq}[1]{(\ref{#1})}
+
+\newcounter{nummer}
+\newenvironment{Nummer}[1][(\arabic{nummer})]
+{\begin{list}{#1}{\usecounter{nummer}\setlength{\labelwidth}{1cm}\setlength{\labelsep}{0.25cm}\setlength{\itemindent}{0cm}\setlength{\leftmargin}{1cm}}}
+{\end{list}}
+
+\usepackage{tikz}
+\newcommand{\Bild}[2][]{\begin{center}%\begin{figure}[htbp]
+\includegraphics[#1]{#2}
+\end{center}
+}%\end{figure}
+
+\newcommand{\Bildref}[3][]{(Abb. \ref{#2})\begin{figure}[htb]\centering
+\includegraphics[#1]{#2}
+	\caption{\label{#2}#3}
+\end{figure}}
+
+\newcommand{\Bildquer}[2][]{
+	\addtolength{\textwidth}{2cm}
+	\addtolength{\leftmargin}{-1cm}
+		\fancyfoot[C]{}
+		\begin{landscape}\centering
+			\includegraphics[#1]{#2}
+		\end{landscape}
+	\addtolength{\textwidth}{-2cm}
+	\addtolength{\leftmargin}{1cm}
+	\fancyfoot[C]{\thesubsection}
+}
+
+
+\newcommand{\Rot}[1]{{\color[rgb]{1,0,0}#1}}%
+\newcommand{\blau}[1]{{\color[rgb]{0,0,1}#1}}%
+\newcommand{\gruen}[1]{{\color[rgb]{0,0.5,0}#1}}%
+\newcommand{\orange}[1]{{ \color[rgb]{0.8,0.4,0}#1}}%
+\newcommand{\rosa}[1]{{\color[rgb]{0.8,0,0.8}#1}}%
+\newcommand{\weiss}[1]{{\color[rgb]{1,1,1}#1}}%
+\newcommand{\braun}[1]{{\color[rgb]{0.5,0.25,0}#1}}%
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{lila}{rgb}{0.8,0.2,1}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{braun}{rgb}{0.5,0.25,0}
+
+% Listenkommandos
+\newcommand{\itemto}{\item[\textsf{\blau{$\boldsymbol\to$}}]}
+\newcommand{\itemachtung}{\item[\textsf{\colorbox{red}{\weiss{!!!}}}]}
+\newcommand{\itemfazit}{\item[\textsf{\colorbox{darkgreen}{\weiss{ $\boldsymbol\Rightarrow$}}}]}
+\newcommand{\itemwas}{\FloatBarrier\item[\textsf{\colorbox{lila}{\weiss{??}}}]}
+\newcommand{\itemok}{\item[\textsf{\gruen{$\boldsymbol\checkmark$}}]}
+\newcommand{\itemursache}{\item[\textsf{\colorbox{blue}{\weiss{?!}}}]}
+\newcommand{\itemfrage}{\item[\textsf{\colorbox{orange}{\weiss{?}}}]}
+\newcommand{\itemPar}[1]{\item[\textsf{\fcolorbox{braun}{white}{\braun{#1}}}]}
+\newcommand{\itemNummer}[1]{\item[\textsf{\fcolorbox{red}{white}{\Rot{#1}}}]}
+\newcommand{\leer}{\vspace{2ex}}
+
+% Monate und Tage
+\newcommand{\neuermonat}[1]{\clearpage\newpage
+\addtocontents{toc}{\newpage{\LARGE\bf #1}\newline}
+\addtocontents{toc}{{\LARGE\bf\hrule}}
+{\centering\section{ #1}\thispagestyle{empty}}}
+
+\newcommand{\neuertag}[5][nix]{
+\setcounter{EqnNr}{0}
+\clearpage\newpage\thispagestyle{empty}\setcounter{jahr}{#2}\setcounter{monat}{#3}\setcounter{tag}{#4}\ifthenelse{\equal{#1}{nix}}{\subsection{#5}}{\subsection[#1]{#5}}\suppressfloats[t]}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{
+\arabic{jahr}-\arabic{monat}-\arabic{tag}}
+\renewcommand{\thefigure}{\Roman{figure}}
+
+% Einstellungen für Gleitobjekte
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.01}
+
+% andere Schriftart für Dateinamen
+\newcommand{\Datei}[1]{{\tt #1}}
+
+\newcounter{jahr}
+\newcounter{monat}
+\newcounter{tag}
+
+\makeatletter \@addtoreset{figure}{subsection} \makeatother
+
+% Kopf und Fusszeilen
+%\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+%\usepackage{caption}[2003/12/20]
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Oder kurz: \fancyheader[EL,OR]{\thepage}}]
+\fancyhead[L]{\leftmark}% Kapitel/Abschnitt
+\fancyhead[R]{\rightmark}% Abschnitt/Unterabschnitt
+
+\fancyhf{}
+\fancyhead[C]{\rightmark}
+\fancyfoot[C]{\thesubsection}
+
+\setlength{\headheight}{16pt}
+\typeout{hier:\the\topskip}
+\setlength{\textheight}{25cm}
+\setlength{\topmargin}{-2cm}
+
+\fancyfoot[C]{\thesubsection}
+
+
+\setlength{\mathindent}{0pt} % Einzug bei Formeln
+
+\usepackage{txfonts}
+
+\usepackage{forloop}
+\newcounter{ct}
+\usepackage{pdflscape}
+
+\usepackage{grffile}% for file names with .
+
+\begin{document}
+\renewcommand{\figurename}{Abb.} % nur Abkürzungen in Bildunterschrift
+\renewcommand{\tablename}{Tab.}
+
+\title{Laboratory book C112}
+
+\author{C112 Crew}
+%\institute{Institut für Physik\\Ernst-Moritz-Arndt-Universität Greifswald}
+\begin{titlepage}
+\maketitle
+
+\end{titlepage}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+
+\pagestyle{empty}
+\tableofcontents
+
+\pagestyle{fancy}
+\fancyfoot[C]{\thesubsection}
+\setlength{\mathindent}{0pt}
+
+\addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{2.5cm}}
+
+\input{16June}
+
+%\input{Literatur}
+\cleardoublepage
+%\bibliography{../Literatur/Literaturdatenbank}
+%gerplain, gerunsrt, geralpha, gerabbrv
+% vordefiniert: plain, unsrt, alpha, abbrv
+%\bibliographystyle{geralpha}
+\bibliographystyle{alpha}
+
+
+\end{document}
