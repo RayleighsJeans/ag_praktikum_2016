@@ -1,0 +1,181 @@
+% Copyright (C)  2016 Philipp Hacker.
+% Permission is granted to copy, distribute and/or modify this document
+% under the terms of the GNU Free Documentation License, Version 1.3
+% or any later version published by the Free Software Foundation;
+% with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+% The lincense itself can be found at <https://www.gnu.org/licenses/fdl-1.3>.
+
+\documentclass[a4paper,10pt,twocolumn,twoside]{article}
+%\documentclass[numbers=noenddot,12pt,a4paper,notitlepage,twoside,BCOR15mm]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[infoshow]{tabularx}
+\usepackage[all]{xy}
+
+\usepackage{amsmath,mathtools}
+\usepackage{amssymb}
+\usepackage{units}
+\usepackage{upgreek}
+\usepackage{esint}
+\usepackage{graphicx}
+\usepackage{ziffer}
+
+\usepackage{float}
+\usepackage{lscape}
+
+\usepackage[labelfont=bf]{caption}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+\usepackage[backref=page]{hyperref}
+
+\usepackage{csquotes}
+\usepackage[infoshow]{tabularx}
+\usepackage{fancyhdr}
+
+\usepackage{sectsty}
+\usepackage{times}
+
+\usepackage{lmodern} %TODO Schriftart
+\usepackage[greek,english]{babel} %TODO Sprache einstellen
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+\newcommand{\name}{\text{Philipp Hacker}} %TODO Name des Protokollanten eintragen
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\diff}{\textnormal{d}}
+\newcommand{\tenpo}[1]{ 10^{#1}}
+\newcommand{\greek}[1]{\greektext#1\latintext}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
+\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
+\newcommand{\euler}{\mathnormal{e}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+
+\author{Philipp Hacker} % Your name, this is used in the title page and abstract, print it elsewhere with \author
+
+\newcommand{\supname}{Dr. S. Nemschokmichal, R. Tschiersch} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+
+\newcommand{\univname}{Ernst-Moritz-Arndt University Greifswald} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+
+\newcommand{\deptname}{Institute of Physics} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+
+\newcommand{\groupname}{Low-temperature Plasma Physics group} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+
+\newcommand{\rtitle}{Report for an Internship at the \groupname\,\,of Prof. Dr. Meichsner}
+
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhead[R,L,C]{}
+\fancyfoot[R,L,C]{}
+\fancyhead[RE]{\href{http://www.physik.uni-greifswald.de/}{\deptname}}
+\fancyhead[LO]{\href{http://www1.physik.uni-greifswald.de/}{\groupname}}
+\fancyhead[LE]{\today}
+\fancyfoot[LO, RE]{\thepage}
+\fancyfoot[LE, RO]{Section \thesection}
+
+\begin{document}
+
+	\setcounter{section}{-1}
+	
+	\renewcommand*{\equationautorefname}{eq.}
+	\renewcommand*{\figureautorefname}{fig.}
+	\renewcommand*{\tableautorefname}{tab.}
+	\renewcommand*{\sectionautorefname}{sec.}
+	\renewcommand*{\subsectionautorefname}{subsec.}
+	\renewcommand*{\subsubsectionautorefname}{subsec.}
+	\renewcommand*{\figurename}{Fig. }
+	\renewcommand*{\tablename}{Tab. }
+
+	\renewcommand*{\figurename}{Figure }
+	\renewcommand*{\tablename}{Tabel }
+
+	
+	\onecolumn
+	\thispagestyle{empty}
+	
+	\begin{center}
+			
+			\HRule \\[0.4cm] % Horizontal line
+			\huge \fett{\rtitle} \\ % Thesis title
+			\HRule \\[1.0cm] % Horizontal line
+			
+			\large \href{http://www.university-url.com}{\univname}
+
+	\begin{figure}[h]
+		\centering
+		
+		\begin{minipage}[t]{0.48\textwidth}
+			\begin{center}
+			\emph{Author}: \href{https://github.com/RayleighsJeans/ag_praktikum_2016}{\name} \\ %TODO author
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.48\textwidth}
+			\begin{center}
+				\emph{Supervisor}: Dr. S. Nemschokmichal,\\R. Tschiersch \\ %TODO name of supervisor
+			\end{center}
+		\end{minipage}
+	\end{figure}
+
+		\large \textit{A report submitted in fulfillment of the requirements for the degree}\\[0.1cm] Master of Science\\[0.3cm] %TODO UNIVERSITY TEXT
+		\textit{in the}\\[0.4cm]
+		\href{http://www1.physik.uni-greifswald.de}{\groupname} \\[0.2cm] \href{http://www.physik.uni-greifswald.de}{\deptname} \\ %TODO RESEARCH GROUP/DEPARTMENT
+
+	\end{center}
+	
+	\tableofcontents
+	\vfill
+	\clearpage
+	\twocolumn
+
+	\section{Abstract}
+
+	\section{Introduction}
+
+
+	\section{Physical background}
+	
+		\subsection{collisional-radiative model}
+		
+		\subsection{electric field from line ratio}
+		
+		\subsection{stark shift}
+
+		
+	\section{Experimental set-up}
+
+
+	\section{Experimental Investigations}
+	
+		\subsection{spatial wavelength scan and line ratios}
+		
+		\subsection{spatial development of stark shift}
+
+		\subsection{Conclusion}
+		
+		\subsection{Acknowledgments}
+		
+
+		\subsection{References}
+
+			\bibliography{all.bib}
+			\bibliographystyle{unsrt}
+
+
+	\section{Appendix}
+
+
+\end{document}

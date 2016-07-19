@@ -210,3 +210,10 @@ tmp\*
 
 *\scnd_pdf\*
 */scnd_pdf/*
+
+*\**\*tmp*
+*/**/*tmp*
+*tmp*
+
+tmp/
+tmp\
