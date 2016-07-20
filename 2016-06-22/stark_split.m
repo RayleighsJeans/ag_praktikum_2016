@@ -1,6 +1,5 @@
 function stark_split
 
-set(0, 'DefaultTextInterpreter', 'latex')
 warning off;
 ppr_size = [14.6 11.4];
 
@@ -104,22 +103,21 @@ save('base_dat.mat');
     
     f = figure;
     hold on;
-    meshc(linspace(1,1440,1440),time_volt,rogowski+0.160);view(2);
-    ylabel('time in 탎');
-    xlabel('vertical slit pos. in inch');
+    meshc(time_volt/1e-6,linspace(1,1440,1440),rogowski'+0.160);view(2);
+    xlabel('time in 탎');
+    ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'voltage in V';
     title('rogowski coil via experiment duration');
-    set(gca,'XTick',[180 540 900 1260]);
-    set(gca,'XTickLabel',{'6.8' '6.9' '7.0' '7.1'});
+    set(gca,'YTick',[180 540 900 1260]);
+    set(gca,'YTickLabel',{'6.8' '6.9' '7.0' '7.1'});
     
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'rogowski_full','pdf');
-    print('rogowski_full2','-dpdf','-noui','-bestfit');
+%     print('rogowski_full2','-dpdf','-noui','-bestfit');
     
-    savefig('rogowski_full');
+%     savefig('rogowski_full');
     hold off; close(f);
     
 % FFT abziehen der ersten 200 Punkte je Messung.
@@ -172,70 +170,66 @@ end
 % Bilder der Stark-Aufspaltungen.
 
 f = figure;hold on;
-meshc(wavelength,time_volt/1e-6,sgf_68in);view(2);
-xlabel('wavelength in nm');
-ylabel('time in 탎');
+meshc(time_volt/1e-6,wavelength,sgf_68in');view(2);
+ylabel('wavelength in nm');
+xlabel('time in 탎');
 title('vertical position 6.8 inch');
 c = colorbar;
 c.Label.String = 'intensity, a.u.'; 
 
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'stark_68in','pdf');
-    print('stark_68in2','-dpdf','-noui','-bestfit');
+%     print('stark_68in2','-dpdf','-noui','-bestfit');
  
-savefig('stark_68in.fig');
+% savefig('stark_68in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(wavelength,time_volt/1e-6,sgf_69in);view(2);
-xlabel('wavelength in nm');
-ylabel('time in 탎');
+meshc(time_volt/1e-6,wavelength,sgf_69in');view(2);
+ylabel('wavelength in nm');
+xlabel('time in 탎');
 title('vertical position 6.9 inch');
 c = colorbar;
 c.Label.String = 'intensity, a.u.';    
 
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'stark_69in','pdf');
-    print('stark_69in2','-dpdf','-noui','-bestfit');
+%     print('stark_69in2','-dpdf','-noui','-bestfit');
  
-savefig('stark_69in.fig');
+% savefig('stark_69in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(wavelength,time_volt/1e-6,sgf_7in);view(2);
-xlabel('wavelength in nm');
-ylabel('time in 탎');
+meshc(time_volt/1e-6,wavelength,sgf_7in');view(2);
+ylabel('wavelength in nm');
+xlabel('time in 탎');
 title('vertical position 7 inch'); 
 c = colorbar;
 c.Label.String = 'intensity, a.u.';   
 
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'stark_7in','pdf');
-    print('stark_7in2','-dpdf','-noui','-bestfit');
+%     print('stark_7in2','-dpdf','-noui','-bestfit');
  
-savefig('stark_7in.fig');
+% savefig('stark_7in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(wavelength,time_volt/1e-6,sgf_71in);view(2);
-xlabel('wavelength in nm');
-ylabel('time in 탎');
+meshc(time_volt/1e-6,wavelength,sgf_71in');view(2);
+ylabel('wavelength in nm');
+xlabel('time in 탎');
 title('vertical position 7.1 inch');
 c = colorbar;
 c.Label.String = 'intensity, a.u.';
     
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'stark_71in','pdf');
-    print('stark_71in2','-dpdf','-noui','-bestfit');
+%     print('stark_71in2','-dpdf','-noui','-bestfit');
  
-savefig('stark_71in.fig');
+% savefig('stark_71in.fig');
 hold off; close(f);
 
 % Schaue mir die Entladungscharakteristik an.
@@ -280,22 +274,21 @@ chrg_diff = c_ext*chrg_diff;
 
 % Check.
 
-    lname1 = strcat('lissajous',h,'.pdf');
-    lname2 = strcat('lissajous2',h,'.pdf');
+    lname1 = strcat('lissajous',h,'.bmp');
+    lname2 = strcat('lissajous2',h,'.bmp');
     
-    cname1 = strcat('currentdis',h,'.pdf');
-    cname2 = strcat('currentdis2',h,'.pdf');
+    cname1 = strcat('currentdis',h,'.bmp');
+    cname2 = strcat('currentdis2',h,'.bmp');
 
     f = figure;hold on;
     plot(volt_appl,chrg_tmp);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
     title('applied voltage over total charge');
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,lname1,'pdf');
-    print(lname2,'-dpdf','-noui','-bestfit');
-    savefig(sprintf('lissajous%s.fig',h));
+    saveas(gcf,lname1,'bmp');
+%     print(lname2,'-dpdf','-noui','-bestfit');
+%     savefig(sprintf('lissajous%s.fig',h));
     hold off; close(f);
     
     f = figure;
@@ -307,15 +300,14 @@ chrg_diff = c_ext*chrg_diff;
     
     plot(time_volt(1:999)/1e-6,current_dis(1:999)*100000,'c');
     yyaxis right
-    ylabel('current in 10^{-5} A');
+    ylabel('current in mA');
     
     legend('U_{gap}','U_{app}','I_{dis}');
     title('current/appl. & gap voltage via time');
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,cname1,'pdf');
-    print(cname2,'-dpdf','-noui','-bestfit');
-    savefig(sprintf('currentdis%s.fig',h));
+    saveas(gcf,cname1,'bmp');
+%     print(cname2,'-dpdf','-noui','-bestfit');
+%     savefig(sprintf('currentdis%s.fig',h));
     hold off; close(f);
     
 end

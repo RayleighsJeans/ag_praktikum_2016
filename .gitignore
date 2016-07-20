@@ -208,8 +208,8 @@ tmp/*
 tmp\*
 *\tmp\*
 
-*\scnd_pdf\*
-*/scnd_pdf/*
+*\scnd\*
+*/scnd/*
 
 *\**\*tmp*
 */**/*tmp*

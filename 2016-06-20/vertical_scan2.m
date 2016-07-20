@@ -1,6 +1,5 @@
 function vertical_scan2;
 
-set(0, 'DefaultTextInterpreter', 'latex')
 warning off;
 ppr_size = [14.6 11.4];
 
@@ -163,83 +162,70 @@ end
     end
 
 cd(loc_main);
-load base_dat.mat
+save base_dat.mat
+% load base_dat.mat
 
 % Bilder
 
 f = figure;hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean587)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean587))');view(2);
 title('vertical emission profile at 587.65 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('587nm.fig');
-
+ylabel('vertical pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('587nm.fig');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'587nm','pdf');
-    print('587nm2','-dpdf','-noui','-bestfit');
+%     print('587nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean667)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean667))');view(2);
 title('vertical emission profile for 667.96 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('667nm.fig');
-
+ylabel('vertical pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);   
+% savefig('667nm.fig');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'667nm','pdf');
-    print('667nm2','-dpdf','-noui','-bestfit');
+%     print('667nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean706)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean706))');view(2);
 title('vertical emission profile for 706.66 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('706nm.fig');
+ylabel('vertical pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('706nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'706nm','pdf');
-    print('706nm2','-dpdf','-noui','-bestfit');
+%     print('706nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean728)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean728))');view(2);
 title('vertical emission profile for 728.31 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('728nm.fig');
+ylabel('vertical pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('728nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'728nm','pdf');
-    print('728nm2','-dpdf','-noui','-bestfit');
+%     print('728nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
@@ -279,12 +265,11 @@ chrg_diff = c_ext*chrg_diff;
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
     title('applied voltage over totale charge');
-    savefig('lissajous.fig');
+%     savefig('lissajous.fig');
     
-        set(gca,'FontSize', 12,'Fontname','L M Roman12');
         set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lissajous','pdf');
-        print('lissajous2','-dpdf','-noui','-bestfit');
+        saveas(gcf,'lissajous','bmp');
+%         print('lissajous2','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 
@@ -298,16 +283,15 @@ chrg_diff = c_ext*chrg_diff;
     
     plot(time_volt(1:1999)/1e-6,current_dis(1:1999)*1000000,'c');
     yyaxis right
-    ylabel('current in 킕');
+    ylabel('current in mA');
     
     legend('U_{gap}','U_{app}','I_{dis}');
     title('current/appl. & gap voltage via time');
-    savefig('current_dis.fig');
+%     savefig('current_dis.fig');
     
-        set(gca,'FontSize', 12,'Fontname','L M Roman12');
         set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'current_dis','pdf');
-        print('current_dis2','-dpdf','-noui','-bestfit');
+        saveas(gcf,'current_dis','bmp');
+%         print('current_dis2','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     
@@ -340,40 +324,36 @@ chrg_diff = c_ext*chrg_diff;
     tmp2 = sgolayfilt(tmp2,2,51);
     
     f = figure; hold on;
-    meshc(vertical_pos,time_volt/1e-6,tmp1);view(2);
-    xlabel('vertical slit pos. in inch');
+    meshc(time_volt/1e-6,vertical_pos,tmp1');view(2);
+    ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
-    ylabel('time in 탎');
+    xlabel('time in 탎');
     title('line ratio of He lines at 706 nm and 587 nm');
 
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-    savefig('lineratio706.fig');
+%     savefig('lineratio706.fig');
     
         set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lineratio706','pdf');
-        print('lineratio7062','-dpdf','-noui','-bestfit');
+%         print('lineratio7062','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     
     f = figure; hold on;
-    meshc(vertical_pos,time_volt/1e-6,tmp2);view(2);
-    xlabel('vertical slit pos. in inch');
+    meshc(time_volt/1e-6,vertical_pos,tmp2');view(2);
+    ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
-    ylabel('time in 탎');
+    xlabel('time in 탎');
     title('line ratio of He lines at 667 nm and 728 nm');
 
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-    savefig('lineratio728.fig');
+%     savefig('lineratio728.fig');
     
         set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lineratio728','pdf');
-        print('lineratio7282','-dpdf','-noui','-bestfit');
+%         print('lineratio7282','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 

@@ -8,6 +8,9 @@
 \documentclass[a4paper,10pt,twocolumn,twoside]{article}
 %\documentclass[numbers=noenddot,12pt,a4paper,notitlepage,twoside,BCOR15mm]{scrartcl}
 
+\usepackage{lipsum}
+\usepackage{multicol}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
@@ -65,6 +68,8 @@
 
 \author{Philipp Hacker} % Your name, this is used in the title page and abstract, print it elsewhere with \author
 
+\newcommand{\prof}{Prof. Dr. Meichsner}
+
 \newcommand{\supname}{Dr. S. Nemschokmichal, R. Tschiersch} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 
 \newcommand{\univname}{Ernst-Moritz-Arndt University Greifswald} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
@@ -73,7 +78,7 @@
 
 \newcommand{\groupname}{Low-temperature Plasma Physics group} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
 
-\newcommand{\rtitle}{Report for an Internship at the \groupname\,\,of Prof. Dr. Meichsner}
+\newcommand{\rtitle}{Electric field strength spectroscopy in dielectric barrier discharges}
 
 \date{\today}
 
@@ -90,6 +95,7 @@
 
 	\setcounter{section}{-1}
 	
+	\renewcommand*{\contentsname}{Table of Contents}
 	\renewcommand*{\equationautorefname}{eq.}
 	\renewcommand*{\figureautorefname}{fig.}
 	\renewcommand*{\tableautorefname}{tab.}
@@ -110,7 +116,7 @@
 			
 			\HRule \\[0.4cm] % Horizontal line
 			\huge \fett{\rtitle} \\ % Thesis title
-			\HRule \\[1.0cm] % Horizontal line
+			\HRule \\[.6cm] % Horizontal line
 			
 			\large \href{http://www.university-url.com}{\univname}
 
@@ -120,6 +126,7 @@
 		\begin{minipage}[t]{0.48\textwidth}
 			\begin{center}
 			\emph{Author}: \href{https://github.com/RayleighsJeans/ag_praktikum_2016}{\name} \\ %TODO author
+			\emph{Examiner:} \prof
 			\end{center}
 		\end{minipage}
 		\hfill
@@ -130,50 +137,53 @@
 		\end{minipage}
 	\end{figure}
 
-		\large \textit{A report submitted in fulfillment of the requirements for the degree}\\[0.1cm] Master of Science\\[0.3cm] %TODO UNIVERSITY TEXT
-		\textit{in the}\\[0.4cm]
-		\href{http://www1.physik.uni-greifswald.de}{\groupname} \\[0.2cm] \href{http://www.physik.uni-greifswald.de}{\deptname} \\ %TODO RESEARCH GROUP/DEPARTMENT
+		\large \textit{Report for an internship at the \groupname of Prof. Dr. Meichsner, submitted in fulfillment of the requirements for the degree}\\[0.1cm] \fett{Master of Science}\\[0.2cm] %TODO UNIVERSITY TEXT
+		\textit{in the}\\[0.2cm]
+		\href{http://www1.physik.uni-greifswald.de}{\groupname} \\[0.15cm] \href{http://www.physik.uni-greifswald.de}{\deptname} \\[0.3cm] %TODO RESEARCH GROUP/DEPARTMENT
 
 	\end{center}
 	
-	\tableofcontents
-	\vfill
-	\clearpage
-	\twocolumn
-
+	\begin{multicols}{2}
+		\tableofcontents
+	\end{multicols}
+	
+	\begin{multicols}{1}
+	\end{multicols}
+	
 	\section{Abstract}
+	
+	\clearpage
 
 	\section{Introduction}
-
-
-	\section{Physical background}
 	
-		\subsection{collisional-radiative model}
+		\subsection{Dielectric barrier discharges}
 		
-		\subsection{electric field from line ratio}
-		
-		\subsection{stark shift}
+		\subsection{Temporal development of the electric field stregnth}
 
-		
-	\section{Experimental set-up}
-
-
-	\section{Experimental Investigations}
+	\section{Experimentel set up}
 	
-		\subsection{spatial wavelength scan and line ratios}
+		\subsection{Discharge configurations}
 		
-		\subsection{spatial development of stark shift}
+		\subsection{Optical emission spectroscopy}
 
-		\subsection{Conclusion}
+	\section{Results}
+
+		\subsection{Integrated spectrum}
 		
-		\subsection{Acknowledgments}
+		\subsection{Spatial temporal resolved intensities}
 		
+		\subsection{Line ratios}
+		
+		\subsection{Stark spectroscopy}
 
-		\subsection{References}
+	\section{Conclusion}
+		
+	\section{Acknowledgments}
+		
+	\subsection{References}
 
-			\bibliography{all.bib}
-			\bibliographystyle{unsrt}
-
+		\bibliography{all.bib}
+		\bibliographystyle{unsrt}
 
 	\section{Appendix}
 

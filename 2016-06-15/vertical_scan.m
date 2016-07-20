@@ -1,6 +1,5 @@
 function vertical_scan
 
-set(0, 'DefaultTextInterpreter', 'latex')
 warning off;
 ppr_size = [14.6 11.4];
 
@@ -181,102 +180,89 @@ cd(loc_main);
 
 f = figure;
 hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean587)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean587))');view(2);
 title('vertical emission profile at 587.65 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical slit pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('korr587nm.fig');
+ylabel('vertical slit pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('korr587nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'korr587nm','pdf');
-    print('korr587nm2','-dpdf','-noui','-bestfit');
+%     print('korr587nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 
 f = figure;
 hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean667)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean667))');view(2);
 title('vertical emission profile at 667.96 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical slit pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('korr667nm.fig');
+ylabel('vertical slit pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('korr667nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'korr667nm','pdf');
-    print('korr667nm2','-dpdf','-noui','-bestfit');
+%     print('korr667nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(offset)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(offset))');view(2);
 title('vertical emission profile at 690 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical slit pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
-savefig('korr690nm.fig');
+ylabel('vertical slit pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
+% savefig('korr690nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'korr690nm','pdf');
-    print('korr690nm2','-dpdf','-noui','-bestfit');
+%     print('korr690nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean706)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean706))');view(2);
 title('vertical emission profile at 706.66 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical slit pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
+ylabel('vertical slit pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
     
-savefig('korr706nm.fig');
+% savefig('korr706nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'korr706nm','pdf');
-    print('korr706nm2','-dpdf','-noui','-bestfit');
+%     print('korr706nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
-meshc(vertical_pos,time_volt/1e-6,real(log10(mean728)));view(2);
+meshc(time_volt/1e-6,vertical_pos,real(log10(mean728))');view(2);
 title('vertical emission profile at 728.34 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
-xlabel('vertical slit pos. in inch');
-ylabel('time in 탎');
-
-    set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
+ylabel('vertical slit pos. in inch');
+xlabel('time in 탎');
+set(c,'fontsize',12);
     
-savefig('korr728nm.fig');
+% savefig('korr728nm.fig');
 
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'korr728nm','pdf');
-    print('korr728nm2','-dpdf','-noui','-bestfit');
+%     print('korr728nm2','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
@@ -304,11 +290,10 @@ chrg_current = c_ext*chrg_current;
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
     title('applied voltage over totale charge');
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'lissajous','pdf');
-    print('lissajous2','-dpdf','-noui','-bestfit');
-    savefig('lissajous.fig');
+    saveas(gcf,'lissajous','bmp');
+%     print('lissajous2','-dpdf','-noui','-bestfit');
+%     savefig('lissajous.fig');
     hold off;close(f);
     
 
@@ -321,17 +306,16 @@ chrg_current = c_ext*chrg_current;
     
     plot(time_volt(1:1999)/1e-6,current_dis(1:1999,1)*100000,'c');
     yyaxis right
-    ylabel('current in 10^{-5} A');
+    ylabel('current in mA');
     
     legend('U_{gap}','U_{app}','I_{dis}');
     title('current/appl. & gap voltage via time');
     
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
     set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'current_dis','pdf');
-    print('current_dis2','-dpdf','-noui','-bestfit');
+    saveas(gcf,'current_dis','bmp');
+%     print('current_dis2','-dpdf','-noui','-bestfit');
     
-    savefig('current_dis.fig');
+%     savefig('current_dis.fig');
     
     hold off;close(f);
     
@@ -365,41 +349,37 @@ load 2016-06-15.mat
     tmp2 = sgolayfilt(tmp2,2,51);
     
     f = figure; hold on;
-    meshc(vertical_pos,time_volt/1e-6,tmp1);view(2);
-    xlabel('vertical slit pos. in inch');
+    meshc(time_volt/1e-6,vertical_pos,tmp1');view(2);
+    ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
-    ylabel('time in 탎');
+    xlabel('time in 탎');
     
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
     title('line ratio of He lines at 706 nm and 587 nm');
     
         set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lineratio706','pdf');
-        print('lineratio7062','-dpdf','-noui','-bestfit');
+%         print('lineratio7062','-dpdf','-noui','-bestfit');
         
-    savefig('lineratio706.fig');
+%     savefig('lineratio706.fig');
     hold off;close(f);
     
     f = figure; hold on;
-    meshc(vertical_pos,time_volt/1e-6,tmp2);view(2);
-    xlabel('vertical slit pos. in inch');
+    meshc(time_volt/1e-6,vertical_pos,tmp2');view(2);
+    ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
-    ylabel('time in 탎');
+    xlabel('time in 탎');
     
     set(c,'fontsize',12);
-    set(gca,'FontSize', 12,'Fontname','L M Roman12');
-    
     title('line ratio of He lines at 667 nm and 728 nm');
     
         set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lineratio728','pdf');
-        print('lineratio7282','-dpdf','-noui','-bestfit');
+%         print('lineratio7282','-dpdf','-noui','-bestfit');
     
-    savefig('lineratio728.fig');
+%     savefig('lineratio728.fig');
     hold off;close(f);
     
 %% Daten.
