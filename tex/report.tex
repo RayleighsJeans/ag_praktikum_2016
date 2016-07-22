@@ -5,7 +5,7 @@
 % with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 % The lincense itself can be found at <https://www.gnu.org/licenses/fdl-1.3>.
 
-\documentclass[a4paper,10pt,twocolumn,twoside]{article}
+\documentclass[a4paper,10pt]{article}
 %\documentclass[numbers=noenddot,12pt,a4paper,notitlepage,twoside,BCOR15mm]{scrartcl}
 
 \usepackage{lipsum}
@@ -16,6 +16,15 @@
 
 \usepackage[infoshow]{tabularx}
 \usepackage[all]{xy}
+
+\usepackage{geometry}
+\geometry{%
+	a4paper,
+	left=24mm,
+	right=24mm,
+	top=24mm,
+	bottom=24mm,
+	}
 
 \usepackage{amsmath,mathtools}
 \usepackage{amssymb}
@@ -109,7 +118,6 @@
 	\renewcommand*{\tablename}{Tabel }
 
 	
-	\onecolumn
 	\thispagestyle{empty}
 	
 	\begin{center}
@@ -143,16 +151,17 @@
 
 	\end{center}
 	
+		\vspace{1cm}
+	
 	\begin{multicols}{2}
 		\tableofcontents
 	\end{multicols}
 	
-	\begin{multicols}{1}
-	\end{multicols}
+		\vspace{1cm}
 	
-	\section{Abstract}
-	
-	\clearpage
+		\section{Abstract}
+		
+	\twocolumn
 
 	\section{Introduction}
 	
@@ -170,9 +179,100 @@
 
 		\subsection{Integrated spectrum}
 		
+			Text.
+		
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/results/spectrum/int_spectrum.pdf}
+					\caption{Integrated photomultiplier current via discharge time. Indicated are the majoring peaks, which will be target of our investigation. The spectrum reaches from $\unit[580]{nm}$ to $\unit[730]{nm}$.}
+					\label{img:int_spectrum}
+				\end{figure}
+				
+			Text.
+				
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/results/spectrum/spectrum.pdf}
+					\caption{Photomultiplier current via discharge time and wavelength. The current derrives from the intensity of the full exit slit of the discharge chamber.}
+					\label{img:full_spectrum}
+				\end{figure}
+				
+			Text.
+		
 		\subsection{Spatial temporal resolved intensities}
 		
+			Text.
+			
+		\onecolumn
+					
+				\begin{figure}[h]
+					
+					\centering
+					
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/spatialtemporalresolvedlineintensity/sine/706nm.pdf}
+						\label{img:706sine}
+					     \vspace{-0.5cm}\caption{}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/spatialtemporalresolvedlineintensity/square/korr706nm.pdf}
+						\label{img:706square}
+						\vspace{-0.5cm}\caption{}
+					\end{subfigure}
+					
+					\begin{subfigure}[b]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/spatialtemporalresolvedlineintensity/sine/current_dis.pdf}
+						\label{img:currentdissine}
+						\vspace{-0.5cm}\caption{}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[b]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/spatialtemporalresolvedlineintensity/square/current_dis.pdf}
+						\label{img:currentdissquare}
+						\vspace{-0.5cm}\caption{}
+					\end{subfigure}
+					
+					\caption{\fett{(a):} Spatial temporal resolved line emission from $\unit[706.66]{nm}$ at sine wave discharge duty form. \fett{(b):} Profile at square wave duty form. \fett{(c):} Discharge current, gap and applied voltage via time. The graph of the applied voltage resembles a temporal highly resoluted sine wave of $\unit[5]{kHz}$. \fett{(d):} Discharge characteristics for a square wave.}
+				\end{figure}
+				
+		\twocolumn
+		
 		\subsection{Line ratios}
+
+		\onecolumn
+		
+				\begin{figure}
+					\centering
+			
+					\begin{subfigure}[t]{0.48\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/lineratios/square/lineratio667}
+						\vspace{-0.5cm}\caption{}
+						\label{img:ratio667}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[t]{0.48\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/lineratios/square/lineratio706}
+						\vspace{-0.5cm}\caption{}
+						\label{img:ratio7065}
+					\end{subfigure}
+					
+					\begin{subfigure}[t]{0.48\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/lineratios/square/elfield667}
+						\vspace{-0.5cm}\caption{}
+						\label{img:elfield667}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[t]{0.48\textwidth}
+						\includegraphics[width=\textwidth]{figures/results/lineratios/square/elfield706}
+						\vspace{-0.5cm}\caption{}
+						\label{img:elfield7065}
+					\end{subfigure}
+					
+					\caption{\fett{(a):} Line ratio from the division of the intensity values of the emission at $\unit[667.96]{nm}$ and $\unit[728.31]{nm}$. \fett{(b):} Line ratio of $\unit[706.66]{nm}$/$\unit[587.65]{nm}$. \fett{(c):} \fett{(d):} }
+				\end{figure}
+				
+		\twocolumn
 		
 		\subsection{Stark spectroscopy}
 

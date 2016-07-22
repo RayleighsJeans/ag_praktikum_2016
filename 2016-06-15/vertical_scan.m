@@ -1,7 +1,7 @@
 function vertical_scan
 
 warning off;
-ppr_size = [14.6 11.4];
+ppr_size = [14.8 11.6];
 
 %% Initialisierung
 
@@ -319,67 +319,125 @@ chrg_current = c_ext*chrg_current;
     
     hold off;close(f);
     
-%% Linienverhältnisse.
-load 2016-06-15.mat
+% Linienverhältnisse.
 
-    tmp1 = mean706./mean587;
-    tmp2 = mean667./mean728;
+    tmp706 = mean706;
+    tmp587 = mean587;
+    tmp667 = mean667;
+    tmp728 = mean728;
 
-    schwell1 = 0.3*max(max(tmp1-min(min(tmp1))));
-    schwell2 = 0.25*max(max(tmp2-min(min(tmp2))));
-    
-    tmp1 = tmp1-min(min(tmp1));
-    tmp2 = tmp2-min(min(tmp2));
+    schwell706 = 0.05*max(max(abs(tmp706)));
+    schwell587 = 0.05*max(max(abs(tmp587)));
+    schwell667 = 0.05*max(max(abs(tmp667)));
+    schwell728 = 0.05*max(max(abs(tmp728)));
     
     for i=1:2000
         for j=1:29
        
-            if (tmp1(i,j)<=schwell1)
-                tmp1(i,j)=0;
+            if (abs(tmp706(i,j))<=schwell706)
+                tmp706(i,j)=0;
             end
             
-            if (tmp2(i,j)<=schwell2)
-                tmp2(i,j)=0;
+%             if (tmp587(i,j)<=schwell587)
+%                 tmp587(i,j)=0;
+%             end
+            
+            if (abs(tmp667(i,j))<=schwell667)
+                tmp667(i,j)=0;
             end
             
+%             if (tmp728(i,j)<=schwell728)
+%                 tmp728(i,j)=0;
+%             end
+                        
         end
     end
-
-    tmp1 = sgolayfilt(tmp1,2,51);
-    tmp2 = sgolayfilt(tmp2,2,51);
+    
+    % Numerischer Umweg.
+    
+        tmp667 = tmp667*1e4;
+        tmp728 = tmp728*1e4;
+        
+        tmp706 = tmp706*1e3;
+        tmp587 = tmp587*1e3;
+    
+    tmp_ratio706 = tmp706./tmp587;
+    tmp_ratio667 = tmp667./tmp728;
+    
+    sgf_ratio706 = sgolayfilt(tmp_ratio706,2,51);
+    sgf_ratio667 = sgolayfilt(tmp_ratio667,2,51);
+    
+    field667 = tmp_ratio667.^2*45.07-20.18*tmp_ratio667-19.98*tmp_ratio667.^3+3.369*tmp_ratio667.^4+2.224;
+    sgf_field667 = sgolayfilt(field667,2,51);
+    field706 = tmp_ratio706.^2*45.07-20.18*tmp_ratio706-19.98*tmp_ratio706.^3+3.369*tmp_ratio706.^4+2.224;
+    sgf_field706 = sgolayfilt(field706,2,51);
     
     f = figure; hold on;
-    meshc(time_volt/1e-6,vertical_pos,tmp1');view(2);
+    meshc(time_volt/1e-6,vertical_pos,sgf_ratio706');view(2);
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    
-    set(c,'fontsize',12);
     title('line ratio of He lines at 706 nm and 587 nm');
+
+    set(c,'fontsize',12);
+%     savefig('lineratio706.fig');
     
         set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lineratio706','pdf');
 %         print('lineratio7062','-dpdf','-noui','-bestfit');
-        
-%     savefig('lineratio706.fig');
+    
     hold off;close(f);
     
     f = figure; hold on;
-    meshc(time_volt/1e-6,vertical_pos,tmp2');view(2);
+    meshc(time_volt/1e-6,vertical_pos,sgf_ratio667');view(2);
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    
-    set(c,'fontsize',12);
     title('line ratio of He lines at 667 nm and 728 nm');
+
+    set(c,'fontsize',12);
+%     savefig('lineratio667.fig');
     
         set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lineratio728','pdf');
-%         print('lineratio7282','-dpdf','-noui','-bestfit');
+        saveas(gcf,'lineratio667','pdf');
+%         print('lineratio6672','-dpdf','-noui','-bestfit');
     
-%     savefig('lineratio728.fig');
+    hold off;close(f);
+
+    f = figure; hold on;
+    meshc(time_volt/1e-6,vertical_pos,sgf_field667');view(2);
+    ylabel('vertical slit pos. in inch');
+    c = colorbar;
+    c.Label.String = 'el. field in kV/cm';
+    xlabel('time in µs');
+    title('el. field strength from ratio 667nm/728nm');
+
+    set(c,'fontsize',12);
+%     savefig('lineratio667.fig');
+    
+        set(gcf,'PaperSize',ppr_size);
+        saveas(gcf,'elfield667','pdf');
+%         print('lineratio6672','-dpdf','-noui','-bestfit');
+    
+    hold off;close(f);
+
+    f = figure; hold on;
+    meshc(time_volt/1e-6,vertical_pos,sgf_field706');view(2);
+    ylabel('vertical slit pos. in inch');
+    c = colorbar;
+    c.Label.String = 'el. field in kV/cm';
+    xlabel('time in µs');
+    title('el. field strength from ratio 706nm/587nm');
+
+    set(c,'fontsize',12);
+%     savefig('lineratio706.fig');
+    
+        set(gcf,'PaperSize',ppr_size);
+        saveas(gcf,'elfield706','pdf');
+%         print('lineratio7062','-dpdf','-noui','-bestfit');
+    
     hold off;close(f);
     
 %% Daten.

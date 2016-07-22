@@ -1,7 +1,7 @@
 function stark_split
 
 warning off;
-ppr_size = [14.6 11.4];
+ppr_size = [14.8 11.8];
 
 %% Initialisierung
 
@@ -311,6 +311,63 @@ chrg_diff = c_ext*chrg_diff;
     hold off; close(f);
     
 end
+
+% Mache die Stark-Aufspaltung.
+
+clear trsh Ind I inmax max nmax
+
+[trsh, Ind] = max(abs(stark71_korr));
+inmax = 0;
+
+    for i=1:36;
+        
+        j=Ind(i);
+        nmax = stark71_korr(j,i);
+        
+        if (abs(inmax)<=abs(nmax))
+            nInd = [i j];
+            inmax = nmax;
+        end
+    end
+    
+    time = time_volt(nInd(2))*1e6;
+    
+    in1max = 0;
+    in2max = 0;
+    starkshift = -stark71_korr(nInd(2),:);
+    
+    for i=1:14;
+        
+        tmp1 = starkshift(1+i);
+        tmp2 = starkshift(15+i);
+        
+        if (abs(in1max)<=max(tmp1))
+            wInd1=i+1;
+            in1max = tmp1;
+        end
+        
+        if (abs(in2max)<=max(tmp2))
+            wInd2=i+15;
+            in2max = tmp2;
+        end
+        
+    end
+            
+    sep = wavelength(wInd2)-wavelength(wInd1);
+    
+    fieldstrengthsq = -58.557+18.116*sep+3130.96*(sep)^2+815.6*(sep)^3;
+    fieldstrength = sqrt(fieldstrengthsq);
+    
+    f = figure;hold on;
+    plot(wavelength,starkshift);
+    xlabel('wavelength in nm');
+    ylabel('intensity, a.u.');
+    title(sprintf('shift, 7.1in, %gµs, E=%g kV/cm', time, fieldstrength));
+    set(gcf,'PaperSize',ppr_size);
+    saveas(gcf,'stark_shift71in','bmp');
+%     print(lname2,'-dpdf','-noui','-bestfit');
+%     savefig(sprintf('lissajous%s.fig',h));
+    hold off; close(f);
 
 %% Daten.
 

@@ -1,7 +1,7 @@
 function wavelength_scans;
 
 warning off;
-ppr_size = [14.6 11.4];
+ppr_size = [24.8 21.8];
 
 %% Initialisierung
 
@@ -179,14 +179,14 @@ chrg_current = c_ext*chrg_current;
 %% Ersten Bilder machen. Übersichtspektrum, integriertes Spektrum und Differenzenquotienten des Entladungsstromes.
 
     f = figure;
-    hold on;
-    meshc(time_volt/1e-6,linspace(0,495,495),chrg_current');
+    hold on; box on;
+    meshc(time_volt/1e-6,linspace(0,495,495),chrg_current'*1e3);
     xlabel('time in µs');
     ylabel('experiment #');
     view(2);
     title('charge current over experiment duration');
     c = colorbar;
-    c.Label.String = 'current in A';
+    c.Label.String = 'current in mA';
     
     set(c,'fontsize',12);
     
@@ -200,7 +200,7 @@ chrg_current = c_ext*chrg_current;
     close(f);
     
     f=figure;
-    hold on;
+    hold on; box on;
     meshc(time_volt/1e-6,scan_spec,real(log10(korrspectrum))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
@@ -221,7 +221,7 @@ chrg_current = c_ext*chrg_current;
     close(f);
     
     f = figure;
-    hold on;
+    hold on; box on;
     plot(scan_spec,-int_spectrum*1e-9);
     xlabel('wavelength in nm');
     ylabel('integrated PM current in A');
@@ -236,11 +236,26 @@ chrg_current = c_ext*chrg_current;
     close(f);
     
     f = figure;
-    hold on;
+    hold on; box on;
+    plot(scan_spec,real(log10(-int_spectrum*1e-9)));
+    xlabel('wavelength in nm');
+    ylabel('log_{10} of integrated spectrum');
+    title('spectrum integrated via discharge time');
+%     savefig('int_spectrum');
+    
+        set(gcf,'PaperSize',ppr_size);
+        saveas(gcf,'log10int_spectrum','bmp');
+%         print('int_spectrum2','-dpdf','-noui','-bestfit');
+    
+    hold off;
+    close(f);
+    
+    f = figure;
+    hold on; box on;
     plot(volt_appl(:,1),chrg(:,1));
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over totale charge');
+    title('applied voltage over total charge');
 %     savefig('lissajous.fig');
     
         set(gcf,'PaperSize',ppr_size);
@@ -266,7 +281,7 @@ chrg_current = c_ext*chrg_current;
     current_dis = (1+c_gap/c_diel)*(chrg_current-c_tot*volt_diff);
     
     f = figure;
-    hold on;
+    hold on; box on;
     plot(time_volt/1e-6,volt_gap(:,1),'r',time_volt/1e-6,volt_appl(:,1),'r-.');
     xlabel('time in µs');
     yyaxis left
@@ -307,7 +322,7 @@ wvlgnth = [587 667 706 728];
     file_name = strcat('scan_',k,'.fig');
     
     f = figure;
-    hold on;
+    hold on; box on;
     meshc(time_volt/1e-6,scan1,real(log10(korr587))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
@@ -335,7 +350,7 @@ wvlgnth = [587 667 706 728];
     file_name = strcat('scan_',k,'.fig');
     
     f = figure;
-    hold on;
+    hold on; box on;
     meshc(time_volt/1e-6,scan2,real(log10(korr667))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
@@ -363,7 +378,7 @@ wvlgnth = [587 667 706 728];
     file_name = strcat('scan_',k,'.fig');
     
     f = figure;
-    hold on;
+    hold on; box on;
     meshc(time_volt/1e-6,scan3,real(log10(korr706))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
@@ -391,7 +406,7 @@ wvlgnth = [587 667 706 728];
     file_name = strcat('scan_',k,'.fig');
     
     f = figure;
-    hold on;
+    hold on; box on;
     meshc(time_volt/1e-6,scan4,real(log10(korr728))');
     ylabel('wavelength in nm');
     xlabel('time in µs');

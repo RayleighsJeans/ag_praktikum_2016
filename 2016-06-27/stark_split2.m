@@ -1,7 +1,7 @@
 function stark_split2
 
 warning off;
-ppr_size = [14.6 11.4];
+ppr_size = [14.8 11.6];
 
 % Initialisierung
 
@@ -265,7 +265,7 @@ chrg_diff = c_ext*chrg_diff;
     plot(volt_appl,chrg_tmp);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over totale charge');
+    title('applied voltage over total charge');
     set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'lissajous','bmp');
 %     print('lissajous2','-dpdf','-noui','-bestfit');
