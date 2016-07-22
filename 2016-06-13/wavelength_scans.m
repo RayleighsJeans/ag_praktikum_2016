@@ -1,7 +1,6 @@
 function wavelength_scans;
 
 warning off;
-ppr_size = [24.8 21.8];
 
 %% Initialisierung
 
@@ -180,19 +179,15 @@ chrg_current = c_ext*chrg_current;
 
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,linspace(0,495,495),chrg_current'*1e3);
+    meshc(time_volt/1e-6,linspace(0,495,495),chrg_current'*1e3);view(2);
     xlabel('time in 탎');
     ylabel('experiment #');
     view(2);
     title('charge current over experiment duration');
     c = colorbar;
     c.Label.String = 'current in mA';
-    
-    set(c,'fontsize',12);
-    
 %     savefig('chrg_current.fig');
     
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'chrg_current','pdf');
 %         print('chrg_current2','-dpdf','-noui','-bestfit');
     
@@ -201,7 +196,7 @@ chrg_current = c_ext*chrg_current;
     
     f=figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan_spec,real(log10(korrspectrum))');
+    meshc(time_volt/1e-6,scan_spec,real(log10(korrspectrum))');view(2);
     ylabel('wavelength in nm');
     xlabel('time in 탎');
     view(2);
@@ -209,11 +204,8 @@ chrg_current = c_ext*chrg_current;
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
     
-    set(c,'fontsize',12);
-    
 %     savefig('spectrum.fig');
     
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'spectrum','pdf');
 %         print('spectrum2','-dpdf','-noui','-bestfit');
     
@@ -227,8 +219,7 @@ chrg_current = c_ext*chrg_current;
     ylabel('integrated PM current in A');
     title('spectrum integrated via discharge time');
 %     savefig('int_spectrum');
-    
-        set(gcf,'PaperSize',ppr_size);
+
         saveas(gcf,'int_spectrum','bmp');
 %         print('int_spectrum2','-dpdf','-noui','-bestfit');
     
@@ -242,8 +233,7 @@ chrg_current = c_ext*chrg_current;
     ylabel('log_{10} of integrated spectrum');
     title('spectrum integrated via discharge time');
 %     savefig('int_spectrum');
-    
-        set(gcf,'PaperSize',ppr_size);
+
         saveas(gcf,'log10int_spectrum','bmp');
 %         print('int_spectrum2','-dpdf','-noui','-bestfit');
     
@@ -257,8 +247,7 @@ chrg_current = c_ext*chrg_current;
     ylabel('Q_{ext}/C');
     title('applied voltage over total charge');
 %     savefig('lissajous.fig');
-    
-        set(gcf,'PaperSize',ppr_size);
+
         saveas(gcf,'lissajous','bmp');
 %         print('lissajous2','-dpdf','-noui','-bestfit');
     
@@ -282,18 +271,17 @@ chrg_current = c_ext*chrg_current;
     
     f = figure;
     hold on; box on;
-    plot(time_volt/1e-6,volt_gap(:,1),'r',time_volt/1e-6,volt_appl(:,1),'r-.');
     xlabel('time in 탎');
     yyaxis left
+    plot(time_volt/1e-6,volt_gap(:,1),'k',time_volt/1e-6,volt_appl(:,1),'k-.');
     ylabel('voltage in V');
     
-    plot(time_volt/1e-6,current_dis(:,1)*100000,'c');
     yyaxis right
+    plot(time_volt/1e-6,current_dis(:,1)*1000,'r-');
     ylabel('current in mA');
     title('current/appl. & gap voltage via time');
     legend('U_{gap}','U_{app}','I_{dis}');
               
-        set(gcf,'PaperSize',ppr_size);
         saveas(gca,'current_dis','bmp');
 %         print('current_dis2','-dpdf','-noui','-bestfit');
 
@@ -323,19 +311,17 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan1,real(log10(korr587))');
+    meshc(time_volt/1e-6,scan1,real(log10(korr587))');view(2);
     ylabel('wavelength in nm');
     xlabel('time in 탎');
     view(2);
     title('scan around 587nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
-    set(c,'fontsize',12);
 %     savefig(file_name);
     
         two = num2str(2);
         file_name = strcat('scan_',k);
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
 %         print(file_name,'-dpdf','-noui','-bestfit');
@@ -351,19 +337,17 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan2,real(log10(korr667))');
+    meshc(time_volt/1e-6,scan2,real(log10(korr667))');view(2);
     ylabel('wavelength in nm');
     xlabel('time in 탎');
     view(2);
     title('scan around 667nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
-    set(c,'fontsize',12);
 %     savefig(file_name);
     
     
         file_name = strcat('scan_',k);
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
 %         print(file_name,'-dpdf','-noui','-bestfit');
@@ -379,19 +363,17 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan3,real(log10(korr706))');
+    meshc(time_volt/1e-6,scan3,real(log10(korr706))');view(2);
     ylabel('wavelength in nm');
     xlabel('time in 탎');
     view(2);
     title('scan around 706nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
-    set(c,'fontsize',12);
 %     savefig(file_name);
     
         
         file_name = strcat('scan_',k);
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
 %         print(file_name,'-dpdf','-noui','-bestfit');
@@ -407,18 +389,16 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan4,real(log10(korr728))');
+    meshc(time_volt/1e-6,scan4,real(log10(korr728))');view(2);
     ylabel('wavelength in nm');
     xlabel('time in 탎');
     view(2);
     title('scan around 728nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
-    set(c,'fontsize',12);
 %     savefig(file_name);
     
         file_name = strcat('scan_',k);
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
 %         print(file_name,'-dpdf','-noui','-bestfit');
