@@ -45,9 +45,13 @@ scan2 = linspace(667.3,668.3,51);
 scan3 = linspace(706,707,51);
 scan4 = linspace(727.7,728.7,51);
 scan_spec = linspace(585,730,291);
-time_volt = linspace(-6e-7,1.398e-6,1000);
 
+cd(loc_a);
+tmp = importdata('16Jun08001_RTO.dat');
+tmp = tmp.data;
+time_volt = tmp(:,1);
 time_delta = time_volt(2)-time_volt(1);
+cd(loc_main);
 
     % Initialisierung der Messwerte-Matrizen
     
@@ -60,7 +64,6 @@ time_delta = time_volt(2)-time_volt(1);
     volt_diff = zeros(1000,495);
     chrg = zeros(1000,495);
     chrg_current = zeros(1000,495);
-    
     
 %% Hole mir die Messdaten aus den RTO-files. Nehme den Photomultiplier-Strom und mache direkt die Ableitung vom Entladungstrom.
     
@@ -174,22 +177,28 @@ chrg_current = c_ext*chrg_current;
     
     int_spectrum = zeros(291);
     int_spectrum = 1/time_delta*sum(korrspectrum(:,:),1);
+    
+% Daten sicher.
+save('base_dat.mat');
+
+% cd(loc_main);
+% load('base_dat.mat');
 
 %% Ersten Bilder machen. Übersichtspektrum, integriertes Spektrum und Differenzenquotienten des Entladungsstromes.
 
     f = figure;
-    hold on; box on;
+    hold on;
     meshc(time_volt/1e-6,linspace(0,495,495),chrg_current'*1e3);view(2);
     xlabel('time in µs');
     ylabel('experiment #');
-    view(2);
-    title('charge current over experiment duration');
+    % title('charge current over experiment duration');
     c = colorbar;
     c.Label.String = 'current in mA';
+    box on;set(gca,'Layer','top');
 %     savefig('chrg_current.fig');
     
-        saveas(gcf,'chrg_current','pdf');
-%         print('chrg_current2','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'chrg_current','pdf');
+        print('chrg_current','-dpdf','-noui','-bestfit');
     
     hold off;
     close(f);
@@ -200,42 +209,85 @@ chrg_current = c_ext*chrg_current;
     ylabel('wavelength in nm');
     xlabel('time in µs');
     view(2);
-    title('spectrum scan via full slit');   
+    % title('spectrum scan via full slit');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
+    set(gca,'Layer','top');
     
 %     savefig('spectrum.fig');
     
-        saveas(gcf,'spectrum','pdf');
-%         print('spectrum2','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'spectrum','pdf');
+        print('spectrum','-dpdf','-noui','-bestfit');
     
     hold off;
     close(f);
     
     f = figure;
     hold on; box on;
-    plot(scan_spec,-int_spectrum*1e-9);
+    plot(scan_spec,(-int_spectrum*1e-9+min(-int_spectrum*1e-9))/max(-int_spectrum*1e-9+min(-int_spectrum*1e-9)));
+    y = -int_spectrum*1e-9/max(-int_spectrum*1e-9);
+    x = scan_spec;
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('wavelength in nm');
-    ylabel('integrated PM current in A');
-    title('spectrum integrated via discharge time');
-%     savefig('int_spectrum');
+    ylabel('norm. intensity, a.u.');
+    
+            % Create textbox
+            annotation(f,'textbox',...
+                [0.638916776595215 0.709051507397414 0.14629004648172 0.194864042981154],...
+                'String',{'He I','2^3P- 3^3S','706,66 nm'},...
+                'HorizontalAlignment','center',...
+                'EdgeColor','none',...
+                'Fontsize',18,...
+                'FontName','L M Roman12');
+
+            % Create textarrow
+            annotation(f,'textarrow',[0.207907356661045 0.15008431703204],...
+                [0.387284521059179 0.303625377643505],...
+                'String',{'He I','2^3P-3^3D','587,65 nm'},...
+                'HorizontalAlignment','center',...
+                'Fontsize',18,...
+                'FontName','L M Roman12');
+
+            % Create textarrow
+            annotation(f,'textarrow',[0.529761438761308 0.569983136593592],...
+                [0.463696369636964 0.345921450151057],...
+                'String',{'He I','2^3P-3^3S','667,98 nm'},...
+                'HorizontalAlignment','center',...
+                'Fontsize',18,...
+                'FontName','L M Roman12');
+
+            % Create textarrow
+            annotation(f,'textarrow',[0.845314256604833 0.892074198988196],...
+                [0.409760480224315 0.243202416918429],...
+                'String',{'He I','2^1P - 3^3S','728,31 nm'},...
+                'HorizontalAlignment','center',...
+                'Fontsize',18,...
+                'FontName','L M Roman12');
+    
+    set(gca,'Layer','top');
+    % title('spectrum integrated via discharge time');
+    savefig('int_spectrum');
 
         saveas(gcf,'int_spectrum','bmp');
-%         print('int_spectrum2','-dpdf','-noui','-bestfit');
+%         print('int_spectrum','-dpdf','-noui','-bestfit');
     
     hold off;
     close(f);
     
     f = figure;
     hold on; box on;
-    plot(scan_spec,real(log10(-int_spectrum*1e-9)));
+    plot(scan_spec,real(log10(-int_spectrum*1e-9/max(-int_spectrum*1e-9))));
+    y = real(log10(-int_spectrum*1e-9/max(-int_spectrum*1e-9)));
+    x = scan_spec;
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('wavelength in nm');
-    ylabel('log_{10} of integrated spectrum');
-    title('spectrum integrated via discharge time');
+    ylabel('log_{10} of norm. intensity');
+    set(gca,'Layer','top');
+    % title('spectrum integrated via discharge time');
 %     savefig('int_spectrum');
 
         saveas(gcf,'log10int_spectrum','bmp');
-%         print('int_spectrum2','-dpdf','-noui','-bestfit');
+%         print('log10int_spectrum','-dpdf','-noui','-bestfit');
     
     hold off;
     close(f);
@@ -243,13 +295,17 @@ chrg_current = c_ext*chrg_current;
     f = figure;
     hold on; box on;
     plot(volt_appl(:,1),chrg(:,1));
+    x = volt_appl(:,1);
+    y = chrg(:,1);
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over total charge');
+    set(gca,'Layer','top');
+    % title('applied voltage over total charge');
 %     savefig('lissajous.fig');
 
         saveas(gcf,'lissajous','bmp');
-%         print('lissajous2','-dpdf','-noui','-bestfit');
+%         print('lissajous','-dpdf','-noui','-bestfit');
     
     hold off;
     close(f);
@@ -274,16 +330,24 @@ chrg_current = c_ext*chrg_current;
     xlabel('time in µs');
     yyaxis left
     plot(time_volt/1e-6,volt_gap(:,1),'k',time_volt/1e-6,volt_appl(:,1),'k-.');
+    x = time_volt/1e-6;
     ylabel('voltage in V');
+    axis([min(x) max(x) -250 1250]);
     
     yyaxis right
     plot(time_volt/1e-6,current_dis(:,1)*1000,'r-');
     ylabel('current in mA');
-    title('current/appl. & gap voltage via time');
+    % title('current/appl. & gap voltage via time');
     legend('U_{gap}','U_{app}','I_{dis}');
+    x = time_volt/1e-6;
+    axis([min(x) max(x) -5 25]);
+    zline = refline(0,0);
+    zline.Color = 'k';
+    zline.LineStyle = ':';
+    set(gca,'Layer','top');
               
         saveas(gca,'current_dis','bmp');
-%         print('current_dis2','-dpdf','-noui','-bestfit');
+%         print('current_dis','-dpdf','-noui','-bestfit');
 
 %     savefig('current_dis.fig');
 
@@ -311,20 +375,21 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan1,real(log10(korr587))');view(2);
+    meshc(time_volt/1e-6,scan1,real(log10(korr587))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
     view(2);
-    title('scan around 587nm');   
+    set(gca,'Layer','top');
+    % title('scan around 587nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
 %     savefig(file_name);
     
         two = num2str(2);
         file_name = strcat('scan_',k);
-        saveas(gcf,file_name,'pdf');
+%         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
-%         print(file_name,'-dpdf','-noui','-bestfit');
+        print(file_name,'-dpdf','-noui','-bestfit');
     
     hold off; close(f);
 
@@ -337,20 +402,21 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan2,real(log10(korr667))');view(2);
+    meshc(time_volt/1e-6,scan2,real(log10(korr667))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
     view(2);
-    title('scan around 667nm');   
+    set(gca,'Layer','top');
+    % title('scan around 667nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
 %     savefig(file_name);
     
     
         file_name = strcat('scan_',k);
-        saveas(gcf,file_name,'pdf');
+%         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
-%         print(file_name,'-dpdf','-noui','-bestfit');
+        print(file_name,'-dpdf','-noui','-bestfit');
 
     hold off; close(f);
     
@@ -363,20 +429,21 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan3,real(log10(korr706))');view(2);
+    meshc(time_volt/1e-6,scan3,real(log10(korr706))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
     view(2);
-    title('scan around 706nm');   
+    set(gca,'Layer','top');
+    % title('scan around 706nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
 %     savefig(file_name);
     
         
         file_name = strcat('scan_',k);
-        saveas(gcf,file_name,'pdf');
+%         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
-%         print(file_name,'-dpdf','-noui','-bestfit');
+        print(file_name,'-dpdf','-noui','-bestfit');
 
     hold off; close(f);
 
@@ -389,19 +456,20 @@ wvlgnth = [587 667 706 728];
     
     f = figure;
     hold on; box on;
-    meshc(time_volt/1e-6,scan4,real(log10(korr728))');view(2);
+    meshc(time_volt/1e-6,scan4,real(log10(korr728))');
     ylabel('wavelength in nm');
     xlabel('time in µs');
     view(2);
-    title('scan around 728nm');   
+    set(gca,'Layer','top');
+    % title('scan around 728nm');   
     c = colorbar;
     c.Label.String = 'log_{10} of intensity, a.u.';
 %     savefig(file_name);
     
         file_name = strcat('scan_',k);
-        saveas(gcf,file_name,'pdf');
+%         saveas(gcf,file_name,'pdf');
 %         file_name = strcat('scan_',k,two);
-%         print(file_name,'-dpdf','-noui','-bestfit');
+        print(file_name,'-dpdf','-noui','-bestfit');
 
     hold off; close(f);
 

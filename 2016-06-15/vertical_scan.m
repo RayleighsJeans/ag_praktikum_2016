@@ -1,34 +1,33 @@
 function vertical_scan
 
 warning off;
-ppr_size = [14.8 11.6];
 
 %% Initialisierung
 
-e0 = 8.854187817e-12;
-
-g = 3e-3;
-r = 15e-3/2;
-
-d_glas = 0.7e-3;
-d_al2o3 = 0.2e-3;
-d_bso = 0.7e-3;
-
-e_glas = 7.6;
-e_al2o3 = 10.55;
-e_bso = 56;
-
-A = pi*(r)^2;
-
-c_ext = 1e-9;
-c_gap = e0*A/g;
-c_glas = e_glas*e0*A/d_glas;
-c_al2o3 = e_al2o3*e0*A/d_al2o3;
-c_bso = e_bso*e0*A/d_bso;
-
-c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
-
-c_bd = (c_gap*c_diel)/(c_gap+c_diel);
+% e0 = 8.854187817e-12;
+% 
+% g = 3e-3;
+% r = 15e-3/2;
+% 
+% d_glas = 0.7e-3;
+% d_al2o3 = 0.2e-3;
+% d_bso = 0.7e-3;
+% 
+% e_glas = 7.6;
+% e_al2o3 = 10.55;
+% e_bso = 56;
+% 
+% A = pi*(r)^2;
+% 
+% c_ext = 1e-9;
+% c_gap = e0*A/g;
+% c_glas = e_glas*e0*A/d_glas;
+% c_al2o3 = e_al2o3*e0*A/d_al2o3;
+% c_bso = e_bso*e0*A/d_bso;
+% 
+% c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
+% 
+% c_bd = (c_gap*c_diel)/(c_gap+c_diel);
 
 
 %% Dateipfade der Messdaten.
@@ -43,155 +42,158 @@ loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-15\';
 
 %% Datei-Nummern und Wellenlängen.
 
-    dat_587 = 1:25:725;
-    dat_667 = 6:25:725;
-    dat_690 = 11:25:725;
-    dat_706 = 16:25:725;
-    dat_728 = 21:25:725;
-    
-data_nmb = [dat_587' dat_667' dat_690' dat_706' dat_728'];
-    
-chrg_current = zeros(1999,725);
-chrg = zeros(2000,725);
-volt_diff = zeros(1999,725);
-volt_appl = zeros(2000,725);
-control = zeros(2000,725);
+%     dat_587 = 1:25:725;
+%     dat_667 = 6:25:725;
+%     dat_690 = 11:25:725;
+%     dat_706 = 16:25:725;
+%     dat_728 = 21:25:725;
+%     
+% data_nmb = [dat_587' dat_667' dat_690' dat_706' dat_728'];
+%     
+% chrg_current = zeros(1999,725);
+% chrg = zeros(2000,725);
+% volt_diff = zeros(1999,725);
+% volt_appl = zeros(2000,725);
+% control = zeros(2000,725);
 
 wavelength = [587.65 667.96 690.0 706.66 728.31];
 
-cd(loc_dat);
-tmp = importdata('16Jun16001_RTO.dat');
-tmp = tmp.data;
-time_volt = tmp(:,1);
-time_delta = time_volt(2)-time_volt(1);
+% cd(loc_dat);
+% tmp = importdata('16Jun16001_RTO.dat');
+% tmp = tmp.data;
+% time_volt = tmp(:,1);
+% time_delta = time_volt(2)-time_volt(1);
 
 %% Vertikaler Verfahr-Weg.
 
-vertical_pos = 5.8:0.05:7.2;
-vertical_mm = -0.2:0.117:3.1;
+% vertical_pos = 5.8:0.05:7.2;
+% vertical_mm = -0.2:0.117:3.1;
 
 cd(loc_dat);
 
 %% Entnehmen der Datein.
 
-for k=1:5
-    
-    for i=1:29
-        
-    itr = data_nmb(i,:);
-    
-    nmb = num2str(itr(3)-1+k,'%03d');
-    file = strcat('16Jun16',nmb,'_RTO.dat');
-    disp(file)
-    C = importdata(file);
-    tmp_nm690 = C.data;
-
-    nm690(:,(i-1)*5+k) = tmp_nm690(:,4);
-    
-        volt_appl(:,itr(3)-1+k) = tmp_nm690(:,2);
-        volt_diff(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,2));
-    
-        control(:,itr(3)-1+k) = tmp_nm690(:,4);
-        chrg_current(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,3));
-        chrg(:,itr(3)-1+k) = tmp_nm690(:,3);
-        
-    %587nm
-    nmb = num2str(itr(1)-1+k,'%03d');
-    file = strcat('16Jun16',nmb,'_RTO.dat');
-    disp(file)
-    A = importdata(file);
-    tmp_nm587 = A.data;
-    
-    nm587(:,(i-1)*5+k) = tmp_nm587(:,4)-offset(:,i)-max(max(tmp_nm587(:,4)-offset(:,i)));
-    
-        volt_appl(:,itr(1)-1+k) = tmp_nm587(:,2);
-        volt_diff(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,2));       
-    
-        control(:,itr(1)-1+k) = tmp_nm587(:,4);
-        chrg_current(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,3));
-        chrg(:,itr(1)-1+k) = tmp_nm587(:,3);
-    
-    %667nm
-    nmb = num2str(itr(2)-1+k,'%03d');
-    file = strcat('16Jun16',nmb,'_RTO.dat');
-    disp(file)
-    B = importdata(file);
-    tmp_nm667 = B.data;
-
-    nm667(:,(i-1)*5+k) = tmp_nm667(:,4)-offset(:,i)-max(max(tmp_nm667(:,4)-offset(:,i)));
-    
-        volt_appl(:,itr(2)-1+k) = tmp_nm667(:,2);
-        volt_diff(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,2));
-        
-        control(:,itr(2)-1+k) = tmp_nm667(:,4);
-        chrg_current(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,3));
-        chrg(:,itr(2)-1+k) = tmp_nm667(:,3);
-
-    %706nm
-    nmb = num2str(itr(4)-1+k,'%03d');
-    file = strcat('16Jun16',nmb,'_RTO.dat');
-    disp(file)
-    D = importdata(file);
-    tmp_nm706 = D.data;
-
-    nm706(:,(i-1)*5+k) = tmp_nm706(:,4)-offset(:,i)-max(max(tmp_nm706(:,4)-offset(:,i)));
-    
-        volt_appl(:,itr(4)-1+k) = tmp_nm706(:,2);
-        volt_diff(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,2));
-    
-        control(:,itr(4)-1+k) = tmp_nm706(:,4);
-        chrg_current(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,3));
-        chrg(:,itr(4)-1+k) = tmp_nm706(:,3);
-
-    %728nm
-    nmb = num2str(itr(5)-1+k,'%03d');
-    file = strcat('16Jun16',nmb,'_RTO.dat');
-    disp(file)
-    E = importdata(file);
-    tmp_nm728 = E.data;
-
-    nm728(:,(i-1)*5+k) = tmp_nm728(:,4)-offset(:,i)-max(max(tmp_nm728(:,4)-offset(:,i)));
-    
-        volt_appl(:,itr(5)-1+k) = tmp_nm728(:,2);
-        volt_diff(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,2));
-    
-        control(:,itr(5)-1+k) = tmp_nm728(:,4);
-        chrg_current(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,3));
-        chrg(:,itr(5)-1+k) = tmp_nm728(:,3);
-    
-    end
-    
-end
+% for k=1:5
+%     
+%     for i=1:29
+%         
+%     itr = data_nmb(i,:);
+%     
+%     nmb = num2str(itr(3)-1+k,'%03d');
+%     file = strcat('16Jun16',nmb,'_RTO.dat');
+%     disp(file)
+%     C = importdata(file);
+%     tmp_nm690 = C.data;
+% 
+%     nm690(:,(i-1)*5+k) = tmp_nm690(:,4);
+%     
+%         volt_appl(:,itr(3)-1+k) = tmp_nm690(:,2);
+%         volt_diff(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,2));
+%     
+%         control(:,itr(3)-1+k) = tmp_nm690(:,4);
+%         chrg_current(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,3));
+%         chrg(:,itr(3)-1+k) = tmp_nm690(:,3);
+%         
+%     %587nm
+%     nmb = num2str(itr(1)-1+k,'%03d');
+%     file = strcat('16Jun16',nmb,'_RTO.dat');
+%     disp(file)
+%     A = importdata(file);
+%     tmp_nm587 = A.data;
+%     
+%     nm587(:,(i-1)*5+k) = tmp_nm587(:,4)-offset(:,i)-max(max(tmp_nm587(:,4)-offset(:,i)));
+%     
+%         volt_appl(:,itr(1)-1+k) = tmp_nm587(:,2);
+%         volt_diff(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,2));       
+%     
+%         control(:,itr(1)-1+k) = tmp_nm587(:,4);
+%         chrg_current(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,3));
+%         chrg(:,itr(1)-1+k) = tmp_nm587(:,3);
+%     
+%     %667nm
+%     nmb = num2str(itr(2)-1+k,'%03d');
+%     file = strcat('16Jun16',nmb,'_RTO.dat');
+%     disp(file)
+%     B = importdata(file);
+%     tmp_nm667 = B.data;
+% 
+%     nm667(:,(i-1)*5+k) = tmp_nm667(:,4)-offset(:,i)-max(max(tmp_nm667(:,4)-offset(:,i)));
+%     
+%         volt_appl(:,itr(2)-1+k) = tmp_nm667(:,2);
+%         volt_diff(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,2));
+%         
+%         control(:,itr(2)-1+k) = tmp_nm667(:,4);
+%         chrg_current(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,3));
+%         chrg(:,itr(2)-1+k) = tmp_nm667(:,3);
+% 
+%     %706nm
+%     nmb = num2str(itr(4)-1+k,'%03d');
+%     file = strcat('16Jun16',nmb,'_RTO.dat');
+%     disp(file)
+%     D = importdata(file);
+%     tmp_nm706 = D.data;
+% 
+%     nm706(:,(i-1)*5+k) = tmp_nm706(:,4)-offset(:,i)-max(max(tmp_nm706(:,4)-offset(:,i)));
+%     
+%         volt_appl(:,itr(4)-1+k) = tmp_nm706(:,2);
+%         volt_diff(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,2));
+%     
+%         control(:,itr(4)-1+k) = tmp_nm706(:,4);
+%         chrg_current(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,3));
+%         chrg(:,itr(4)-1+k) = tmp_nm706(:,3);
+% 
+%     %728nm
+%     nmb = num2str(itr(5)-1+k,'%03d');
+%     file = strcat('16Jun16',nmb,'_RTO.dat');
+%     disp(file)
+%     E = importdata(file);
+%     tmp_nm728 = E.data;
+% 
+%     nm728(:,(i-1)*5+k) = tmp_nm728(:,4)-offset(:,i)-max(max(tmp_nm728(:,4)-offset(:,i)));
+%     
+%         volt_appl(:,itr(5)-1+k) = tmp_nm728(:,2);
+%         volt_diff(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,2));
+%     
+%         control(:,itr(5)-1+k) = tmp_nm728(:,4);
+%         chrg_current(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,3));
+%         chrg(:,itr(5)-1+k) = tmp_nm728(:,3);
+%     
+%     end
+%     
+% end
 
 %% Berechnen der sauberen Spektren.
 
-for i=1:29
-    
-    mean587(:,i) = 1/5*sum(nm587(:,(i-1)*5+1:(i-1)*5+5),2);
-    mean667(:,i) = 1/5*sum(nm667(:,(i-1)*5+1:(i-1)*5+5),2);
-    mean706(:,i) = 1/5*sum(nm706(:,(i-1)*5+1:(i-1)*5+5),2);
-    mean728(:,i) = 1/5*sum(nm728(:,(i-1)*5+1:(i-1)*5+5),2);
-    
-end
+% for i=1:29
+%     
+%     mean587(:,i) = 1/5*sum(nm587(:,(i-1)*5+1:(i-1)*5+5),2);
+%     mean667(:,i) = 1/5*sum(nm667(:,(i-1)*5+1:(i-1)*5+5),2);
+%     mean706(:,i) = 1/5*sum(nm706(:,(i-1)*5+1:(i-1)*5+5),2);
+%     mean728(:,i) = 1/5*sum(nm728(:,(i-1)*5+1:(i-1)*5+5),2);
+%     
+% end
 
 cd(loc_main);
+% save('base_dat.mat');
+load('base_dat.mat');
 
 %% Bilder der vertikal aufgelösten Wellenlängen.
 
 f = figure;
 hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean587))');view(2);
-title('vertical emission profile at 587.65 nm');
+% title('vertical emission profile at 587.65 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top');
 % savefig('korr587nm.fig');
-
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'korr587nm','pdf');
-%     print('korr587nm2','-dpdf','-noui','-bestfit');
+    
+%     saveas(gcf,'korr587nm','pdf');
+    print('korr587nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
@@ -199,70 +201,72 @@ hold off;close(f);
 f = figure;
 hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean667))');view(2);
-title('vertical emission profile at 667.96 nm');
+% title('vertical emission profile at 667.96 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top');
 % savefig('korr667nm.fig');
 
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'korr667nm','pdf');
-%     print('korr667nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'korr667nm','pdf');
+    print('korr667nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(offset))');view(2);
-title('vertical emission profile at 690 nm');
+% title('vertical emission profile at 690 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top');
 % savefig('korr690nm.fig');
 
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'korr690nm','pdf');
-%     print('korr690nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'korr690nm','pdf');
+    print('korr690nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean706))');view(2);
-title('vertical emission profile at 706.66 nm');
+% title('vertical emission profile at 706.66 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
-    
+box on;set(gca,'Layer','top');
 % savefig('korr706nm.fig');
 
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'korr706nm','pdf');
-%     print('korr706nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'korr706nm','pdf');
+    print('korr706nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;
 hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean728))');view(2);
-title('vertical emission profile at 728.34 nm');
+% title('vertical emission profile at 728.34 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
-    
+box on;set(gca,'Layer','top');
 % savefig('korr728nm.fig');
-
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'korr728nm','pdf');
-%     print('korr728nm2','-dpdf','-noui','-bestfit');
+    
+%     saveas(gcf,'korr728nm','pdf');
+    print('korr728nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
@@ -282,36 +286,43 @@ chrg_current = c_ext*chrg_current;
     volt_gap = volt_appl*(1-c_par/c_diel)-chrg./c_diel;
     current_dis = (1+c_gap/c_diel)*(chrg_current-c_tot*volt_diff);
 
-%load 2016-06-15
-
     f = figure;
     hold on;
     plot(volt_appl(:,1),chrg(:,1));
+    x = volt_appl(:,1);
+    y = chrg(:,1);
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over totale charge');
-    set(gcf,'PaperSize',ppr_size);
+    box on;set(gca,'Layer','top');
+    % title('applied voltage over totale charge');
+    
     saveas(gcf,'lissajous','bmp');
 %     print('lissajous2','-dpdf','-noui','-bestfit');
 %     savefig('lissajous.fig');
     hold off;close(f);
     
-
     f = figure;
     hold on;
-    plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'r',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'r-.');
     xlabel('time in µs');
     yyaxis left
+    plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'k',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'k-.');
+    x = time_volt/1e-6;
     ylabel('voltage in V');
+    axis([min(x) max(x) -250 1250]);
     
-    plot(time_volt(1:1999)/1e-6,current_dis(1:1999,1)*100000,'c');
     yyaxis right
+    plot(time_volt(1:1999)/1e-6,current_dis(1:1999,1)*1000,'r-');
     ylabel('current in mA');
     
     legend('U_{gap}','U_{app}','I_{dis}');
-    title('current/appl. & gap voltage via time');
+    axis([min(x) max(x) -5 25]);
+    zline = refline(0,0);
+    zline.Color = 'k';
+    zline.LineStyle = ':';
+    box on;set(gca,'Layer','top');
+    % title('current/appl. & gap voltage via time');
     
-    set(gcf,'PaperSize',ppr_size);
     saveas(gcf,'current_dis','bmp');
 %     print('current_dis2','-dpdf','-noui','-bestfit');
     
@@ -378,14 +389,14 @@ chrg_current = c_ext*chrg_current;
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    title('line ratio of He lines at 706 nm and 587 nm');
-
-    set(c,'fontsize',12);
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
+    box on;set(gca,'Layer','top');
+    % title('line ratio of He lines at 706 nm and 587 nm');
 %     savefig('lineratio706.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lineratio706','pdf');
-%         print('lineratio7062','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'lineratio706','pdf');
+        print('lineratio706','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     
@@ -395,14 +406,13 @@ chrg_current = c_ext*chrg_current;
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    title('line ratio of He lines at 667 nm and 728 nm');
-
-    set(c,'fontsize',12);
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
+    % title('line ratio of He lines at 667 nm and 728 nm');
 %     savefig('lineratio667.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lineratio667','pdf');
-%         print('lineratio6672','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'lineratio667','pdf');
+        print('lineratio667','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 
@@ -412,14 +422,14 @@ chrg_current = c_ext*chrg_current;
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    title('el. field strength from ratio 667nm/728nm');
-
-    set(c,'fontsize',12);
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
+    box on;set(gca,'Layer','top');
+    % title('el. field strength from ratio 667nm/728nm');
 %     savefig('lineratio667.fig');
-    
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'elfield667','pdf');
-%         print('lineratio6672','-dpdf','-noui','-bestfit');
+
+%         saveas(gcf,'elfield667','pdf');
+        print('elfield667','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 
@@ -429,14 +439,14 @@ chrg_current = c_ext*chrg_current;
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    title('el. field strength from ratio 706nm/587nm');
-
-    set(c,'fontsize',12);
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
+    box on;set(gca,'Layer','top');
+    % title('el. field strength from ratio 706nm/587nm');
 %     savefig('lineratio706.fig');
-    
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'elfield706','pdf');
-%         print('lineratio7062','-dpdf','-noui','-bestfit');
+
+%         saveas(gcf,'elfield706','pdf');
+        print('elfield706','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     

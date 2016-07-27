@@ -1,7 +1,6 @@
 function vertical_scan2;
 
 warning off;
-ppr_size = [14.8 11.6];
 
 % Initialisierung
 
@@ -57,14 +56,20 @@ data_nmb = [dat_587' dat_667' dat_690' dat_706' dat_728'];
 
 wavelength = [587.65 667.96 690.0 706.66 728.31];
 
-    time_volt = linspace(-6e-7,12e-7,2000);
-    time_delta = time_volt(2)-time_volt(1);
+cd(loc_dat);
+tmp = importdata('16JunElectrics_RTO.dat');
+tmp = tmp.data;
+time_volt = tmp(:,1);
+time_delta = time_volt(2)-time_volt(1);
+cd(loc_main);
 
 % Vertikale Position.
+
 vertical_pos = 5.8:0.05:7.2;
 vertical_mm = -0.2:0.117:3.1;
 
 % Entnehme die Daten aus den Files.
+
 cd(loc_dat);
 
 for i=1:29
@@ -132,8 +137,10 @@ for i=1:29
     end
     
 end
+
 % Zurück.
-cd(loc_main);
+
+% cd(loc_main);
 
         %Mache Off-Set aus der 690nm-Messung. Nur ein mal.
         for i=1:29
@@ -152,6 +159,7 @@ for i=1:29
 end
 
     %Mittelungen.
+    
     for i=1:29
 
         mean587(:,i) = 1/10*sum(nm587(:,(i-1)*10+1:(i-1)*10+10),2);
@@ -169,63 +177,67 @@ save base_dat.mat
 
 f = figure;hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean587))');view(2);
-title('vertical emission profile at 587.65 nm');
+% title('vertical emission profile at 587.65 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top');
 % savefig('587nm.fig');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'587nm','pdf');
-%     print('587nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'587nm','pdf');
+    print('587nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean667))');view(2);
-title('vertical emission profile for 667.96 nm');
+% title('vertical emission profile for 667.96 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);   
+box on;set(gca,'Layer','top');   
 % savefig('667nm.fig');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'667nm','pdf');
-%     print('667nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'667nm','pdf');
+    print('667nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean706))');view(2);
-title('vertical emission profile for 706.66 nm');
+% title('vertical emission profile for 706.66 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top'); 
 % savefig('706nm.fig');
 
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'706nm','pdf');
-%     print('706nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'706nm','pdf');
+    print('706nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
 f = figure;hold on;
 meshc(time_volt/1e-6,vertical_pos,real(log10(mean728))');view(2);
-title('vertical emission profile for 728.31 nm');
+% title('vertical emission profile for 728.31 nm');
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical pos. in inch');
+ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+ax.YTickLabelRotation = 90;
 xlabel('time in µs');
-set(c,'fontsize',12);
+box on;set(gca,'Layer','top'); 
 % savefig('728nm.fig');
 
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'728nm','pdf');
-%     print('728nm2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'728nm','pdf');
+    print('728nm','-dpdf','-noui','-bestfit');
 
 hold off;close(f);
 
@@ -260,14 +272,17 @@ chrg_diff = c_ext*chrg_diff;
 
 % Check.
 
-    f = figure;hold on;
+    f = figure;hold on; box on;
     plot(volt_appl,chrg_tmp);
+    x = volt_appl;
+    y = chrg_tmp;
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over total charge');
+    box on;set(gca,'Layer','top'); 
+    % title('applied voltage over total charge');
 %     savefig('lissajous.fig');
     
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'lissajous','bmp');
 %         print('lissajous2','-dpdf','-noui','-bestfit');
     
@@ -276,20 +291,26 @@ chrg_diff = c_ext*chrg_diff;
     
     f = figure;
     hold on;
-    plot(time_volt(1:1999)/1e-6,volt_gap(1:1999),'r',time_volt(1:1999)/1e-6,volt_appl(1:1999),'r-.');
     xlabel('time in µs');
     yyaxis left
+    plot(time_volt(1:1999)/1e-6,volt_gap(1:1999),'k-',time_volt(1:1999)/1e-6,volt_appl(1:1999),'k-.');
+    x = time_volt/1e-6;
     ylabel('voltage in V');
+    axis([min(x) max(x) -250 1250]);
     
-    plot(time_volt(1:1999)/1e-6,current_dis(1:1999)*100000,'c');
     yyaxis right
+    plot(time_volt(1:1999)/1e-6,current_dis(1:1999)*1000,'r-');
     ylabel('current in mA');
+    x = time_volt/1e-6;
     
     legend('U_{gap}','U_{app}','I_{dis}');
-    title('current/appl. & gap voltage via time');
+    box on;set(gca,'Layer','top'); 
+    zline = refline(0,0);
+    zline.Color = 'k';
+    zline.LineStyle = ':';
+    % title('current/appl. & gap voltage via time');
 %     savefig('current_dis.fig');
     
-        set(gcf,'PaperSize',ppr_size);
         saveas(gcf,'current_dis','bmp');
 %         print('current_dis2','-dpdf','-noui','-bestfit');
     
@@ -351,68 +372,68 @@ chrg_diff = c_ext*chrg_diff;
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_ratio706');view(2);
     ylabel('vertical slit pos. in inch');
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
+    box on;set(gca,'Layer','top');
     xlabel('time in µs');
-    title('line ratio of He lines at 706 nm and 587 nm');
-
-    set(c,'fontsize',12);
+    % title('line ratio of He lines at 706 nm and 587 nm');
 %     savefig('lineratio706.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lineratio706','pdf');
-%         print('lineratio7062','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'lineratio706','pdf');
+        print('lineratio706','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_ratio667');view(2);
     ylabel('vertical slit pos. in inch');
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    title('line ratio of He lines at 667 nm and 728 nm');
-
-    set(c,'fontsize',12);
+    % title('line ratio of He lines at 667 nm and 728 nm');
+    box on;set(gca,'Layer','top'); 
 %     savefig('lineratio667.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'lineratio667','pdf');
-%         print('lineratio6672','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'lineratio667','pdf');
+        print('lineratio667','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_field667');view(2);
     ylabel('vertical slit pos. in inch');
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    title('el. field strength from ratio 667nm/728nm');
-
-    set(c,'fontsize',12);
+    % title('el. field strength from ratio 667nm/728nm');
+    box on;set(gca,'Layer','top'); 
 %     savefig('lineratio667.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'elfield667','pdf');
-%         print('lineratio6672','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'elfield667','pdf');
+        print('elfield667','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
 
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_field706');view(2);
     ylabel('vertical slit pos. in inch');
+    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
+    ax.YTickLabelRotation = 90;
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    title('el. field strength from ratio 706nm/587nm');
-
-    set(c,'fontsize',12);
+    % title('el. field strength from ratio 706nm/587nm');
+    box on;set(gca,'Layer','top'); 
 %     savefig('lineratio706.fig');
     
-        set(gcf,'PaperSize',ppr_size);
-        saveas(gcf,'elfield706','pdf');
-%         print('lineratio7062','-dpdf','-noui','-bestfit');
+%         saveas(gcf,'elfield706','pdf');
+        print('elfield706','-dpdf','-noui','-bestfit');
     
     hold off;close(f);
     

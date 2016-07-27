@@ -1,34 +1,33 @@
 function stark_split
 
 warning off;
-ppr_size = [14.8 11.8];
 
 %% Initialisierung
 
-e0 = 8.854187817e-12;
-
-g = 3e-3;
-r = 15e-3/2;
-
-d_glas = 0.7e-3;
-d_al2o3 = 0.2e-3;
-d_bso = 0.7e-3;
-
-e_glas = 7.6;
-e_al2o3 = 10.55;
-e_bso = 56;
-
-A = pi*(r)^2;
-
-c_ext = 1e-9;
-c_gap = e0*A/g;
-c_glas = e_glas*e0*A/d_glas;
-c_al2o3 = e_al2o3*e0*A/d_al2o3;
-c_bso = e_bso*e0*A/d_bso;
-
-c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
-
-c_bd = (c_gap*c_diel)/(c_gap+c_diel);
+% e0 = 8.854187817e-12;
+% 
+% g = 3e-3;
+% r = 15e-3/2;
+% 
+% d_glas = 0.7e-3;
+% d_al2o3 = 0.2e-3;
+% d_bso = 0.7e-3;
+% 
+% e_glas = 7.6;
+% e_al2o3 = 10.55;
+% e_bso = 56;
+% 
+% A = pi*(r)^2;
+% 
+% c_ext = 1e-9;
+% c_gap = e0*A/g;
+% c_glas = e_glas*e0*A/d_glas;
+% c_al2o3 = e_al2o3*e0*A/d_al2o3;
+% c_bso = e_bso*e0*A/d_bso;
+% 
+% c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
+% 
+% c_bd = (c_gap*c_diel)/(c_gap+c_diel);
 
 
 %% Dateipfade der Messdaten.
@@ -41,63 +40,63 @@ loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-22\';
 
 %% Beschaffe mir die Dimensionen.
 
-cd(loc_dat);
-tmp = importdata('16Jun35001_RTO.dat');
-tmp = tmp.data;
-[n channel] = size(tmp);
-time_volt = tmp(:,1);
-time_delta = time_volt(2)-time_volt(1);
-cd(loc_main);
+% cd(loc_dat);
+% tmp = importdata('16Jun35001_RTO.dat');
+% tmp = tmp.data;
+% [n channel] = size(tmp);
+% time_volt = tmp(:,1);
+% time_delta = time_volt(2)-time_volt(1);
+% cd(loc_main);
 
 %% Datei-Nummern und Wellenlängen.
 
-m=1440;
-data_nmb = 1:1:m;
-loop_nmb = 1:1:10;
-wvl_nmb = 1:1:36;
-vert_nmb = 1:1:4;
-
-raw_data = zeros(n,m);
-
-rogowski = zeros(n,m);
-
-wavelength = 491.8:0.02:492.5;
-vertical = 6.8:0.1:7.1;
+% m=1440;
+% data_nmb = 1:1:m;
+% loop_nmb = 1:1:10;
+% wvl_nmb = 1:1:36;
+% vert_nmb = 1:1:4;
+% 
+% raw_data = zeros(n,m);
+% 
+% rogowski = zeros(n,m);
+% 
+% wavelength = 491.8:0.02:492.5;
+% vertical = 6.8:0.1:7.1;
 
 %% Entnehmen der Datein.
 %Es kommen zuerst die 10 loops zu einer Wellenlänge. Dann erneut 10 loops
 %für die nächste. Macht 360 Datein, bis eine Höhe abgearbeitet ist.
 
-cd(loc_dat);
-
-for h=vert_nmb-1;
-    
-    for w=wvl_nmb-1;
-        
-        for l=loop_nmb;
-
-            file_nmb = num2str(35000+l+10*w+360*h);
-            nmb = l+10*w+360*h;
-            disp(file_nmb);
-            file = strcat('16Jun',file_nmb,'_RTO.dat');
-            tmp = importdata(file);
-            tmp = tmp.data;
-
-            raw_data(:,nmb) = tmp(:,4)+0.16;
-            
-            rogowski(:,nmb) = tmp(:,5);
-        
-        end
-        
-    end
-    
-end
+% cd(loc_dat);
+% 
+% for h=vert_nmb-1;
+%     
+%     for w=wvl_nmb-1;
+%         
+%         for l=loop_nmb;
+% 
+%             file_nmb = num2str(35000+l+10*w+360*h);
+%             nmb = l+10*w+360*h;
+%             disp(file_nmb);
+%             file = strcat('16Jun',file_nmb,'_RTO.dat');
+%             tmp = importdata(file);
+%             tmp = tmp.data;
+% 
+%             raw_data(:,nmb) = tmp(:,4)+0.16;
+%             
+%             rogowski(:,nmb) = tmp(:,5);
+%         
+%         end
+%         
+%     end
+%     
+% end
 
 cd(loc_main);
-save('base_dat.mat');
+% save('base_dat.mat');
 
 % Skippe die Schleifen und Initialiserung, lade Basis-Datensatz.
-% load base_dat.mat
+load base_dat.mat
 
 % Kontrolle des Experimentes
     
@@ -108,14 +107,15 @@ save('base_dat.mat');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'voltage in V';
-    title('rogowski coil via experiment duration');
+    % title('rogowski coil via experiment duration');
     set(gca,'YTick',[180 540 900 1260]);
-    set(gca,'YTickLabel',{'6.8' '6.9' '7.0' '7.1'});
+    set(gca,'YTickLabel',{'6.8' '6.9' '7.0' 'kathode'});
+    ax = gca;
+    ax.YTickLabelRotation = 90;
+    box on;set(gca,'Layer','top');
     
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'rogowski_full','pdf');
-%     print('rogowski_full2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'rogowski_full','pdf');
+    print('rogowski_full','-dpdf','-noui','-bestfit');
     
 %     savefig('rogowski_full');
     hold off; close(f);
@@ -170,70 +170,66 @@ end
 % Bilder der Stark-Aufspaltungen.
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_68in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_68in'-min(min(-sgf_68in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in µs');
-title('vertical position 6.8 inch');
+% title('vertical position 6.8 inch');
 c = colorbar;
-c.Label.String = 'intensity, a.u.'; 
+c.Label.String = 'intensity, a.u.';
+box on;set(gca,'Layer','top');
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_68in','pdf');
-%     print('stark_68in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_68in','pdf');
+    print('stark_68in','-dpdf','-noui','-bestfit');
  
 % savefig('stark_68in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_69in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_69in'-min(min(-sgf_69in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in µs');
-title('vertical position 6.9 inch');
+% title('vertical position 6.9 inch');
 c = colorbar;
-c.Label.String = 'intensity, a.u.';    
+c.Label.String = 'intensity, a.u.';
+box on;set(gca,'Layer','top');
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_69in','pdf');
-%     print('stark_69in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_69in','pdf');
+    print('stark_69in','-dpdf','-noui','-bestfit');
  
 % savefig('stark_69in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_7in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_7in'-min(min(-sgf_7in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in µs');
-title('vertical position 7 inch'); 
+% title('vertical position 7 inch'); 
 c = colorbar;
-c.Label.String = 'intensity, a.u.';   
+c.Label.String = 'intensity, a.u.';
+box on;set(gca,'Layer','top');
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_7in','pdf');
-%     print('stark_7in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_7in','pdf');
+    print('stark_7in','-dpdf','-noui','-bestfit');
  
 % savefig('stark_7in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_71in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_71in'-min(min(-sgf_71in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in µs');
-title('vertical position 7.1 inch');
+% title('vertical position 7.1 inch');
 c = colorbar;
 c.Label.String = 'intensity, a.u.';
+box on;set(gca,'Layer','top');
     
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_71in','pdf');
-%     print('stark_71in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_71in','pdf');
+    print('stark_71in','-dpdf','-noui','-bestfit');
  
 % savefig('stark_71in.fig');
 hold off; close(f);
 
 % Schaue mir die Entladungscharakteristik an.
-% load 2016-06-22.mat
 
 for i = [6.8 6.9 7.0 7.1]
     
@@ -274,39 +270,47 @@ chrg_diff = c_ext*chrg_diff;
 
 % Check.
 
-    lname1 = strcat('lissajous',h,'.bmp');
-    lname2 = strcat('lissajous2',h,'.bmp');
+    lname = strcat('lissajous',h,'.bmp');
     
-    cname1 = strcat('currentdis',h,'.bmp');
-    cname2 = strcat('currentdis2',h,'.bmp');
+    cname = strcat('currentdis',h,'.bmp');
 
     f = figure;hold on;
     plot(volt_appl,chrg_tmp);
+    x = volt_appl;
+    y = chrg_tmp;    
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');
-    title('applied voltage over total charge');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,lname1,'bmp');
-%     print(lname2,'-dpdf','-noui','-bestfit');
+    % title('applied voltage over total charge');
+    box on;set(gca,'Layer','top');
+    saveas(gcf,lname,'bmp');
+%     print(lname,'-dpdf','-noui','-bestfit');
 %     savefig(sprintf('lissajous%s.fig',h));
     hold off; close(f);
     
     f = figure;
     hold on;
-    plot(time_volt(1:999)/1e-6,volt_gap(1:999),'r',time_volt(1:999)/1e-6,volt_appl(1:999),'r-.');
-    xlabel('time in µs');
+    x = time_volt(1:999)/1e-6;
     yyaxis left
+    plot(time_volt(1:999)/1e-6,volt_gap(1:999),'k',time_volt(1:999)/1e-6,volt_appl(1:999),'k-.');
+    xlabel('time in µs');
     ylabel('voltage in V');
+    axis([min(x) max(x) -250 1250]);
     
-    plot(time_volt(1:999)/1e-6,current_dis(1:999)*100000,'c');
     yyaxis right
+    plot(time_volt(1:999)/1e-6,current_dis(1:999)*1000,'r');
     ylabel('current in mA');
     
+    axis([min(x) max(x) -5 25]);
+    zline = refline(0,0);
+    zline.Color = 'k';
+    zline.LineStyle = ':';
+    
     legend('U_{gap}','U_{app}','I_{dis}');
-    title('current/appl. & gap voltage via time');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,cname1,'bmp');
-%     print(cname2,'-dpdf','-noui','-bestfit');
+    box on;set(gca,'Layer','top');
+    % title('current/appl. & gap voltage via time');
+    saveas(gcf,cname,'bmp');
+%     print(cname,'-dpdf','-noui','-bestfit');
 %     savefig(sprintf('currentdis%s.fig',h));
     hold off; close(f);
     
@@ -316,7 +320,7 @@ end
 
 clear trsh Ind I inmax max nmax
 
-[trsh, Ind] = max(abs(stark71_korr));
+[~, Ind] = max(abs(stark71_korr));
 inmax = 0;
 
     for i=1:36;
@@ -359,14 +363,17 @@ inmax = 0;
     fieldstrength = sqrt(fieldstrengthsq);
     
     f = figure;hold on;
-    plot(wavelength,starkshift);
+    plot(wavelength,starkshift-min(starkshift));
+    x = wavelength;
+    y = starkshift-min(starkshift);
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('wavelength in nm');
     ylabel('intensity, a.u.');
-    title(sprintf('shift, 7.1in, %gµs, E=%g kV/cm', time, fieldstrength));
-    set(gcf,'PaperSize',ppr_size);
+    box on;set(gca,'Layer','top');
+    % title(sprintf('shift, 7.1in, %gµs, E=%g kV/cm', time, fieldstrength));
     saveas(gcf,'stark_shift71in','bmp');
-%     print(lname2,'-dpdf','-noui','-bestfit');
-%     savefig(sprintf('lissajous%s.fig',h));
+%     print('stark_shift71in','-dpdf','-noui','-bestfit');
+%     savefig(sprintf('stark_shift71in',h));
     hold off; close(f);
 
 %% Daten.

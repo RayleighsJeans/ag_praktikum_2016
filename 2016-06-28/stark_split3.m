@@ -1,7 +1,6 @@
 function stark_split3
 
 warning off;
-ppr_size = [14.8 11.68];
 
 % Initialisierung
 
@@ -106,30 +105,30 @@ save('base_dat.mat');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'voltage in V';
-    title('rowgowski coil via experiment duration');
+    % title('rowgowski coil via experiment duration');
     set(gca,'YTick',[270 810 1350]);
-    set(gca,'YTickLabel',{'6.8' '6.95' '7.1'});
+    set(gca,'YTickLabel',{'6.8' '6.95' 'kathode'});
+    ax = gca;
+    ax.YTickLabelRotation = 90;
+    box on;set(gca,'Layer','top');
     
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'rowgowski_full','pdf');
-%     print('rowgowski_full2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'rowgowski_full','pdf');
+    print('rowgowski_full','-dpdf','-noui','-bestfit');
     
 %     savefig('rowgowski_full');
     hold off; close(f);
     
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,raw_data(:,1081:15:end)');view(2);
+meshc(time_volt/1e-6,wavelength,-raw_data(:,1081:15:end)'-min(min(raw_data(:,1081:15:end)')));view(2);
 ylabel('wavelength in nm');
 xlabel('time in 탎');
 c = colorbar;
 c.Label.String = 'intensity, a.u.'; 
-title('vertical position 7.1 inch');
+% title('vertical position 7.1 inch');
+box on;set(gca,'Layer','top');
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_71in_raw','pdf');
-%     print('stark_71inraw2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_71in_raw','pdf');
+    print('stark_71inraw','-dpdf','-noui','-bestfit');
  
 % savefig('stark_71inwar.fig');
 hold off; close(f);
@@ -180,47 +179,46 @@ end
 % Bilder der Stark-Aufspaltungen.
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_68in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_68in'-min(min(-sgf_68in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in 탎');
 c = colorbar;
 c.Label.String = 'intensity, a.u.'; 
-title('vertical position 6.8 inch');
+box on;set(gca,'Layer','top');
+% title('vertical position 6.8 inch');
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_68in','pdf');
-%     print('stark_68in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_68in','pdf');
+    print('stark_68in','-dpdf','-noui','-bestfit');
  
 % savefig('stark_68in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_695in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_695in'-min(min(-sgf_695in)));view(2);
 ylabel('wavelength in nm');
-xlabel('time in 탎');
-title('vertical position 6.95 inch');c = colorbar;
+xlabel('time in 탎'); 
+box on;set(gca,'Layer','top');
+% title('vertical position 6.95 inch');
+c = colorbar;
 c.Label.String = 'intensity, a.u.';    
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_695in','pdf');
-%     print('stark_695in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_695in','pdf');
+    print('stark_695in','-dpdf','-noui','-bestfit');
 
 % savefig('stark_695in.fig');
 hold off; close(f);
 
 f = figure;hold on;
-meshc(time_volt/1e-6,wavelength,sgf_71in');view(2);
+meshc(time_volt/1e-6,wavelength,-sgf_71in'-min(min(-sgf_71in)));view(2);
 ylabel('wavelength in nm');
 xlabel('time in 탎');
-title('vertical position 7.1 inch');c = colorbar;
+box on;set(gca,'Layer','top');
+% title('vertical position 7.1 inch');
+c = colorbar;
 c.Label.String = 'intensity, a.u.';   
 
-    set(c,'fontsize',12);
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,'stark_71in','pdf');
-%     print('stark_71in2','-dpdf','-noui','-bestfit');
+%     saveas(gcf,'stark_71in','pdf');
+    print('stark_71in','-dpdf','-noui','-bestfit');
     
 % savefig('stark_71in.fig');
 hold off; close(f);
@@ -260,39 +258,47 @@ chrg_diff = c_ext*chrg_diff;
 
 % Check.
 
-    lname1 = strcat('lissajous',h,'.bmp');
-    lname2 = strcat('lissajous2',h,'.bmp');
+    lname = strcat('lissajous',h,'.bmp');
     
-    cname1 = strcat('currentdis',h,'.bmp');
-    cname2 = strcat('currentdis2',h,'.bmp');
-
+    cname = strcat('currentdis',h,'.bmp');
+    
     f = figure;hold on;
     plot(volt_appl,chrg_tmp);
     xlabel('U_{appl}/V');
-    ylabel('Q_{ext}/C');
-    title('applied voltage over total charge');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,lname1,'bmp');
-%     print(lname2,'-dpdf','-noui','-bestfit');
+    ylabel('Q_{ext}/C');    
+    x = volt_appl;
+    y = chrg_tmp; 
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
+    box on;set(gca,'Layer','top');
+    % title('applied voltage over total charge');
+    saveas(gcf,lname,'bmp');
+%     print(lname,'-dpdf','-noui','-bestfit');
 %     savefig(sprintf('lissajous%s.fig',h));
     hold off; close(f);
     
     f = figure;
     hold on;
-    plot(time_volt(1:999)/1e-6,volt_gap(1:999),'r',time_volt(1:999)/1e-6,volt_appl(1:999),'r-.');
-    xlabel('time in 탎');
     yyaxis left
+    x = time_volt(1:999)/1e-6;
+    plot(time_volt(1:999)/1e-6,volt_gap(1:999),'k',time_volt(1:999)/1e-6,volt_appl(1:999),'k-.');
+    xlabel('time in 탎');
     ylabel('voltage in V');
+    axis([min(x) max(x) -250 1250]);
     
-    plot(time_volt(1:999)/1e-6,current_dis(1:999)*100000,'c');
     yyaxis right
+    plot(time_volt(1:999)/1e-6,current_dis(1:999)*1000,'r');
     ylabel('current in mA');
     
+    axis([min(x) max(x) -5 25]);
+    zline = refline(0,0);
+    zline.Color = 'k';
+    zline.LineStyle = ':';
+    
     legend('U_{gap}','U_{app}','I_{dis}');
-    title('current/appl. & gap voltage via time');
-    set(gcf,'PaperSize',ppr_size);
-    saveas(gcf,cname1,'bmp');
-%     print(cname2,'-dpdf','-noui','-bestfit');
+    box on;set(gca,'Layer','top');
+    % title('current/appl. & gap voltage via time');
+    saveas(gcf,cname,'bmp');
+%     print(cname,'-dpdf','-noui','-bestfit');
 %     savefig(sprintf('currentdis%s.fig',h));
     hold off; close(f);
     
@@ -345,14 +351,17 @@ inmax = 0;
     fieldstrength = sqrt(fieldstrengthsq);
     
     f = figure;hold on;
-    plot(wavelength,starkshift);
+    plot(wavelength,starkshift-min(starkshift));
+    x = wavelength;
+    y = starkshift-min(starkshift);
+    axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
     xlabel('wavelength in nm');
     ylabel('intensity, a.u.');
-    title(sprintf('shift, 7.1in, %g탎, E=%g kV/cm', time, fieldstrength));
-    set(gcf,'PaperSize',ppr_size);
+    box on;set(gca,'Layer','top');
+    % title(sprintf('shift, 7.1in, %g탎, E=%g kV/cm', time, fieldstrength));
     saveas(gcf,'stark_shift71in','bmp');
-%     print(lname2,'-dpdf','-noui','-bestfit');
-%     savefig(sprintf('lissajous%s.fig',h));
+%     print('stark_shift71in','-dpdf','-noui','-bestfit');
+%     savefig(sprintf('stark_shift71in',h));
     hold off; close(f);
     
 %% Daten.
