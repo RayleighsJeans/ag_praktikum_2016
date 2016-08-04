@@ -101,6 +101,8 @@
 \fancyfoot[LO, RE]{\thepage}
 \fancyfoot[LE, RO]{Section \thesection}
 
+\setlength{\textfloatsep}{0.5cm}
+
 \begin{document}
 
 	\setcounter{section}{-1}
@@ -182,39 +184,47 @@
 
 	\section{Experimental set up}
 	
-		\subsection{Discharge configuration}
+		\subsection{Discharge cell}
 		
-				\begin{figure}[t]
+				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/experimentalsetup/discharge_cell.pdf}
+					\includegraphics[width=0.5\textwidth]{figures/setup/discharge_cell.pdf}
 					\caption{side-view of the concentric discharge cell. The variable dielectric was chosen to be mono-crystalline alumina.}
 					\label{img:cell}
 				\end{figure}
 		
 			The used discharge cell is shown in \autoref{img:cell}. An symmetrical configuration, in which both plane, concentric electrodes are covered in dielectrics. The gas gap is $\unit[3]{mm}$ in height, whereas the radius of the electrodes is $\unit[15]{mm}$. A high-voltage driven copper ring on top holds a float glas plate, which is again covered with a electrically conductive, transparent indium tin oxide  (\tilt{ITO}) layer. On the bottom, a grounded aluminium mirror holds a bismuth silicon oxide crystal (\tilt{BSO}). On top of that, the dielectric can be mounted. Here, \tilt{mono-crystalline alumina} (Al$_2$O$_3$) was used. In advance for further investigations, one finds the relative permeabilities of the materials to be $\epsilon_r=7,6$ for the float glas + ITO and $\epsilon_r=10,55$ for the aluminum.\\
 			The whole construct is mounted inside a steel vacuum chamber. A turbomolecular and process pump evacuate the chamber to a base pressure of about $\unit[\tenpo{-5}]{mbar}$, which ensures low concentration of impurities. Afterwards, the operating gas is passed from one side directly into the chamber through the polyetherethereton (\tilt{PEEK}) insulaters. Two mass flow controllers (MKS 647c) set the gas flow rate of Helium and Nitrogen (respective purity > 99,999\%) achieving high accuracy mixtures and flow rates of up to $\unit[100]{sccm}$. The operating pressure was at atmospheric level, $\unit[1000]{mbar}$ and kept constant through a diaphragm pressure gauge and butterfly valve (MKS) by the process pump (TRIVAC D25BCSPFPE). Moreover, 2 orifices in the chamber enable the gas flow and investigation of the discharge.\\
-			A function generator (SRS DS345) provides the voltage signal for the upper electrode, which ignites the discharge after its been amplified by a factor of 1000 (Trek 615-10), at a frequency of $\unit[5]{kHz}$ and amplitude of $\unit[1,2]{kV}$. The voltage can be a sine or square wave, dominating the discharge modes.\\
-			Applied voltage $U_{app}(t)$ and total transported charge $Q_{ext}$ are measured via a HV probe of 1000:1 and an external capacitor as well as a resistor, $C_{ext}=\unit[1]{nF}$ and $R_{ext}=\unit[100]{\Omega}$. The collection of data itself is utilized by a digital oscilloscope (ROHDE\&SCHWARZ RTO1024) with a bandwidth of $\unit[2]{GHz}$, which is connected through ethernet ports to a PC, running a customized LabView VI. Additionally, a Rogowski coil is attached to the cell, accumulating the flowing current and providing a much faster and higher slope in voltage signal than the total charge or the ramping of the applied voltage. This will also be used as the trigger for the oscilloscope.
 			
-				\begin{figure}[t]
+
+		\subsection{Electrical diagnostics}
+		
+				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/experimentalsetup/replacementcircuit.jpg}
+					\includegraphics[width=0.5\textwidth]{figures/setup/replacementcircuit}
 					\caption{Electrical equivalent circuit: the discharge gap is represented by the time-dependent resistance $R_{gap}(t)$ and $C_{gap}$ in parallel.}
 					\label{img:circuit}
 				\end{figure}
-			
-			 Furthermore, by using Lissajous figures $Q(U)$, one gains access to the breakdown charge $\Delta Q$ and the determination of the total capacitance of the discharge cell $C_{tot}$. By that, the gap voltage between the dielectrics $U_{gap}$ and the displacement current $I_{dis}$ can be calculated. A replacement circuit can be constructed, as depicted in \autoref{img:circuit}. Here, $C_{diel}$ and $C_{gap}$ denote the dielectrics and discharge gap capacitance, taking into account the geometry. The parallel capacitance $C_{par}=C_{tot}-C_{gap}C_{diel}/\left(C_{gap}-C_{diel}\right)$ comprehends any volume in the cell not ignited by the discharge. Finally, one yields:
+		
+					 
+			 A function generator (SRS DS345) provides the voltage signal for the upper electrode, which ignites the discharge after its been amplified by a factor of 1000 (Trek 615-10), at a frequency of $\unit[5]{kHz}$ and amplitude of $\unit[1,2]{kV}$. The voltage can be a sine or square wave, dominating the discharge modes.\\
+			 Applied voltage $U_{app}(t)$ and total transported charge $Q_{ext}$ are measured via a HV probe of 1000:1 and an external capacitor as well as a resistor, $C_{ext}=\unit[1]{nF}$ and $R_{ext}=\unit[100]{\Omega}$. The collection of data itself is utilized by a digital oscilloscope (ROHDE\&SCHWARZ RTO1024) with a bandwidth of $\unit[2]{GHz}$, which is connected through ethernet ports to a PC, running a customized LabView VI. Additionally, a Rogowski coil is attached to the cell, accumulating the flowing current and providing a much faster and higher slope in voltage signal than the total charge or the ramping of the applied voltage. This will also be used as the trigger for the oscilloscope.\\
+			 Furthermore, by using Lissajous figures $Q(U)$, one gains access to the breakdown charge $\Delta Q$ and the determination of the total capacitance of the discharge cell $C_{tot}$. By that, the gap voltage between the dielectrics $U_{gap}$ and the displacement current $I_{dis}$ can be calculated. A replacement circuit can be constructed, as depicted in \autoref{img:circuit}. Here, $C_{diel}$ and $C_{gap}$ denote the dielectrics and discharge gap capacitance, taking into account the geometry. The parallel capacitance $C_{par}=C_{tot}-C_{gap}C_{diel}/\left(C_{gap}-C_{diel}\right)$ comprehends any volume in the cell not ignited by the discharge.
 			 
-			 	\begin{align}
-					&U_{gap}(t)=\left(1+\frac{C_{par}}{C_{diel}}\right)U_{ext}(t)-\frac{Q_{ext}(t)}{C_{diel}} \nonumber \,\, , \\
-					&I_{dis}(t)=\left(1+\frac{C_{gap}}{C_{diel}}\right)\left(\frac{\diff Q_{ext}(t)}{\diff t}-C_{tot}\frac{\diff U_{ext}(t)}{\diff t}\right) \nonumber \,\, .
-				\end{align}
+			 \clearpage
+			 
+			 Finally, one yields:
+			 
+				\begin{align*}
+					 &U_{gap}(t)=\left(1+\frac{C_{par}}{C_{diel}}\right)U_{ext}(t)-\frac{Q_{ext}(t)}{C_{diel}} \,\, , \\
+					 &I_{dis}(t)=\left(1+\frac{C_{gap}}{C_{diel}}\right)\left(\frac{\diff Q_{ext}(t)}{\diff t}-C_{tot}\frac{\diff U_{ext}(t)}{\diff t}\right) \,\, .
+				\end{align*}	
 
 		\subsection{Optical emission spectroscopy}
 		
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/experimentalsetup/diagnostic_setup.jpg}
+					\includegraphics[width=0.5\textwidth]{figures/setup/diagnostic_setup}
 					\caption{Set-up of the diagnostics applied at the discharge cell configuration.}
 					\label{img:diag}
 				\end{figure}
@@ -230,13 +240,61 @@
 
 		\subsection{Overview spectrum of optical emission}
 		
+			Here, the overview spectrum, which will be used as an outlook for further investigations, is presented. The final results can be observed in \autoref{img:intspec}, which includes the indication of major peaks. Indeed those will be the target of the spatio-temporally resolved line emission spectroscopy in \autoref{subsec:stroe}.\\
+			During the operation of this particular discharge, a mixture of $\unit[100]{sccm}$ helium and $\unit[0,05]{sccm}$ nitrogen, with a relative purity of $>99,999\%$ was used. Furthermore, the discharge was excited and ignited by a square wave of $\unit[5]{kHz}$ with an amplitude of $\unit[1,2]{kV}$. The cell was kept at a constant, atmospheric pressure of $\unit[1]{bar}$ by the mass flow controller. In addition, any optical components were configured to ensure the best results possible: a grating of $\unit[1800]{mm^{-1}}$ for high intensities, a PMT amplifier running at $\unit[1250]{V}$ to ensure single photon counting, a spectral resolution of $\unit[0,5]{nm}$.\\
+			The full data, ranging from $\unit[585]{nm}$ to $\unit[730]{nm}$ was then corrected by an offset and integrated. Here, one used any emission - where as there should be none - between $\unit[592]{nm}$ and $\unit[612]{nm}$ to calculate an average of the background signal. Afterwards, the 'new' spectrum was evaluated to be the 'old' - say \tilt{raw} - minus the offset. Remaining was an emission profile over time for each wavelength step, which were almost 300. The integrated spectrum was recieved by applying the \tilt{explicit Euler method} (see \cite{Wiki:Euler}).\\
+		
+				\begin{figure}
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
+					\caption{Overview spectrum for a \tilt{BD} of $\unit[100]{sccm}$ He$_2$ and $\unit[5\cdot\tenpo{-2}]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$.1 Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
+					\label{img:intspec}
+				\end{figure}
+		
 		\begin{itemize}
 			\item Benennen der einzelnen Peaks mit 'Übergang' + Wellenlänge (volle Seitenbreite); YAchse --> intensity, a.u. + Normierung auf Maximum
 			\item aus Literatur: weitere Übergänge identifizieren
 			\item TEXT: Arbeitsbedingungen (Entladung, Gase, Flussraten, Signalform, Amplitude etc...); wie das 'integrierte' Spektrum erstellt wurde; dominante Linien im Spektrum --> Helium (Elektronen-Stoß-Ionisation) + Art und Verlauf der Abregung; weitere Übergänge (andere System von N2/He2/O2/H2O ...) beschreiben + Grund (ohne explizite Formulierung der RG
 		\end{itemize}
 		
-		\subsection{Spatio-temporally resolved optical emission}
+		\subsection{Spatio-temporally resolved optical emission}\label{subsec:stroe}
+		
+			\onecolumn
+				
+					\begin{figure}
+						\centering
+						\begin{subfigure}[t]{0.49\textwidth}
+							\includegraphics[width=\textwidth]{figures/706nm@sine/706nm}
+							\caption{}
+							\label{img:emissionsine}
+						\end{subfigure}
+						\hfill
+						\begin{subfigure}[t]{0.49\textwidth}
+							\includegraphics[width=\textwidth]{figures/706nm@square/korr706nm.pdf}
+							\caption{}
+							\label{img:currentsine}
+						\end{subfigure}
+						\vskip\baselineskip
+						\begin{subfigure}[t]{0.49\textwidth}
+							\includegraphics[width=\textwidth]{figures/706nm@sine/current_dis.pdf}
+							\caption{}
+							\label{img:emissionsquare}
+						\end{subfigure}
+						\hfill
+						\begin{subfigure}[t]{0.49\textwidth}
+							\includegraphics[width=\textwidth]{figures/706nm@square/current_dis.pdf}
+							\caption{}
+							\label{img:currentsquare}
+						\end{subfigure}
+						\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for \tilt{BD}s excited by a (\fett{(a)} \& \fett{(c)}) sine, or (\fett{(b)} \& \fett{(d)}) square wave. For \fett{(a)} and \fett{(c)} the properties were: $\unit[100]{sccm}$ He$_2$ + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)} and \fett{(d)}, only He$_2$ was used - at the same flow rate, voltage and frequency respectively. The excitation happend to be a square wave here.}
+						\label{img:comparisonsinesquare}
+					\end{figure}
+				
+			\begin{multicols}{2}
+			
+			\end{multicols}
+				
+		\twocolumn
 		
 		\begin{itemize}
 			\item Zeitskala bei 2016-06-20 bearbeiten (-6$\mu$ s-14$\mu$s); vertikale Positionen mit Kathode/Anode kennzeichnen (oben:K, unten:A)
@@ -251,7 +309,69 @@
 		
 		\subsection{Line ratios}
 		
+			\onecolumn
+			
+			\begin{figure}
+				\centering
+				\begin{subfigure}[t]{0.49\textwidth}
+					\includegraphics[width=\textwidth]{figures/lineratio/korr667nm}
+					\caption{$\unit[667,98]{nm}$}
+					\label{img:667nm}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[t]{0.49\textwidth}
+					\includegraphics[width=\textwidth]{figures/lineratio/korr728nm}
+					\caption{$\unit[728,31]{nm}$}
+					\label{img:728nm}
+				\end{subfigure}
+				\vskip\baselineskip
+				\begin{subfigure}[t]{0.49\textwidth}
+					\includegraphics[width=\textwidth]{figures/lineratio/korr706nm}
+					\caption{$\unit[706,66]{nm}$}
+					\label{img:706nm}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[t]{0.49\textwidth}
+					\includegraphics[width=\textwidth]{figures/lineratio/korr587nm}
+					\caption{$\unit[587,65]{nm}$}
+					\label{img:587nm}
+				\end{subfigure}
+				\caption{Spatio-temporally resolved line emission profiles for all four major transitions, as depicted in \autoref{img:intspec}. The corresponding wavelengths are noted below. The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
+				\label{img:comparisonemissionline}
+			\end{figure}
+			
+			\begin{multicols}{2}
+				
+			\end{multicols}
+			
+			\twocolumn
+		
 		\subsection{Stark spectroscopy}
+		
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/stark/stark_71inraw.pdf}
+					\caption{Raw data from the temporally resolved stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. The gathered information have not been processed any further, as only to be displayed here.}
+				\end{figure}
+
+				\begin{figure}
+					\centering
+					\begin{subfigure}[t]{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/stark/stark_71in.pdf}
+					\end{subfigure}
+					\begin{subfigure}[b]{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/stark/currentdis71.pdf}
+					\end{subfigure}
+					\caption{Comparison of the stark spectroscopy and dicharge properties at a vertical position of $\unit[7,1]{inch}$. }
+					\label{img:stark71comparison}
+				\end{figure}
+
+				\begin{figure}
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/stark/stark_shift71in.pdf}
+					\caption{Extracted emission profile around $\unit[492,2]{nm}$. This is at a relative time of $\unit[0,074]{\mu s}$ to the discharges ignition at $\unit[0]{\mu s}$.}
+					\label{img:starkshift71}
+				\end{figure}
 
 		\subsection{Conclusion}
 		
