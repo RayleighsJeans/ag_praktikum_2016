@@ -5,7 +5,7 @@
 % with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 % The lincense itself can be found at <https://www.gnu.org/licenses/fdl-1.3>.
 
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,10pt,twoside]{article}
 %\documentclass[numbers=noenddot,12pt,a4paper,notitlepage,twoside,BCOR15mm]{scrartcl}
 
 \usepackage{lipsum}
@@ -128,8 +128,7 @@
 			\HRule \\[0.4cm] % Horizontal line
 			\huge \fett{\rtitle} \\ % Thesis title
 			\HRule \\[.6cm] % Horizontal line
-			
-			\large \href{http://www.university-url.com}{\univname}
+		
 
 	\begin{figure}[h]
 		\centering
@@ -143,14 +142,15 @@
 		\hfill
 		\begin{minipage}[t]{0.48\textwidth}
 			\begin{center}
-				\emph{Supervisor}: Dr. S. Nemschokmichal,\\R. Tschiersch \\ %TODO name of supervisor
+				\emph{Supervisor(s)}: Dr. S. Nemschokmichal,\\R. Tschiersch \\ %TODO name of supervisor
 			\end{center}
 		\end{minipage}
 	\end{figure}
 
 		\large \textit{Report for an internship at the \groupname \,\, of Prof. Dr. Meichsner, submitted in fulfillment of the requirements for the degree}\\[0.1cm] \fett{Master of Science}\\[0.2cm] %TODO UNIVERSITY TEXT
 		\textit{in the}\\[0.2cm]
-		\href{http://www1.physik.uni-greifswald.de}{\groupname} \\[0.15cm] \href{http://www.physik.uni-greifswald.de}{\deptname} \\[0.3cm] %TODO RESEARCH GROUP/DEPARTMENT
+		\href{http://www.physik.uni-greifswald.de}{\deptname} \\[0.15cm]
+		\href{http://www.uni-greifswald.de}{\univname} \\[0.3cm] %TODO RESEARCH GROUP/DEPARTMENT
 
 	\end{center}
 	
@@ -166,7 +166,7 @@
 		
 	\twocolumn
 
-	\section{Introduction}
+	\section{Introduction}\label{sec:intro}
 
 		In the vast field of low temperature plasma physics, barrier discharges (\tilt{BD}s) take a special place as a result to their unique feature of surface charge deposition onto, in dielectric covered electrodes. During the discharge breakdown, the accumulated charges limit the overall current, as they weaken the, in opposite direction applied electric field. Furthermore, by that means these plasmas are thermally non-equilibrated, even at atmospheric pressures. Hence, they are source of many different radicals, excited species and high energy electrons and photons. In addition, a variety of working gases and their combinations can be used to dominantly determine the discharge modes, each yielding characteristic physical quantities, obtainable through, e.g. non-invasive optical spectroscopy or external measurements of electrical properties.\\ 
 		Barrier discharges are very attractive to the industry due to their comparatively low power consumption, almost at normal residing electron temperatures and easy-to-achieve viability. They are a lucrative mean to a broad selection of industrial, high quality productions, in e.g. for surface treatments, gas synthesis, or in life science.\\
@@ -209,23 +209,19 @@
 					 
 			 A function generator (SRS DS345) provides the voltage signal for the upper electrode, which ignites the discharge after its been amplified by a factor of 1000 (Trek 615-10), at a frequency of $\unit[5]{kHz}$ and amplitude of $\unit[1,2]{kV}$. The voltage can be a sine or square wave, dominating the discharge modes.\\
 			 Applied voltage $U_{app}(t)$ and total transported charge $Q_{ext}$ are measured via a HV probe of 1000:1 and an external capacitor as well as a resistor, $C_{ext}=\unit[1]{nF}$ and $R_{ext}=\unit[100]{\Omega}$. The collection of data itself is utilized by a digital oscilloscope (ROHDE\&SCHWARZ RTO1024) with a bandwidth of $\unit[2]{GHz}$, which is connected through ethernet ports to a PC, running a customized LabView VI. Additionally, a Rogowski coil is attached to the cell, accumulating the flowing current and providing a much faster and higher slope in voltage signal than the total charge or the ramping of the applied voltage. This will also be used as the trigger for the oscilloscope.\\
-			 Furthermore, by using Lissajous figures $Q(U)$, one gains access to the breakdown charge $\Delta Q$ and the determination of the total capacitance of the discharge cell $C_{tot}$. By that, the gap voltage between the dielectrics $U_{gap}$ and the displacement current $I_{dis}$ can be calculated. A replacement circuit can be constructed, as depicted in \autoref{img:circuit}. Here, $C_{diel}$ and $C_{gap}$ denote the dielectrics and discharge gap capacitance, taking into account the geometry. The parallel capacitance $C_{par}=C_{tot}-C_{gap}C_{diel}/\left(C_{gap}-C_{diel}\right)$ comprehends any volume in the cell not ignited by the discharge.
-			 
-			 \clearpage
-			 
-			 Finally, one yields:
+			 Furthermore, by using Lissajous figures $Q(U)$, one gains access to the breakdown charge $\Delta Q$ and the determination of the total capacitance of the discharge cell $C_{tot}$. By that, the gap voltage between the dielectrics $U_{gap}$ and the displacement current $I_{dis}$ can be calculated. A replacement circuit can be constructed, as depicted in \autoref{img:circuit}. Here, $C_{diel}$ and $C_{gap}$ denote the dielectrics and discharge gap capacitance, taking into account the geometry. The parallel capacitance $C_{par}=C_{tot}-C_{gap}C_{diel}/\left(C_{gap}-C_{diel}\right)$ comprehends any volume in the cell not ignited by the discharge. Finally, one yields:
 			 
 				\begin{align*}
 					 &U_{gap}(t)=\left(1+\frac{C_{par}}{C_{diel}}\right)U_{ext}(t)-\frac{Q_{ext}(t)}{C_{diel}} \,\, , \\
 					 &I_{dis}(t)=\left(1+\frac{C_{gap}}{C_{diel}}\right)\left(\frac{\diff Q_{ext}(t)}{\diff t}-C_{tot}\frac{\diff U_{ext}(t)}{\diff t}\right) \,\, .
 				\end{align*}	
 
-		\subsection{Optical emission spectroscopy}
+		\subsection{Optical emission spectroscopy}\label{subsec:oes}
 		
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/setup/diagnostic_setup}
-					\caption{Set-up of the diagnostics applied at the discharge cell configuration.}
+					\includegraphics[width=0.5\textwidth]{figures/setup/setup}
+					\caption{Set-up of the diagnostics used, with the corresponding discharge cell configuration.}
 					\label{img:diag}
 				\end{figure}
 		
@@ -238,61 +234,86 @@
 
 	\section{Results}
 
-		\subsection{Overview spectrum of optical emission}
+		\subsection{Overview spectrum of optical emission}\label{subsec:overview}
 		
 			Here, the overview spectrum, which will be used as an outlook for further investigations, is presented. The final results can be observed in \autoref{img:intspec}, which includes the indication of major peaks. Indeed those will be the target of the spatio-temporally resolved line emission spectroscopy in \autoref{subsec:stroe}.\\
-			During the operation of this particular discharge, a mixture of $\unit[100]{sccm}$ helium and $\unit[0,05]{sccm}$ nitrogen, with a relative purity of $>99,999\%$ was used. Furthermore, the discharge was excited and ignited by a square wave of $\unit[5]{kHz}$ with an amplitude of $\unit[1,2]{kV}$. The cell was kept at a constant, atmospheric pressure of $\unit[1]{bar}$ by the mass flow controller. In addition, any optical components were configured to ensure the best results possible: a grating of $\unit[1800]{mm^{-1}}$ for high intensities, a PMT amplifier running at $\unit[1250]{V}$ to ensure single photon counting, a spectral resolution of $\unit[0,5]{nm}$.\\
-			The full data, ranging from $\unit[585]{nm}$ to $\unit[730]{nm}$ was then corrected by an offset and integrated. Here, one used any emission - where as there should be none - between $\unit[592]{nm}$ and $\unit[612]{nm}$ to calculate an average of the background signal. Afterwards, the 'new' spectrum was evaluated to be the 'old' - say \tilt{raw} - minus the offset. Remaining was an emission profile over time for each wavelength step, which were almost 300. The integrated spectrum was recieved by applying the \tilt{explicit Euler method} (see \cite{Wiki:Euler}).\\
-		
-				\begin{figure}
+			During the operation of this particular discharge, a mixture of $\unit[100]{sccm}$ helium and $\unit[0,05]{sccm}$ nitrogen, with a relative purity of $>99,999\%$ was used. Furthermore, the discharge was excited and ignited by a square wave of $\unit[5]{kHz}$ with an amplitude of $\unit[1,2]{kV}$. The cell was kept at a constant, atmospheric pressure of $\unit[1]{bar}$ by the mass flow controller. In addition, any optical components were configured to ensure the best results possible: a grating of $\unit[1800]{mm^{-1}}$ for high intensities, a PMT amplifier running at $\unit[1250]{V}$ to ensure single photon counting, a spectral resolution of $\unit[0,5]{nm}$ and a slit opening of $\unit[3]{mm}\times\unit[0,2]{mm}$.\\
+			The full data, ranging from $\unit[585]{nm}$ to $\unit[730]{nm}$ was then corrected by an offset and integrated. Here, one used any emission - where as there should be none - between $\unit[592]{nm}$ and $\unit[612]{nm}$ to calculate an average of the background signal. Afterwards, the 'new' spectrum was evaluated to be the 'old' - say \tilt{raw} - minus the offset. Remaining was an emission profile over time for each wavelength step, which happen to be 291. The integrated spectrum was received by applying the \tilt{explicit Euler method} (see \cite{Wiki:Euler}).\\
+			As already pointed out, \autoref{img:intspec} contains the positions and quantum mechanical transition terms for any peaks of interest in further experiments. Primarily, those are found to be the dominant lines in our spectrum. Especially the transition between $2^3$P-$3^3$S carries the maximum intensity measured. In \autoref{subsec:oes} and \autoref{sec:intro} it is already sketched, what kind of optical line emissions are investigated and which physical processes is behind those. Mainly, the spectrum shows intensity peaks from excited states of helium in singlet or triplet states. To be more precise, $2^3$P$-3^3$D and $2^3$P$-3^3$S contribute to a triplet transition, whereas $2^1$P-$3^3$S and $2^3$P$-3^3$S originate from a singlet. As shown in, e.g. \cite{linratio1_14}, the excitation of named states is induced by impacting electrons, generated in regions of high electric field strength. Therefore, these electrons are non-thermal and hence correspond directly to the field strength and intensity of the given transitions. Furthermore, the intensities are also independent of local densities due to the equal influence of the electron numbers to all excitation states. One should note here, that in \cite{linratio1_14} (Ivkovi{\'c} et. al.) also self-absorption, line broadening and Doppler effects are discussed to verify the results. This is not necessary here, as this work is based on the given implementations of the collisional-radiative model.
+			
+				\begin{figure}[t]
 					\centering
 					\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
 					\caption{Overview spectrum for a \tilt{BD} of $\unit[100]{sccm}$ He$_2$ and $\unit[5\cdot\tenpo{-2}]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$.1 Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
 					\label{img:intspec}
 				\end{figure}
+			
+			To get a more detailed look at the physical background, one has to look at the de-/ population of the named states as a result to electron impact. The ground and metastable level, $2^3$S and $2^3$S are much more significant in intensity than the spin forbidden counterpart $2^1$S. Also, transitions between 3P $\leftrightarrow$ 3D have been taken into account in following modelling. Depopulation is happening through spontaneous emission and associative ionization, which is common for atmospheric pressure \tilt{BD}s. Any electron induced depopulation is negligible. See \cite{PhysRevA.21.188}, \cite{0963-0252-14-4-011} for further investigations on cross sections and distribution functions.\\
+			During low field strength phases of the discharge, excitation from metastable levels becomes more important. This is due to the low electron impact energy, which is then too low for excitation. Therefore, in any later evaluations one has to keep in mind, that the used model lacks a proper interpretation for low electric field strengths and the corresponding intensity in emission.\\
+			Taking a look back at \autoref{img:intspec}, the full spectrum, one quickly finds many more peaks, with more or less intensity to them than the majoring transitions. This is due to the special mixture of He$_2$ and N$_2$ in the discharge cell - minor impurities might contribute to this as well. Here, a library for atomic spectra, the \href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl}{NIST Atomic Spectra Database} was consulted. Without further reasoning, a short list of additional emission lines can be established (\autoref{tab:wavlg}). It should be sufficient here to only name those, because it will not be part of any profound considerations for following experiments.
 		
-		\begin{itemize}
-			\item Benennen der einzelnen Peaks mit 'Übergang' + Wellenlänge (volle Seitenbreite); YAchse --> intensity, a.u. + Normierung auf Maximum
-			\item aus Literatur: weitere Übergänge identifizieren
-			\item TEXT: Arbeitsbedingungen (Entladung, Gase, Flussraten, Signalform, Amplitude etc...); wie das 'integrierte' Spektrum erstellt wurde; dominante Linien im Spektrum --> Helium (Elektronen-Stoß-Ionisation) + Art und Verlauf der Abregung; weitere Übergänge (andere System von N2/He2/O2/H2O ...) beschreiben + Grund (ohne explizite Formulierung der RG
-		\end{itemize}
+				\begin{table}
+					\centering
+					\begin{tabular}{l|c|c|r}
+						ion & term & lower level conf. & wavelength \\
+						\hline O IV & $^4$P & $2p^2(^3P)3s$ & $\unit[616,775]{nm}$ \\
+						\hline N II & $^3$F$^0$ & $2s{^2}2p3d$ & $\unit[617,331]{nm}$ \\
+						\hline C II & $^2$P$^0$ & $2s{^2}4p$ & $\unit[625,98]{nm}$ \\
+						\hline O I & $^3$P & $2s{^2}2p^4$ & $\unit[630,03]{nm}$ \\
+						\hline N II & $^3$D$^0$ & $2s{^2}2p3d$ & $\unit[631,88]{nm}$ \\
+						\hline N I & $^4$D$^0$ & $2s{^2}2p^{2}(^3P)3p$ & $\unit[639,84]{nm}$\\
+									& 			&					&  - $\unit[644,17]{nm}$ \\
+						\hline C II & $^2$S & $2s{^2}3s$ & $\unit[6658,288]{nm}$\\
+						\hline N II & $^1$P & $2s{^2}2p3p$ & $\unit[661,056]{nm}$\\
+						\hline C III & $^3$P$^0$ & $1s{^2}2p(^2P^0)3s$ & $\unit[674,438]{nm}$\\
+					\end{tabular}
+					\caption{List of additional transitions, their corresponding wavelengths and level configurations. One should note, that a full overview of all possible emission in the area of $\unit[(585-730)]{nm}$ is not economical and will not be discussed.}
+					\label{tab:wavlg}
+				\end{table}
 		
 		\subsection{Spatio-temporally resolved optical emission}\label{subsec:stroe}
 		
-			\onecolumn
+			In this section, the previous obtained results from the overview spectrum and line emission scans for the already highlighted peaks at $\unit[587,65]{nm}$, $\unit[706,66]{nm}$, $\unit[728,31]{nm}$ and $\unit[667.98]{nm}$ will be processed. In particular, we will look at the emission for He I ($2^3$P$-3^3$S) triplet, to investigate different discharge modes and compare their properties in advance to understand the characteristic processes of a \tilt{BD}, e.g. ionization and field strength.\\
+			Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:currentsine} and \autoref{img:emissionsine}) and square wave form (\autoref{img:currentsquare} and \autoref{img:emissionsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and equivalent optical set-up properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,
+
+		\onecolumn
 				
-					\begin{figure}
-						\centering
-						\begin{subfigure}[t]{0.49\textwidth}
-							\includegraphics[width=\textwidth]{figures/706nm@sine/706nm}
-							\caption{}
-							\label{img:emissionsine}
-						\end{subfigure}
-						\hfill
-						\begin{subfigure}[t]{0.49\textwidth}
-							\includegraphics[width=\textwidth]{figures/706nm@square/korr706nm.pdf}
-							\caption{}
-							\label{img:currentsine}
-						\end{subfigure}
-						\vskip\baselineskip
-						\begin{subfigure}[t]{0.49\textwidth}
-							\includegraphics[width=\textwidth]{figures/706nm@sine/current_dis.pdf}
-							\caption{}
-							\label{img:emissionsquare}
-						\end{subfigure}
-						\hfill
-						\begin{subfigure}[t]{0.49\textwidth}
-							\includegraphics[width=\textwidth]{figures/706nm@square/current_dis.pdf}
-							\caption{}
-							\label{img:currentsquare}
-						\end{subfigure}
-						\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for \tilt{BD}s excited by a (\fett{(a)} \& \fett{(c)}) sine, or (\fett{(b)} \& \fett{(d)}) square wave. For \fett{(a)} and \fett{(c)} the properties were: $\unit[100]{sccm}$ He$_2$ + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)} and \fett{(d)}, only He$_2$ was used - at the same flow rate, voltage and frequency respectively. The excitation happend to be a square wave here.}
-						\label{img:comparisonsinesquare}
-					\end{figure}
+				\begin{figure}
+					\centering
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/706nm@sine/706nm}
+						\caption{}
+						\label{img:emissionsine}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/706nm@square/korr706nm.pdf}
+						\caption{}
+						\label{img:currentsine}
+					\end{subfigure}
+					\vskip\baselineskip
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/706nm@sine/current_dis.pdf}
+						\caption{}
+						\label{img:emissionsquare}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[t]{0.49\textwidth}
+						\includegraphics[width=\textwidth]{figures/706nm@square/current_dis.pdf}
+						\caption{}
+						\label{img:currentsquare}
+					\end{subfigure}
+					\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for \tilt{BD}s excited by a (\fett{(a)} \& \fett{(c)}) sine, or (\fett{(b)} \& \fett{(d)}) square wave. For \fett{(a)} and \fett{(c)} the properties were: $\unit[100]{sccm}$ He$_2$ + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)} and \fett{(d)}, only He$_2$ was used - at the same flow rate, voltage and frequency respectively. The excitation happend to be a square wave here.}
+					\label{img:comparisonsinesquare}
+				\end{figure}
 				
-			\begin{multicols}{2}
+			\begin{multicols*}{2}
 			
-			\end{multicols}
+				 only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an \tilt{OG1} filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions, as they are not target of this study.\\
+				 For each of the mentioned wavelengths, a full vertical scan was done. That means, after an inner loop of 5 repetitions for a temporal measurement at a fixed height, the slit position was changed between $\unit[5,8]{inch}$ - the anode - and $\unit[7,2]{inch}$ - the kathode - with $\unit[0,05]{inch}$ steps. Therefore, the overall resolution calculates as $\unit[0,05]{inch}\times\unit[10]{ns}$.\\
+				 Data from the PMT were processed to result in \autoref{img:emissionsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmi to emphasize gradients. 
+			
+			\end{multicols*}
 				
 		\twocolumn
 		
@@ -378,8 +399,8 @@
 	\section{References}
 
 		\bibliography{report.bib}
-		\bibliographystyle{unsrt}
-
+		\bibliographystyle{plain}
+		
 	\section{Appendix}
 
 
