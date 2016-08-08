@@ -35,13 +35,13 @@ warning off;
 %loc_dat= '/Users/pha-Mac/Documents/Arbeitsgruppenpraktikum/2016-06-15/Daten';
 %load '/Users/pha-Mac/Documents/Arbeitsgruppenpraktikum/2016-06-15/offset_data.mat';
 
-loc_dat = 'D:\documents\git\ag_praktikum_2016\2016-06-15\Daten\';
-load 'D:\documents\git\ag_praktikum_2016\2016-06-15\offset_data.mat';
-loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-15\';
+loc_dat = 'E:\documents\git\ag_praktikum_2016\2016-06-15\Daten\';
+load 'E:\documents\git\ag_praktikum_2016\2016-06-15\offset_data.mat';
+loc_main = 'E:\documents\git\ag_praktikum_2016\2016-06-15\';
 
 
 %% Datei-Nummern und Wellenlängen.
-
+% 
 %     dat_587 = 1:25:725;
 %     dat_667 = 6:25:725;
 %     dat_690 = 11:25:725;
@@ -55,9 +55,9 @@ loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-15\';
 % volt_diff = zeros(1999,725);
 % volt_appl = zeros(2000,725);
 % control = zeros(2000,725);
-
-wavelength = [587.65 667.96 690.0 706.66 728.31];
-
+% 
+% wavelength = [587.65 667.96 690.0 706.66 728.31];
+% 
 % cd(loc_dat);
 % tmp = importdata('16Jun16001_RTO.dat');
 % tmp = tmp.data;
@@ -68,8 +68,8 @@ wavelength = [587.65 667.96 690.0 706.66 728.31];
 
 % vertical_pos = 5.8:0.05:7.2;
 % vertical_mm = -0.2:0.117:3.1;
-
-cd(loc_dat);
+% 
+% cd(loc_dat);
 
 %% Entnehmen der Datein.
 
@@ -177,6 +177,11 @@ cd(loc_main);
 % save('base_dat.mat');
 load('base_dat.mat');
 
+% Für refline in 3D plots.
+
+mintime = min(time_volt*1e6);
+maxtime = max(time_volt*1e6);
+
 %% Bilder der vertikal aufgelösten Wellenlängen.
 
 f = figure;
@@ -186,8 +191,20 @@ meshc(time_volt/1e-6,vertical_pos,real(log10(mean587))');view(2);
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
-ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-ax.YTickLabelRotation = 90;
+
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+ 
 xlabel('time in µs');
 box on;set(gca,'Layer','top');
 % savefig('korr587nm.fig');
@@ -205,8 +222,20 @@ meshc(time_volt/1e-6,vertical_pos,real(log10(mean667))');view(2);
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
-ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-ax.YTickLabelRotation = 90;
+
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
 xlabel('time in µs');
 box on;set(gca,'Layer','top');
 % savefig('korr667nm.fig');
@@ -223,8 +252,20 @@ meshc(time_volt/1e-6,vertical_pos,real(log10(offset))');view(2);
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
-ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-ax.YTickLabelRotation = 90;
+
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
 xlabel('time in µs');
 box on;set(gca,'Layer','top');
 % savefig('korr690nm.fig');
@@ -241,8 +282,19 @@ meshc(time_volt/1e-6,vertical_pos,real(log10(mean706))');view(2);
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
-ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-ax.YTickLabelRotation = 90;
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
 xlabel('time in µs');
 box on;set(gca,'Layer','top');
 % savefig('korr706nm.fig');
@@ -259,8 +311,19 @@ meshc(time_volt/1e-6,vertical_pos,real(log10(mean728))');view(2);
 c = colorbar;
 c.Label.String = 'log_{10} of intensity, a.u.';
 ylabel('vertical slit pos. in inch');
-ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-ax.YTickLabelRotation = 90;
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
 xlabel('time in µs');
 box on;set(gca,'Layer','top');
 % savefig('korr728nm.fig');
@@ -288,7 +351,7 @@ chrg_current = c_ext*chrg_current;
 
     f = figure;
     hold on;
-    plot(volt_appl(:,1),chrg(:,1));
+    set(gca,'FontSize',24); plot(volt_appl(:,1),chrg(:,1));
     x = volt_appl(:,1);
     y = chrg(:,1);
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -306,22 +369,27 @@ chrg_current = c_ext*chrg_current;
     hold on;
     xlabel('time in µs');
     yyaxis left
-    plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'k',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'k-.');
+    set(gca,'FontSize',24); plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'k',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'k-.');
     x = time_volt/1e-6;
     ylabel('voltage in V');
     axis([min(x) max(x) -250 1250]);
+    
+    text(2,630,'U_{app}','FontSize',24,'FontName','L M Roman12');
+    text(-1,950,'U_{gap}','FontSize',24,'FontName','L M Roman12');
+    text(0.3,1000,'I_{dis}','Color','red','FontSize',24,'FontName','L M Roman12');
     
     yyaxis right
     plot(time_volt(1:1999)/1e-6,current_dis(1:1999,1)*1000,'r-');
     ylabel('current in mA');
     
-    legend('U_{gap}','U_{app}','I_{dis}');
+%     legend('U_{gap}','U_{app}','I_{dis}');
     axis([min(x) max(x) -5 25]);
     zline = refline(0,0);
     zline.Color = 'k';
     zline.LineStyle = ':';
     box on;set(gca,'Layer','top');
     % title('current/appl. & gap voltage via time');
+    
     
     saveas(gcf,'current_dis','bmp');
 %     print('current_dis2','-dpdf','-noui','-bestfit');
@@ -385,13 +453,24 @@ chrg_current = c_ext*chrg_current;
     
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_ratio706');view(2);
+    box on;set(gca,'Layer','top');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-    ax.YTickLabelRotation = 90;
-    box on;set(gca,'Layer','top');
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
     % title('line ratio of He lines at 706 nm and 587 nm');
 %     savefig('lineratio706.fig');
     
@@ -402,12 +481,24 @@ chrg_current = c_ext*chrg_current;
     
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_ratio667');view(2);
+    box on;set(gca,'Layer','top');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'line ratio, a.u.';
     xlabel('time in µs');
-    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-    ax.YTickLabelRotation = 90;
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
     % title('line ratio of He lines at 667 nm and 728 nm');
 %     savefig('lineratio667.fig');
     
@@ -418,13 +509,24 @@ chrg_current = c_ext*chrg_current;
 
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_field667');view(2);
+    box on;set(gca,'Layer','top');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-    ax.YTickLabelRotation = 90;
-    box on;set(gca,'Layer','top');
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
     % title('el. field strength from ratio 667nm/728nm');
 %     savefig('lineratio667.fig');
 
@@ -435,13 +537,24 @@ chrg_current = c_ext*chrg_current;
 
     f = figure; hold on;
     meshc(time_volt/1e-6,vertical_pos,sgf_field706');view(2);
+    box on;set(gca,'Layer','top');
     ylabel('vertical slit pos. in inch');
     c = colorbar;
     c.Label.String = 'el. field in kV/cm';
     xlabel('time in µs');
-    ax = gca; ax.YTickLabel = {'anode','6','6.2','6.4','6.6','6.8','7','kathode'};
-    ax.YTickLabelRotation = 90;
-    box on;set(gca,'Layer','top');
+    ax = gca; ax.YTickLabel = {'','6','6.2','6.4','6.6','6.8','7',''};
+
+    z1line = line([mintime maxtime],[7.1 7.1],[100000 100000]);
+    z1line.Color = 'white';
+    z1line.LineStyle = '-.';
+    
+    z2line = line([mintime maxtime],[5.9 5.9],[100000 100000]);
+    z2line.Color = 'white';
+    z2line.LineStyle = '-.';
+
+    text(-1.25,7.15,100000,'cathode','Color','white','FontSize',22,'FontName','L M Roman12');
+    text(-1.25,5.85,100000,'anode','Color','white','FontSize',22,'FontName','L M Roman12');
+
     % title('el. field strength from ratio 706nm/587nm');
 %     savefig('lineratio706.fig');
 

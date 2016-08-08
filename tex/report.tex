@@ -30,9 +30,7 @@
 \usepackage{amssymb}
 \usepackage{units}
 \usepackage{upgreek}
-\usepackage{esint}
 \usepackage{graphicx}
-\usepackage{ziffer}
 
 \usepackage{float}
 \usepackage{lscape}
@@ -168,11 +166,11 @@
 
 	\section{Introduction}\label{sec:intro}
 
-		In the vast field of low temperature plasma physics, barrier discharges (\tilt{BD}s) take a special place as a result to their unique feature of surface charge deposition onto, in dielectric covered electrodes. During the discharge breakdown, the accumulated charges limit the overall current, as they weaken the, in opposite direction applied electric field. Furthermore, by that means these plasmas are thermally non-equilibrated, even at atmospheric pressures. Hence, they are source of many different radicals, excited species and high energy electrons and photons. In addition, a variety of working gases and their combinations can be used to dominantly determine the discharge modes, each yielding characteristic physical quantities, obtainable through, e.g. non-invasive optical spectroscopy or external measurements of electrical properties.\\ 
+		In the vast field of low temperature plasma physics, barrier discharges (BDs) take a special place as a result to their unique feature of surface charge deposition onto, in dielectric covered electrodes. During the discharge breakdown, the accumulated charges limit the overall current, as they weaken the, in opposite direction applied electric field. Furthermore, by that means these plasmas are thermally non-equilibrated, even at atmospheric pressures. Hence, they are source of many different radicals, excited species and high energy electrons and photons. In addition, a variety of working gases and their combinations can be used to dominantly determine the discharge modes, each yielding characteristic physical quantities, obtainable through, e.g. non-invasive optical spectroscopy or external measurements of electrical properties.\\ 
 		Barrier discharges are very attractive to the industry due to their comparatively low power consumption, almost at normal residing electron temperatures and easy-to-achieve viability. They are a lucrative mean to a broad selection of industrial, high quality productions, in e.g. for surface treatments, gas synthesis, or in life science.\\
-		Specifically speaking, certain properties of \tilt{BD}s, like short, non-stationary breakdown times and therefore fast repeatability, statistical behavior and non-thermal distribution functions, motivate the intense study of the many phenomena found in dielectric hindered, atmospheric-pressure, low temperature\linebreak plasmas.\\
-		By variation of the discharge configurations, such as electrode spacing, applied voltage, gas flow and mixture or dielectrics, a \tilt{BD} can be operated with filamentary micro discharges (\tilt{MD}s), which appear as thin, lateral expanded filaments, or in diffuse modes. The latter will be subject of my investigation. Here, one finds the atmospheric pressure Townsend-like discharge (\tilt{APTD}) and the atmospheric pressure glow-like discharge (\tilt{APGD}).\\
-		\tilt{APTD}s are mostly investigated in rare gases with high ionization inside the discharge volume at a low electric field strength. Essentially, elementary multistage processes of such noble gases account for many metastable species, which are found to be crucial to the \tilt{BD}s characterization. A unique feature is the development of a cathode fall region during the breakdown.\\
+		Specifically speaking, certain properties of BDs, like short, non-stationary breakdown times and therefore fast repeatability, statistical behavior and non-thermal distribution functions, motivate the intense study of the many phenomena found in dielectric hindered, atmospheric-pressure, low temperature\linebreak plasmas.\\
+		By variation of the discharge configurations, such as electrode spacing, applied voltage, gas flow and mixture or dielectrics, a BD can be operated with filamentary micro discharges (\tilt{MD}s), which appear as thin, lateral expanded filaments, or in diffuse modes. The latter will be subject of my investigation. Here, one finds the atmospheric pressure Townsend-like discharge (\tilt{APTD}) and the atmospheric pressure glow-like discharge (\tilt{APGD}).\\
+		\tilt{APTD}s are mostly investigated in rare gases with high ionization inside the discharge volume at a low electric field strength. Essentially, elementary multistage processes of such noble gases account for many metastable species, which are found to be crucial to the BDs characterization. A unique feature is the development of a cathode fall region during the breakdown.\\
 		\tilt{APTD}s are result to a high ratio of secondary electron emission to volume ionization. This is caused by the Townsend breakdown at the cathode, primarily in gases with metastable species which have enough energy to produce secondary electrons, yielding a exponential growth of electron density towards the anode.\\
 		The Townsend-like and the glow-like discharge separate each other by a difference in transferred current during the breakdown of at least one magnitude. Therefore, the knowledge of such plasma properties and their dependence on discharge conditions is a important point for applications, as already sketched. In addition to the measurement of external quantities, electron temperatures, plasma currents and densities or produced species, the spatially resolved investigation of the resulting electric field strength, and therefore related characteristics like optical emission and life time, becomes cruel to the true understanding of the discharge. Concretely, any macroscopic electric fields in plasmas are result of space charge formation. Their characteristics commonly determine the energy flux of charged particles and therefore, the behavior of the discharge itself. \\
 		On the one hand, electric field strength measurements through experimentally determined distributions of emission intensities have been appointed as standard, though this method is limited to a small region of nitrogen to oxygen ratios, only applicable in \tilt{MD}s. On the other hand, for a long time, experimental fusion devices relate on the helium line intensity ratio method to determine electron densities, temperatures and the local electric field strength. In fact, electron impact excitations are insensitive to electron density but to electron temperature. If one uses the ratio of two line intensities excited in the plasma, the electron density factor gets cancelled out and what remains is only dependent on the electric field strength. Hence, this method can be used to obtain a field strength distribution in spatially small dielectric barrier discharges at low temperatures and atmospheric pressures.\\
@@ -243,75 +241,79 @@
 			
 				\begin{figure}[t]
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
-					\caption{Overview spectrum for a \tilt{BD} of $\unit[100]{sccm}$ He$_2$ and $\unit[5\cdot\tenpo{-2}]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$.1 Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
+					\includegraphics[width=0.45\textwidth]{figures/results/int_spectrum}
+					\caption{Overview spectrum for a BD of $\unit[100]{sccm}$ He$_2$ and $\unit[5\cdot\tenpo{-2}]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$.1 Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
 					\label{img:intspec}
 				\end{figure}
 			
-			To get a more detailed look at the physical background, one has to look at the de-/ population of the named states as a result to electron impact. The ground and metastable level, $2^3$S and $2^3$S are much more significant in intensity than the spin forbidden counterpart $2^1$S. Also, transitions between 3P $\leftrightarrow$ 3D have been taken into account in following modelling. Depopulation is happening through spontaneous emission and associative ionization, which is common for atmospheric pressure \tilt{BD}s. Any electron induced depopulation is negligible. See \cite{PhysRevA.21.188}, \cite{0963-0252-14-4-011} for further investigations on cross sections and distribution functions.\\
-			During low field strength phases of the discharge, excitation from metastable levels becomes more important. This is due to the low electron impact energy, which is then too low for excitation. Therefore, in any later evaluations one has to keep in mind, that the used model lacks a proper interpretation for low electric field strengths and the corresponding intensity in emission.\\
-			Taking a look back at \autoref{img:intspec}, the full spectrum, one quickly finds many more peaks, with more or less intensity to them than the majoring transitions. This is due to the special mixture of He$_2$ and N$_2$ in the discharge cell - minor impurities might contribute to this as well. Here, a library for atomic spectra, the \href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl}{NIST Atomic Spectra Database} was consulted. Without further reasoning, a short list of additional emission lines can be established (\autoref{tab:wavlg}). It should be sufficient here to only name those, because it will not be part of any profound considerations for following experiments.
+			To get a more detailed look at the physical background, one has to look at the de-/ population of the named states as a result to electron impact. The ground and metastable level, $2^3$S and $2^3$S are much more significant in intensity than the spin forbidden counterpart $2^1$S. Also, transitions between 3P $\leftrightarrow$ 3D have been taken into account in following modelling. Depopulation is happening through spontaneous emission and associative ionization, which is common for atmospheric pressure BDs. Any electron induced depopulation is negligible. See \cite{PhysRevA.21.188}, \cite{0963-0252-14-4-011} for further investigations on cross sections and distribution functions.\\
+			During low field strength phases of the discharge, excitation from metastable levels becomes more important. This is due to the low electron impact energy, which is then too low for excitation. Therefore, in any later evaluations one has to keep in mind, that the used model lacks a proper interpretation for low electric field strengths and the corresponding intensity in emission.
+			
+			
+			%Taking a look back at \autoref{img:intspec}, the full spectrum, one quickly finds many more peaks, with more or less intensity to them than the majoring transitions. This is due to the special mixture of He$_2$ and N$_2$ in the discharge cell - minor impurities might contribute to this as well. Here, a library for atomic spectra, the \href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl}{NIST Atomic Spectra Database} was consulted. Without further reasoning, a short list of additional emission lines can be established (\autoref{tab:wavlg}). It should be sufficient here to only name those, because it will not be part of any profound considerations for following experiments.
 		
-				\begin{table}
-					\centering
-					\begin{tabular}{l|c|c|r}
-						ion & term & lower level conf. & wavelength \\
-						\hline O IV & $^4$P & $2p^2(^3P)3s$ & $\unit[616,775]{nm}$ \\
-						\hline N II & $^3$F$^0$ & $2s{^2}2p3d$ & $\unit[617,331]{nm}$ \\
-						\hline C II & $^2$P$^0$ & $2s{^2}4p$ & $\unit[625,98]{nm}$ \\
-						\hline O I & $^3$P & $2s{^2}2p^4$ & $\unit[630,03]{nm}$ \\
-						\hline N II & $^3$D$^0$ & $2s{^2}2p3d$ & $\unit[631,88]{nm}$ \\
-						\hline N I & $^4$D$^0$ & $2s{^2}2p^{2}(^3P)3p$ & $\unit[639,84]{nm}$\\
-									& 			&					&  - $\unit[644,17]{nm}$ \\
-						\hline C II & $^2$S & $2s{^2}3s$ & $\unit[6658,288]{nm}$\\
-						\hline N II & $^1$P & $2s{^2}2p3p$ & $\unit[661,056]{nm}$\\
-						\hline C III & $^3$P$^0$ & $1s{^2}2p(^2P^0)3s$ & $\unit[674,438]{nm}$\\
-					\end{tabular}
-					\caption{List of additional transitions, their corresponding wavelengths and level configurations. One should note, that a full overview of all possible emission in the area of $\unit[(585-730)]{nm}$ is not economical and will not be discussed.}
-					\label{tab:wavlg}
-				\end{table}
+				%\begin{table}
+					%\centering
+					%\begin{tabular}{l|c|c|r}
+						%ion & term & lower level conf. & wavelength \\
+						%\hline O IV & $^4$P & $2p^2(^3P)3s$ & $\unit[616,775]{nm}$ \\
+						%\hline N II & $^3$F$^0$ & $2s{^2}2p3d$ & $\unit[617,331]{nm}$ \\
+						%\hline C II & $^2$P$^0$ & $2s{^2}4p$ & $\unit[625,98]{nm}$ \\
+						%\hline O I & $^3$P & $2s{^2}2p^4$ & $\unit[630,03]{nm}$ \\
+						%\hline N II & $^3$D$^0$ & $2s{^2}2p3d$ & $\unit[631,88]{nm}$ \\
+						%\hline N I & $^4$D$^0$ & $2s{^2}2p^{2}(^3P)3p$ & $\unit[639,84]{nm}$\\
+									%& 			&					&  - $\unit[644,17]{nm}$ \\
+						%\hline C II & $^2$S & $2s{^2}3s$ & $\unit[6658,288]{nm}$\\
+						%\hline N II & $^1$P & $2s{^2}2p3p$ & $\unit[661,056]{nm}$\\
+						%\hline C III & $^3$P$^0$ & $1s{^2}2p(^2P^0)3s$ & $\unit[674,438]{nm}$\\
+					%\end{tabular}
+					%\caption{List of additional transitions, their corresponding wavelengths and level configurations. One should note, that a full overview of all possible emission in the area of $\unit[(585-730)]{nm}$ is not economical and will not be discussed.}
+					%\label{tab:wavlg}
+				%\end{table}
 		
 		\subsection{Spatio-temporally resolved optical emission}\label{subsec:stroe}
 		
-			In this section, the previous obtained results from the overview spectrum and line emission scans for the already highlighted peaks at $\unit[587,65]{nm}$, $\unit[706,66]{nm}$, $\unit[728,31]{nm}$ and $\unit[667.98]{nm}$ will be processed. In particular, we will look at the emission for He I ($2^3$P$-3^3$S) triplet, to investigate different discharge modes and compare their properties in advance to understand the characteristic processes of a \tilt{BD}, e.g. ionization and field strength.\\
-			Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:currentsine} and \autoref{img:emissionsine}) and square wave form (\autoref{img:currentsquare} and \autoref{img:emissionsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and equivalent optical set-up properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,
+			In this section, the previous obtained results from the overview spectrum and line emission scans for the already highlighted peaks at $\unit[587,65]{nm}$, $\unit[706,66]{nm}$, $\unit[728,31]{nm}$ and $\unit[667.98]{nm}$ will be processed. In particular, we will look at the emission for He I ($2^3$P$-3^3$S) triplet, to investigate different discharge modes and compare their properties in advance to understand the characteristic processes of a BD, e.g. ionization and field strength.\\
+			Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:combsine}) and square wave form (\autoref{img:combsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and equivalent optical set-up properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,
 
 		\onecolumn
 				
 				\begin{figure}
 					\centering
 					\begin{subfigure}[t]{0.49\textwidth}
-						\includegraphics[width=\textwidth]{figures/706nm@sine/706nm}
+						\includegraphics[width=\textwidth]{figures/706nm@sine/combination.pdf}
 						\caption{}
-						\label{img:emissionsine}
+						\label{img:combsine}
 					\end{subfigure}
 					\hfill
 					\begin{subfigure}[t]{0.49\textwidth}
-						\includegraphics[width=\textwidth]{figures/706nm@square/korr706nm.pdf}
+						\includegraphics[width=\textwidth]{figures/706nm@square/combination.pdf}
 						\caption{}
-						\label{img:currentsine}
+						\label{img:combsquare}
 					\end{subfigure}
-					\vskip\baselineskip
-					\begin{subfigure}[t]{0.49\textwidth}
-						\includegraphics[width=\textwidth]{figures/706nm@sine/current_dis.pdf}
-						\caption{}
-						\label{img:emissionsquare}
-					\end{subfigure}
-					\hfill
-					\begin{subfigure}[t]{0.49\textwidth}
-						\includegraphics[width=\textwidth]{figures/706nm@square/current_dis.pdf}
-						\caption{}
-						\label{img:currentsquare}
-					\end{subfigure}
-					\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for \tilt{BD}s excited by a (\fett{(a)} \& \fett{(c)}) sine, or (\fett{(b)} \& \fett{(d)}) square wave. For \fett{(a)} and \fett{(c)} the properties were: $\unit[100]{sccm}$ He$_2$ + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)} and \fett{(d)}, only He$_2$ was used - at the same flow rate, voltage and frequency respectively. The excitation happend to be a square wave here.}
+					
+					%\vskip\baselineskip
+					%\begin{subfigure}[t]{0.49\textwidth}
+						%\includegraphics[width=\textwidth]{figures/706nm@sine/current_dis.pdf}
+						%\caption{}
+						%\label{img:emissionsquare}
+					%\end{subfigure}
+					%\hfill
+					%\begin{subfigure}[t]{0.49\textwidth}
+						%\includegraphics[width=\textwidth]{figures/706nm@square/current_dis.pdf}
+						%\caption{}
+						%\label{img:currentsquare}
+					%\end{subfigure}
+					
+					\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for BDs excited by a \fett{(a)} sine, or \fett{(b)} square wave. For \fett{(a)} the properties were: $\unit[100]{sccm}$ He$_2$ + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)}, only He$_2$ was used - at the same flow rate, voltage and frequency respectively. The excitation happend to be a square wave here.}
 					\label{img:comparisonsinesquare}
 				\end{figure}
 				
 			\begin{multicols*}{2}
 			
-				 only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an \tilt{OG1} filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions, as they are not target of this study.\\
+				 only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an OG1 filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions, as they are not target of this study.\\
 				 For each of the mentioned wavelengths, a full vertical scan was done. That means, after an inner loop of 5 repetitions for a temporal measurement at a fixed height, the slit position was changed between $\unit[5,8]{inch}$ - the anode - and $\unit[7,2]{inch}$ - the kathode - with $\unit[0,05]{inch}$ steps. Therefore, the overall resolution calculates as $\unit[0,05]{inch}\times\unit[10]{ns}$.\\
-				 Data from the PMT were processed to result in \autoref{img:emissionsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmi to emphasize gradients. 
+				 Data from the PMT were processed to result in \autoref{img:combsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmi to emphasize gradients. 
 			
 			\end{multicols*}
 				
@@ -335,29 +337,29 @@
 			\begin{figure}
 				\centering
 				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/korr667nm}
-					\caption{$\unit[667,98]{nm}$}
-					\label{img:667nm}
+					\includegraphics[width=\textwidth]{figures/lineratio/667u706.pdf}
+					\caption*{}
+					\label{img:667u706nm}
 				\end{subfigure}
 				\hfill
 				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/korr728nm}
-					\caption{$\unit[728,31]{nm}$}
-					\label{img:728nm}
+					\includegraphics[width=\textwidth]{figures/lineratio/728u587.pdf}
+					\caption*{}
+					\label{img:728u587nm}
 				\end{subfigure}
-				\vskip\baselineskip
-				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/korr706nm}
-					\caption{$\unit[706,66]{nm}$}
-					\label{img:706nm}
-				\end{subfigure}
-				\hfill
-				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/korr587nm}
-					\caption{$\unit[587,65]{nm}$}
-					\label{img:587nm}
-				\end{subfigure}
-				\caption{Spatio-temporally resolved line emission profiles for all four major transitions, as depicted in \autoref{img:intspec}. The corresponding wavelengths are noted below. The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
+				%\vskip\baselineskip
+				%\begin{subfigure}[t]{0.49\textwidth}
+					%\includegraphics[width=\textwidth]{figures/lineratio/korr706nm}
+					%\caption{$\unit[706,66]{nm}$}
+					%\label{img:706nm}
+				%\end{subfigure}
+				%\hfill
+				%\begin{subfigure}[t]{0.49\textwidth}
+					%\includegraphics[width=\textwidth]{figures/lineratio/korr587nm}
+					%\caption{$\unit[587,65]{nm}$}
+					%\label{img:587nm}
+				%\end{subfigure}
+				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[706,66]{nm}$ (bottom). \fett{(b)}: At $\unit[728,31]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom). The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
 				\label{img:comparisonemissionline}
 			\end{figure}
 			
@@ -377,13 +379,13 @@
 
 				\begin{figure}
 					\centering
-					\begin{subfigure}[t]{0.5\textwidth}
-						\includegraphics[width=\textwidth]{figures/stark/stark_71in.pdf}
-					\end{subfigure}
-					\begin{subfigure}[b]{0.5\textwidth}
-						\includegraphics[width=\textwidth]{figures/stark/currentdis71.pdf}
-					\end{subfigure}
-					\caption{Comparison of the stark spectroscopy and dicharge properties at a vertical position of $\unit[7,1]{inch}$. }
+					%\begin{subfigure}[t]{0.5\textwidth}
+						\includegraphics[width=0.5\textwidth]{figures/stark/stark71combination.pdf}
+					%\end{subfigure}
+					%\begin{subfigure}[b]{0.5\textwidth}
+						%\includegraphics[width=\textwidth]{figures/stark/currentdis71.pdf}
+					%\end{subfigure}
+					\caption{Comparison of the dicharge properties and spectral emission during stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. }
 					\label{img:stark71comparison}
 				\end{figure}
 

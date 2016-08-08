@@ -32,8 +32,8 @@ c_bd = (c_gap*c_diel)/(c_gap+c_diel);
 
 % Dateipfade der Messdaten.
 
-loc_dat = 'D:\documents\git\ag_praktikum_2016\2016-06-28\Daten\';
-loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-28\';
+loc_dat = 'E:\documents\git\ag_praktikum_2016\2016-06-28\Daten\';
+loc_main = 'E:\documents\git\ag_praktikum_2016\2016-06-28\';
 
 % loc_dat= '/Users/pha-Mac/Documents/Arbeitsgruppenpraktikum/2016-06-22/Daten';
 % loc_main = '/Users/pha-Mac/Documents/Arbeitsgruppenpraktikum/2016-06-22';
@@ -95,6 +95,11 @@ end
 cd(loc_main);
 save('base_dat.mat');
 % load('base_dat.mat');
+
+% Für refline in 3D plots.
+
+mintime = min(time_volt*1e6);
+maxtime = max(time_volt*1e6);
 
 % Kontrolle des Experimentes
     
@@ -263,7 +268,7 @@ chrg_diff = c_ext*chrg_diff;
     cname = strcat('currentdis',h,'.bmp');
     
     f = figure;hold on;
-    plot(volt_appl,chrg_tmp);
+    set(gca,'FontSize',24); plot(volt_appl,chrg_tmp);
     xlabel('U_{appl}/V');
     ylabel('Q_{ext}/C');    
     x = volt_appl;
@@ -280,13 +285,18 @@ chrg_diff = c_ext*chrg_diff;
     hold on;
     yyaxis left
     x = time_volt(1:999)/1e-6;
-    plot(time_volt(1:999)/1e-6,volt_gap(1:999),'k',time_volt(1:999)/1e-6,volt_appl(1:999),'k-.');
+    set(gca,'FontSize',24); plot(time_volt(1:999)/1e-6,volt_gap(1:999),'k',time_volt(1:999)/1e-6,volt_appl(1:999),'k-.');
     xlabel('time in µs');
     ylabel('voltage in V');
     axis([min(x) max(x) -250 1250]);
     
+        
+    text(0.2,275,'U_{app}','FontSize',24,'FontName','L M Roman12');
+    text(-0.4,1125,'U_{gap}','FontSize',24,'FontName','L M Roman12');
+    text(0.3,900,'I_{dis}','Color','red','FontSize',24,'FontName','L M Roman12');
+    
     yyaxis right
-    plot(time_volt(1:999)/1e-6,current_dis(1:999)*1000,'r');
+    set(gca,'FontSize',24); plot(time_volt(1:999)/1e-6,current_dis(1:999)*1000,'r');
     ylabel('current in mA');
     
     axis([min(x) max(x) -5 25]);
@@ -294,7 +304,7 @@ chrg_diff = c_ext*chrg_diff;
     zline.Color = 'k';
     zline.LineStyle = ':';
     
-    legend('U_{gap}','U_{app}','I_{dis}');
+%     legend('U_{gap}','U_{app}','I_{dis}');
     box on;set(gca,'Layer','top');
     % title('current/appl. & gap voltage via time');
     saveas(gcf,cname,'bmp');
@@ -351,7 +361,7 @@ inmax = 0;
     fieldstrength = sqrt(fieldstrengthsq);
     
     f = figure;hold on;
-    plot(wavelength,starkshift-min(starkshift));
+    set(gca,'FontSize',24); plot(wavelength,starkshift-min(starkshift));
     x = wavelength;
     y = starkshift-min(starkshift);
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);

@@ -31,12 +31,12 @@ c_bd = (c_gap*c_diel)/(c_gap+c_diel);
 
 %Dateipfade der Messdaten
 
-loc_main = 'D:\documents\git\ag_praktikum_2016\2016-06-13\';
-loc_a = 'D:\documents\git\ag_praktikum_2016\2016-06-13\587nm';
-loc_b = 'D:\documents\git\ag_praktikum_2016\2016-06-13\667nm';
-loc_c = 'D:\documents\git\ag_praktikum_2016\2016-06-13\706nm';
-loc_d = 'D:\documents\git\ag_praktikum_2016\2016-06-13\728nm';
-loc_e = 'D:\documents\git\ag_praktikum_2016\2016-06-13\spectrum';
+loc_main = 'E:\documents\git\ag_praktikum_2016\2016-06-13\';
+loc_a = 'E:\documents\git\ag_praktikum_2016\2016-06-13\587nm';
+loc_b = 'E:\documents\git\ag_praktikum_2016\2016-06-13\667nm';
+loc_c = 'E:\documents\git\ag_praktikum_2016\2016-06-13\706nm';
+loc_d = 'E:\documents\git\ag_praktikum_2016\2016-06-13\728nm';
+loc_e = 'E:\documents\git\ag_praktikum_2016\2016-06-13\spectrum';
 
 %Messbereiche abgesteckt
 
@@ -224,7 +224,7 @@ save('base_dat.mat');
     
     f = figure;
     hold on; box on;
-    plot(scan_spec,(-int_spectrum*1e-9+min(-int_spectrum*1e-9))/max(-int_spectrum*1e-9+min(-int_spectrum*1e-9)));
+    set(gca,'-FontSize',24); plot(scan_spec,(-int_spectrum*1e-9+min(-int_spectrum*1e-9))/max(-int_spectrum*1e-9+min(-int_spectrum*1e-9)));
     y = -int_spectrum*1e-9/max(-int_spectrum*1e-9);
     x = scan_spec;
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -276,7 +276,7 @@ save('base_dat.mat');
     
     f = figure;
     hold on; box on;
-    plot(scan_spec,real(log10(-int_spectrum*1e-9/max(-int_spectrum*1e-9))));
+    set(gca,'FontSize',24); plot(scan_spec,real(log10(-int_spectrum*1e-9/max(-int_spectrum*1e-9))));
     y = real(log10(-int_spectrum*1e-9/max(-int_spectrum*1e-9)));
     x = scan_spec;
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -294,7 +294,7 @@ save('base_dat.mat');
     
     f = figure;
     hold on; box on;
-    plot(volt_appl(:,1),chrg(:,1));
+    set(gca,'FontSize',24); plot(volt_appl(:,1),chrg(:,1));
     x = volt_appl(:,1);
     y = chrg(:,1);
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -329,7 +329,7 @@ save('base_dat.mat');
     hold on; box on;
     xlabel('time in µs');
     yyaxis left
-    plot(time_volt/1e-6,volt_gap(:,1),'k',time_volt/1e-6,volt_appl(:,1),'k-.');
+    set(gca,'FontSize',24); plot(time_volt/1e-6,volt_gap(:,1),'k',time_volt/1e-6,volt_appl(:,1),'k-.');
     x = time_volt/1e-6;
     ylabel('voltage in V');
     axis([min(x) max(x) -250 1250]);
