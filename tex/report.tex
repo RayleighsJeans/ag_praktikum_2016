@@ -186,7 +186,7 @@
 				\end{figure}
 		
 			The used discharge cell is sketched in \autoref{img:cell}. There, a symmetrical configuration, in which both plane, concentric electrodes are covered with dielectrics is shown. The gas gap width is $\unit[3]{mm}$ in height, whereas the diameter of the electrode is $\unit[15]{mm}$. A high-voltage driven copper ring is on top of a float glas plate, which is also covered with an electrically conductive, transparent indium tin oxide  (\tilt{ITO}) layer. On the bottom, a grounded aluminium mirror holds a bismuth silicon oxide (\tilt{BSO}) crystal. On top of that, a variable dielectric can be mounted, which is fixed to be aluminium in this experiment. Here, \tilt{mono-crystalline alumina} (Al$_2$O$_3$) was used. In advance for further investigations, it is crucial to know the different permittivities and dimensions of any used cell components - see \autoref{tab:permits}. The corresponding capacitance is calculated by $C\ix{x}=\varepsilon\ix{x}\varepsilon_0 A/2d$.\\
-			The whole construct is mounted inside a steel vacuum chamber. A turbomolecular and process pump evacuate the chamber to a base pressure of about $\unit[\tenpo{-5}]{mbar}$, which ensures low concentration of impurities. Afterwards, the operating gas is passed from one side directly into the chamber through the polyetherethereton (\tilt{PEEK}) insulaters. Two mass flow controllers (MKS 647c) set the gas flow rate of Helium and Nitrogen (respective purity > 99,999\%) achieving high accuracy mixtures and flow rates of up to $\unit[100]{sccm}$. The discharge operated at elevated pressure levels of $\unit[1000]{mbar}$, which was kept constant through a diaphragm pressure gauge and butterfly valve (MKS) by the process pump (TRIVAC D25BCSPFPE).\\
+			The whole construct is mounted inside a steel vacuum chamber. A turbomolecular and process pump evacuate the chamber to a base pressure of about $\unit[\tenpo{-5}]{mbar}$, which ensures low concentration of impurities. Afterwards, the operating gas is passed from one side directly into the chamber through the polyetherethereton (\tilt{PEEK}) insulaters. Two mass flow controllers (MKS 647c) set the gas flow rate of Helium and Nitrogen (respective purity > 99,999\%) achieving high accuracy mixtures and flow rates of up to $\unit[100]{sccm}$. The discharge operated at elevated pressure levels of $\unit[1000]{mbar}$, which was kept constant through a diaphragm pressure gauge and butterfly valve (MKS) by the process pump (TRIVAC D25BCSPFPE).
 			
 
 				\begin{table}[h]
@@ -225,7 +225,7 @@
 		
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/setup/setup}
+					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/setup/setup}
 					\caption{Set-up of the diagnostics used, with the corresponding discharge cell configuration.}
 					\label{img:diag}
 				\end{figure}
@@ -248,7 +248,7 @@
 			
 				\begin{figure}[t]
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
+					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
 					\caption{Overview spectrum for a BD of $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$. Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
 					\label{img:intspec}
 				\end{figure}
@@ -293,7 +293,7 @@
 				
 				\begin{figure}
 					\centering
-					\begin{subfigure}[t]{0.5\textwidth}
+					\begin{subfigure}[t]{0.49\textwidth}
 						\includegraphics[width=\textwidth]{figures/706nm@sine/combination.pdf}
 						\caption{}
 						\label{img:combsine}
@@ -308,13 +308,13 @@
 					\label{img:comparisonsinesquare}
 				\end{figure}
 				
-			\begin{multicols*}{2}
-				Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:combsine}) and square wave form (\autoref{img:combsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and equivalent optical setup properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,	only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an OG1 filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions, as they are not target of this study.\\
+			\begin{multicols}{2}
+				Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:combsine}) and square wave form (\autoref{img:combsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and an equivalent optical setup properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,	only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an OG1 filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions.\\
 				For each of the mentioned wavelengths, a full vertical scan was done. That means, after an inner loop of 5 repetitions for a temporal measurement at a fixed height, the slit position was changed between $\unit[5,8]{inch}$ - the anode - and $\unit[7,2]{inch}$ - the cathode - with $\unit[0,05]{inch}$ steps. Therefore, the overall resolution calculates as $\unit[0,05]{inch}\times\unit[10]{ns}$.\\
 				Data from the PMT were processed to result in \autoref{img:combsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmic to emphasize gradients.\\
-				First, we will take closer look at the electrical development of the discharges. As the top of \autoref{img:combsine} and \autoref{img:combsquare} are showing, both applied voltages $U\ix{app}$ have the same maximum, whereas their slope is different. Also, the gap voltage $U\ix{gap}$, which is the actual difference in electrical potential between anode and cathode, as derived in \autoref{subsec:electric}, differs in amplitude and slope. Both show a characteristic falling of $U\ix{gap}$ during the discharge breakdown, which is due to the transport of created charges inside the discharge volume onto the electrodes. They are accumulated on the dielectric surfaces, creating an opposing electric field. Therefore, the gap voltage drops sharply, which is why we are investigating a glow-like discharge mode. Here, high volume ionization is found to cause significant currents of charges onto the dielectrics. Hence, a greater negative slope in U$\ix{gap}$ during the breakdown implies increased ionization, and therefore a stronger discharge.\\
-				In comparison to Townsend-like discharges, where the gap voltage remains constant during the breakdown, secondary electron emission is not significant. In APTDs, the discharge establishes an equilibrium current between charges from dielectric surfaces and volume, resulting a less intense breakdown.\\
-			\end{multicols*}
+				First, we will take a closer look at the development of electrical properties of the discharges. As the top of \autoref{img:combsine} and \autoref{img:combsquare} are showing, both applied voltages $U\ix{app}$ have the same maximum, whereas their slope is different. Also, the gap voltage $U\ix{gap}$, which is the actual difference in electrostatic potential between anode and cathode (see \autoref{subsec:electric}), differs in amplitude and slope. Both show a collapse of $U\ix{gap}$ during the discharge breakdown, when the current $I\ix{dis}$ reaches its maximum. This is due to the transport of created charges inside the discharge volume onto the electrodes. They are accumulated on the dielectric surfaces, creating an opposing electric field. Therefore, the gap voltage drops sharply, which is why we are investigating a glow-like discharge mode. Here, strong ionization inside the discharge volume is found to cause significant currents of charges onto the dielectric surfaces. Hence, a greater negative slope in U$\ix{gap}$ during the breakdown implies increased ionization, and therefore a stronger discharge.\\
+				In comparison to Townsend-like discharges, where the gap voltage remains constant during the breakdown, secondary electron emission is not significant. In APTDs, the discharge establishes an equilibrium current between charges from dielectric surfaces and volume, resulting in a less intense breakdown.\\
+			\end{multicols}
 				
 		\twocolumn
 
@@ -325,11 +325,12 @@
 				\label{img:massines}
 			\end{figure}
 
-		Comparing the discharge currents, one easily finds that they differ by a magnitude in amplitude. Also, slope and width are not the same. This is due to a longer preliminary phase for an applied sinus form voltage. A lower slope favors the accumulation of more volume charges, therefore lowering the breakdown voltage even further. Hence, the sine wave has a longer rising time, which is why the observed current pulse is widened/lowered and the discharge less intense.\\					
-		Now that the electrical development of presented APGDs and the different applied voltages has been evaluated, one can take on the spatio-temporally resolved optical emission. The bottom of \autoref{img:combsine} and \autoref{img:combsquare} shows the temporal development of emission intensity at $\unit[706,66]{nm}$ between $\unit[-8]{\upmu s}$ and $\unit[12]{\upmu s}$, as well as (dashed white lines) anode and cathode - see \autoref{img:golubovskii} for a theoretical calculated comparison. Above and beyond one can see a reflection from the dielectric surfaces.\\
-		During the preliminary Townsend phase, both voltage forms show weak emission in front of the anode, which indicates exponential electron multiplication. Therefore, positive space charges develop, as heavy ions are not as mobile as electrons in the accelerating, at this time nearly homogeneous electric field. The resulting cathode-directed ionization front culminates in the breakdown, right when the maximum current is flowing (see \autoref{img:massines}). Fast electrons are rushing to the anode, exciting and ionizing on their path and therefore producing an increasing emission maximum towards the cathode. Behind this negative glow there is space charge with almost no electrons. The ions are accelerated here, like in a gravitational free fall. This cathode fall region yields a very high electric field and high ion density. An anode-sided counterpart of the negative glow, which consists of a large space charge, is called positive column. This can only be seen at the emission profile of a square wave discharge. Only here, the ionization front moves quickly enough through the cell volume to develop the required current for a positive space charge.	Here, quasi neutrality is almost satisfied, which means the electric field strength is low and constant. Only shortly before the positive electrode, inside the anode dark space, electron and ion density decrease. Hence, the emission is attenuated there.\\
-		Further on in the temporal development of the discharge, emission is decreasing as excited species relax. The breakdown removes a majority of free charges, which is why flowing current and glow diminish over time. Here, the maximum remains in front of the cathode. This after glow is much wider and longer for a sine wave discharge, than for the square wave. This is due to the lesser slope in current, voltage and therefore slower charge transportation over the discharge volume.\\
-		In \autoref{img:golubovskii} and \autoref{img:massines} theoretical calculated field strength developments over time and space are shown (\cite{Massines}, \cite{0022-3727-36-1-306}.) They greatly underline the findings of the previous section.
+		The discharge currents $I\ix{dis}$ also differ by one magnitude, as well as slope and width of the peak are not the same. This is due to a longer preliminary phase for an applied sinus wave voltage. A lower slope favors the accumulation of more volume charges, therefore attentuating the breakdown voltage even further. Furthermore, the sine wave has a longer rising time, which is why the observed current pulse is widened/lowered and the discharge less intense.\\					
+		Now that the development of the electrical properties for our presented BDs and the different applied voltages has been evaluated, we will put those results in relation to the enclosed spatio-temporally resolved optical emission. The bottom of \autoref{img:combsine} and \autoref{img:combsquare} shows the temporal development of emission intensity at $\unit[706,66]{nm}$ between (dashed white lines) anode and cathode - see \autoref{img:golubovskii} for a theoreticaly calculated comparison. Above and beyond one can see a reflection from the dielectric surfaces.\\
+		During the preliminary Townsend phase, both voltage forms show weak emission in front of the anode, which indicates the starting exponential electron multiplication. Therefore, positive space charges develop, as heavy ions are not as mobile as electrons in the accelerating, at this time nearly homogeneous electric field. The resulting cathode-directed ionization front culminates in the breakdown, right when the maximum current is flowing (see \autoref{img:massines}). Fast electrons are rushing towards the anode, exciting and ionizing on their path and therefore producing an increasing emission maximum towards the cathode. Behind this negative glow, there is space charge with almost no electrons. The ions are accelerated here, like in a gravitational free fall. This cathode fall region yields a very high electric field and high ion density.\\
+		An anode-sided counterpart of the negative glow, which consists of a large space charge, is called positive column. This can only be seen at the emission profile of a square wave discharge. Only here, the ionization front moves quickly enough through the cell volume to develop the required current for a positive space charge.	Here, quasi neutrality is almost satisfied, which means the electric field strength is low and constant. Only shortly before the positive electrode, inside the anode dark space, electron and ion density decrease. Hence, the emission is attenuated there.\\
+		Further on in the temporal development of the discharge, emission is decreasing as excited species are relaxing. The breakdown removes a majority of free charges, which is why flowing current and glow diminish over time. Here, the maximum remains in front of the cathode. This after glow is much wider and longer for a sine wave discharge, than for the square wave. This is due to the lesser slope in current, voltage and therefore slower charge transportation over the discharge volume.\\
+		In \autoref{img:golubovskii} and \autoref{img:massines} theoretical calculated field strength developments over time and space are shown (\cite{Massines}, \cite{0022-3727-36-1-306}.) They greatly underline the findings of the previous section. Overall, the physical properties of interest may now be better understood with respect to temporal and spatial development. The key finding here should be the direct link between line emission of the singlet lines and the corresponding electric field strength.
 		
 			\begin{figure}
 				\centering
@@ -337,9 +338,6 @@
 				\caption{Three-dimensional plot of the electric field strength in the breakdown phase of glow discharge. \cite{0022-3727-36-1-306}}
 				\label{img:golubovskii}
 			\end{figure}
-		
-
-		\subsection{Electric field strength measurement by He I line emission ratios}
 		
 			\onecolumn
 			
@@ -356,23 +354,15 @@
 					\caption*{}
 					\label{img:728u587nm}
 				\end{subfigure}
-				%\vskip\baselineskip
-				%\begin{subfigure}[t]{0.49\textwidth}
-					%\includegraphics[width=\textwidth]{figures/lineratio/korr706nm}
-					%\caption{$\unit[706,66]{nm}$}
-					%\label{img:706nm}
-				%\end{subfigure}
-				%\hfill
-				%\begin{subfigure}[t]{0.49\textwidth}
-					%\includegraphics[width=\textwidth]{figures/lineratio/korr587nm}
-					%\caption{$\unit[587,65]{nm}$}
-					%\label{img:587nm}
-				%\end{subfigure}
 				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[706,66]{nm}$ (bottom). \fett{(b)}: At $\unit[728,31]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom). The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
 				\label{img:comparisonemissionline}
 			\end{figure}
 			
 			\begin{multicols}{2}
+				
+				\subsection{Electric field strength measurement by He I line emission ratios}
+				
+				
 				
 			\end{multicols}
 			
