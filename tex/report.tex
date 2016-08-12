@@ -164,7 +164,14 @@
 		Barrier discharges are very attractive to the industry due to their comparatively low power consumption, almost at normal residing electron temperatures and easy-to-achieve viability. Especially high quality productions, in e.g. for surface treatments, gas synthesis, or in life science benefit from those properties.\\
 		Specifically speaking, certain properties of BDs, like short, non-stationary breakdown times and therefore fast repeatability, statistical behavior and non-thermal distribution functions, motivate the intense study of the various phenomena found in dielectric hindered, atmospheric-pressure, low temperature\linebreak plasmas.\\
 		By variation of the discharge configurations, such as electrode spacing, applied voltage, gas flow and mixture and dielectric material, BDs can be operated as filamentary micro discharges (\tilt{MD}s), which appear as thin, lateral expanded filaments, or in diffuse modes. The latter are subject of my investigation. Here, one can distinguish between the atmospheric pressure Townsend-like discharge (\tilt{APTD}) and the atmospheric pressure glow-like discharge (\tilt{APGD}).\\
-		\tilt{APGD}s are mostly investigated in rare gases with high ionization inside the discharge volume at a low electric field strength. Essentially, elementary multistage processes of such noble gases account for many metastable species, which are found to be crucial to the BDs characterization. A unique feature is the development of a cathode fall region during the breakdown.\\
+		\tilt{APGD}s are mostly investigated in rare gases with high ionization inside the discharge volume at a low electric field strength. Essentially, elementary multistage processes of such noble gases account for many metastable species, which are found to be crucial to the BDs characterization. A unique feature is the development of a cathode fall region during the breakdown.
+
+			\begin{figure}[t]
+				\centering
+				\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/setup/He_energy_diagram.pdf}
+				\caption{Energy diagram of helium for singlet and triplet transitions. Our used lines are emphasized. Here, we only refer to the second and third shell of para- and ortho-helium.}
+			\end{figure}
+		
 		\tilt{APTD}s are result of a high ratio of secondary electron emission to volume ionization. This is caused by the Townsend breakdown at the cathode, primarily in gases with metastable species which have enough energy to produce secondary electrons, yielding a exponential growth of electron density towards the anode.\\
 		The Townsend-like and the glow-like discharge separate each other by a difference in transferred current during the breakdown of at least one magnitude. In addition to the measurement of external quantities, electron temperatures, plasma currents and densities or produced species, the spatially resolved investigation of the resulting electric field strength, and therefore related characteristics like optical emission and life time, become cruel to the true understanding of the discharge. Concretely, any macroscopic electric fields in plasmas are result of space charge formation. Their characteristics commonly determine the energy flux of charged particles and therefore, the behavior of the discharge itself. \\
 		On the one hand, electric field strength measurements through experimentally determined emission intensity ratios of SPS/FNS have been appointed as standard, though this method is limited to a small region of nitrogen to oxygen ratios. On the other hand, for a long time, experimental fusion devices rely on the helium line intensity ratio method to determine the electron densitie, temperature and the local electric field strength. In fact, electron impact excitations are insensitive to electron density but to electron temperature. If one uses the ratio of two line intensities excited in the plasma, the electron density factor gets cancelled out and what remains is only dependent on the electric field strength. Hence, this method can also be used to obtain a field strength distribution in spatially small dielectric barrier discharges at low temperatures and atmospheric pressures.\\
@@ -308,13 +315,15 @@
 					\label{img:comparisonsinesquare}
 				\end{figure}
 				
-			\begin{multicols}{2}
+			\begin{multicols*}{2}
+				
 				Here, one will have a look at an comparative arrangement in \autoref{img:comparisonsinesquare} for discharges with applied voltages in sine (\autoref{img:combsine}) and square wave form (\autoref{img:combsquare}). Again, the flow rates for the square wave were $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and an equivalent optical setup properties to \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,	only He$_2$ was used - at the same flow rate, voltage and frequency respectively. Additionally, an OG1 filter was put into the optical path to exclude unnecessary emissions from metastable nitrogen ions.\\
 				For each of the mentioned wavelengths, a full vertical scan was done. That means, after an inner loop of 5 repetitions for a temporal measurement at a fixed height, the slit position was changed between $\unit[5,8]{inch}$ - the anode - and $\unit[7,2]{inch}$ - the cathode - with $\unit[0,05]{inch}$ steps. Therefore, the overall resolution calculates as $\unit[0,05]{inch}\times\unit[10]{ns}$.\\
 				Data from the PMT were processed to result in \autoref{img:combsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmic to emphasize gradients.\\
 				First, we will take a closer look at the development of electrical properties of the discharges. As the top of \autoref{img:combsine} and \autoref{img:combsquare} are showing, both applied voltages $U\ix{app}$ have the same maximum, whereas their slope is different. Also, the gap voltage $U\ix{gap}$, which is the actual difference in electrostatic potential between anode and cathode (see \autoref{subsec:electric}), differs in amplitude and slope. Both show a collapse of $U\ix{gap}$ during the discharge breakdown, when the current $I\ix{dis}$ reaches its maximum. This is due to the transport of created charges inside the discharge volume onto the electrodes. They are accumulated on the dielectric surfaces, creating an opposing electric field. Therefore, the gap voltage drops sharply, which is why we are investigating a glow-like discharge mode. Here, strong ionization inside the discharge volume is found to cause significant currents of charges onto the dielectric surfaces. Hence, a greater negative slope in U$\ix{gap}$ during the breakdown implies increased ionization, and therefore a stronger discharge.\\
-				In comparison to Townsend-like discharges, where the gap voltage remains constant during the breakdown, secondary electron emission is not significant. In APTDs, the discharge establishes an equilibrium current between charges from dielectric surfaces and volume, resulting in a less intense breakdown.\\
-			\end{multicols}
+				In comparison to Townsend-like discharges, where the gap voltage remains constant during the breakdown, secondary electron emission is not significant. In APTDs, the discharge establishes an equilibrium current between charges from dielectric surfaces and volume, resulting in a less intense breakdown.
+				
+			\end{multicols*}
 				
 		\twocolumn
 
@@ -358,22 +367,36 @@
 				\label{img:comparisonemissionline}
 			\end{figure}
 			
-			\begin{multicols}{2}
+			\begin{multicols*}{2}
 				
 				\subsection{Electric field strength measurement by He I line emission ratios}
 				
-					Based off of our findings in the previous section, we will now investigate line emission ratios from already measured transitions. In \autoref{sec:intro}, the connection between spatio-temporal electric field strength development and population of excited states of helium was sketched. Furthermore, it was found that the spectral emission from a singlet line at $\unit[706,66]{nm}$ is directly linked to the ionization process inside the discharge volume and therefore to electric field strength. With respect to \cite{Massines} and \cite{0022-3727-36-1-306}, as well as the results of Ivkovi{\'c} et al. \cite{linratio1_14} \cite{linratio2_14}, the main goal of this investigation is not only to achieve adequate reproduction of such results, but to adapt the used method to line emission ratios for transitions, of which population is dominated by metastables.\\
-					Here, one will evaluate the line emission ratio of $\unit[667,98]{nm}$ and $\unit[706,66]{nm}$, as well as $\unit[728,31]{nm}$ and $\unit[587,65]{nm}$. Based off of \cite{lineratio1_14}, a spatio-temporal resolved electric field strength development will be calculated, using a calibrated polynomial, which only contains the first intensity ratio.\\
+					Based off of our findings in the previous section, we will now investigate line emission ratios from already measured transitions. In \autoref{sec:intro}, the connection between spatio-temporal electric field strength development and population of excited states of helium was sketched. Furthermore, it was found that the spectral emission from a singlet line at $\unit[706,66]{nm}$ is directly linked to the ionization process inside the discharge volume and therefore to electric field strength. With respect to \cite{Massines} and \cite{0022-3727-36-1-306}, as well as the results of Ivkovi{\'c} et al. \cite{linratio1_14} \cite{lineratio2_14}, the main goal of this investigation is not only to achieve adequate reproduction of such results, but to adapt the used method to line emission ratios for transitions, of which population is dominated by metastables.\\
+					Here, one will evaluate the line emission ratio of $\unit[667,98]{nm}$ and $\unit[706,66]{nm}$, as well as $\unit[728,31]{nm}$ and $\unit[587,65]{nm}$. Based off of \cite{linratio1_14}, a spatio-temporal resolved electric field strength development will be calculated, using a calibrated polynomial, which only contains the first intensity ratio. For notation, one will refer to the first line emission ratio as LR$\ix{ref}$ and to the second as LR$\ix{ms}$.\\
 					That said, \autoref{img:comparisonemissionline} shows the emission profiles for all four wavelengths used in this experiment. Like in the previous section, the figures show the temporal and spatial resolved spectral intensity development between anode and cathode for a short time period around the discharge breakdown. The same procedure was used to process the measured data, yielding a statistically significant result.\\
 					The shown line emissions are received from a square wave discharge, running at the same properties like the experiment investigated in \autoref{subsec:stroe}.
 				
-			\end{multicols}
+			\end{multicols*}
 			
 			\twocolumn
 		
+				\begin{figure}
+					\centering
+					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/lineratios.pdf}
+					\caption{Comparison of line emission ratios between LR$\ix{ref}$ at the top and LR$\ix{ms}$ at the bottom.}
+					\label{img:comparisonlineratio}
+				\end{figure}
+				
+				\begin{figure}
+					\centering
+					\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/elfield667.pdf}
+					\caption{}
+					\label{img:elfield667}
+				\end{figure}
+		
 		\subsection{Electric field strength measurement by stark spectroscopy}
 		
-				\begin{figure}[h]
+				\begin{figure}
 					\centering
 					\includegraphics[width=0.5\textwidth]{figures/stark/stark_71inraw.pdf}
 					\caption{Raw data from the temporally resolved stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. The gathered information have not been processed any further, as only to be displayed here.}
@@ -381,12 +404,7 @@
 
 				\begin{figure}
 					\centering
-					%\begin{subfigure}[t]{0.5\textwidth}
-						\includegraphics[width=0.5\textwidth]{figures/stark/stark71combination.pdf}
-					%\end{subfigure}
-					%\begin{subfigure}[b]{0.5\textwidth}
-						%\includegraphics[width=\textwidth]{figures/stark/currentdis71.pdf}
-					%\end{subfigure}
+					\includegraphics[width=0.5\textwidth]{figures/stark/stark71combination.pdf}
 					\caption{Comparison of the dicharge properties and spectral emission during stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. }
 					\label{img:stark71comparison}
 				\end{figure}
