@@ -168,14 +168,14 @@
 
 			\begin{figure}[t]
 				\centering
-				\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/setup/He_energy_diagram.pdf}
+				\includegraphics[width=0.5\textwidth]{figures/setup/He_energy_diagram.pdf}
 				\caption{Energy diagram of helium for singlet and triplet transitions. Our used lines are emphasized. Here, we only refer to the second and third shell of para- and ortho-helium.}
 			\end{figure}
 		
 		\tilt{APTD}s are result of a high ratio of secondary electron emission to volume ionization. This is caused by the Townsend breakdown at the cathode, primarily in gases with metastable species which have enough energy to produce secondary electrons, yielding a exponential growth of electron density towards the anode.\\
 		The Townsend-like and the glow-like discharge separate each other by a difference in transferred current during the breakdown of at least one magnitude. In addition to the measurement of external quantities, electron temperatures, plasma currents and densities or produced species, the spatially resolved investigation of the resulting electric field strength, and therefore related characteristics like optical emission and life time, become cruel to the true understanding of the discharge. Concretely, any macroscopic electric fields in plasmas are result of space charge formation. Their characteristics commonly determine the energy flux of charged particles and therefore, the behavior of the discharge itself. \\
 		On the one hand, electric field strength measurements through experimentally determined emission intensity ratios of SPS/FNS have been appointed as standard, though this method is limited to a small region of nitrogen to oxygen ratios. On the other hand, for a long time, experimental fusion devices rely on the helium line intensity ratio method to determine the electron densitie, temperature and the local electric field strength. In fact, electron impact excitations are insensitive to electron density but to electron temperature. If one uses the ratio of two line intensities excited in the plasma, the electron density factor gets cancelled out and what remains is only dependent on the electric field strength. Hence, this method can also be used to obtain a field strength distribution in spatially small dielectric barrier discharges at low temperatures and atmospheric pressures.\\
-		In this case, Helium is used, as the singlet spin state weakly depends on an initial metastable population, since He$^{\text{m}}$(sing) is effectively transferred into He$^{\text{m}}$(trip). To irrefutably receive a proper field strength from this method, a collisional-radiative model has to be utilized. Specifically, the used emission lines will be He I $\unit[728,31]{nm}$ ($2^1$P-$3^3$S) and He I $\unit[667.98]{nm}$ ($2^3$P$-3^3$S) for the singlet states. In addition, we haven chosen another 2 triplet states to compare results from line emission ratios. Here, we will be taking a look at He I $\unit[587,65]{nm}$ ($2^3$P$-3^3$D) and He I $\unit[706,66]{nm}$ ($2^3$P$-3^3$S). One should note here, that those states are not yet described by such collisional-radiative model and metastable ions can not be neglected.\\
+		In this case, Helium is used, as the singlet spin state weakly depends on an initial metastable population, since He$^{\text{m}}$(sing) is effectively transferred into He$^{\text{m}}$(trip). To irrefutably receive a proper field strength from this method, a collisional-radiative model has to be utilized. Specifically, the used emission lines will be He I $\unit[728,31]{nm}$ ($3^3$S-$2^1$P) and He I $\unit[667.98]{nm}$ ($3^3$S-$2^1$P) for the singlet states. In addition, we haven chosen another 2 triplet states to compare results from line emission ratios. Here, we will be taking a look at He I $\unit[587,65]{nm}$ ($3^3$D-$2^3$P) and He I $\unit[706,66]{nm}$ ($3^3$S-$2^3$P). One should note here, that those states are not yet described by such collisional-radiative model and metastable ions can not be neglected.\\
 		Furthermore, a second method for electric field \linebreak strength measurement will be introduced. Stark splitting and shifting of atomic levels, therefore spectroscopic emission lines, is a well established method in plasma diagnostics. It is based solely, so to speak \tilt{ab initio} on nature, on the quantum mechanical perturbation of atomic energy levels by strong external electric fields. Hence, neither equilibrium or additional conditions have to be fulfilled, nor is the line splitting a function of other plasma properties other than field strength. Polarization filters are used to distinguish between the different $\pi$ and $\sigma$ bands, as a full spectrum may include overlaps, which can lead to misinterpretation.\\
 		Here, the linear Stark effect can be applied on the splitting of $\pi$-polarized, forbidden and allowed energy levels in Helium atoms. A polynomial will be used to fit the splitting to the field strength. The allowed-forbidden gap will be investigated at around $\unit[492,2]{nm}$ for the transition 1s2p$^1$P$^0$ - 4d$^1$D$^0$ and its forbidden counterparts 2p$^1$P$^0$ - 4p$^1$P$^0$ and 2p$^1$P$^0$ - 4f$^1$F$^0$.\\
 		In this report, a comparison of spatially and temporally high resolved measurements, in both the two ways mentioned above, will be done. Here, the aim is to find a qualitative agreement in the results, as this would satisfy each methods theories, as well as the diagnostics setup. A further purpose of the outlined setup is to characterize the different discharge modes with regard to their electric field strength development during the breakdown. Overall, the main goal should be to experience and exercise correct and conscientious scientific research on a regular basis.\\
@@ -212,7 +212,7 @@
 		
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/setup/replacementcircuit}
+					\includegraphics[width=0.5\textwidth]{figures/setup/replacementcircuit.pdf}
 					\caption{Electrical equivalent circuit: the discharge gap is represented by the time-dependent resistance $R\ix{gap}(t)$ and $C\ix{gap}$ in parallel.}
 					\label{img:circuit}
 				\end{figure}
@@ -224,15 +224,15 @@
 			 For this discharge configuration, it was calculated that $C\ix{BD}=\unit[500,92]{fF}$ and $C\ix{die}=\unit[12,66]{pF}$. Finally, one yields \cite{Kogelschatz2003}:
 			 
 				\begin{align*}
-					 &U\ix{gap}(t)=\left(1+\frac{C\ix{par}}{C\ix{die}}\right)U\ix{ext}(t)-\frac{Q\ix{ext}(t)}{C\ix{die}} \,\, , \\
-					 &I\ix{dis}(t)=\left(1+\frac{C\ix{gap}}{C\ix{die}}\right)\left(\frac{\diff Q\ix{ext}(t)}{\diff t}-C\ix{tot}\frac{\diff U\ix{ext}(t)}{\diff t}\right) \,\, .
+					 &U\ix{gap}(t)=\left(1+\frac{C\ix{par}}{C\ix{die}}\right)U\ix{app}(t)-\frac{Q\ix{ext}(t)}{C\ix{die}} \,\, , \\
+					 &I\ix{dis}(t)=\left(1+\frac{C\ix{gap}}{C\ix{die}}\right)\left(\frac{\diff Q\ix{ext}(t)}{\diff t}-C\ix{tot}\frac{\diff U\ix{app}(t)}{\diff t}\right) \,\, .
 				\end{align*}	
 
 		\subsection{Optical emission spectroscopy}\label{subsec:oes}
 		
 				\begin{figure}
 					\centering
-					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/setup/setup}
+					\includegraphics[width=0.5\textwidth]{figures/setup/setup.pdf}
 					\caption{Set-up of the diagnostics used, with the corresponding discharge cell configuration.}
 					\label{img:diag}
 				\end{figure}
@@ -251,11 +251,11 @@
 			Here, the overview spectrum, which will be used for further investigations, is presented. The final results can be observed in \autoref{img:intspec}, which includes the indication of major peaks. Indeed those will be the target of the spatio-temporally resolved line emission spectroscopy in \autoref{subsec:stroe}.\\
 			During the operation of this particular discharge, a mixture of $\unit[100]{sccm}$ helium and $\unit[0,05]{sccm}$ nitrogen, with a relative purity of $>99,999\%$ was used. Furthermore, the discharge was excited and ignited by a square wave of $\unit[5]{kHz}$ with an amplitude of $\unit[1,2]{kV}$. The cell was kept at a constant, atmospheric pressure of $\unit[1]{bar}$ by the mass flow controller. In addition, any optical components were configured to ensure the best results possible: a grating of $\unit[1800]{mm^{-1}}$ for high intensities, a PMT amplifier running at $\unit[1250]{V}$ to ensure adequate photon acquisition, a spectral resolution of $\unit[0,5]{nm}$ and a slit opening of $\unit[3]{mm}\times\unit[0,2]{mm}$.\\
 			The full data, ranging from $\unit[585]{nm}$ to $\unit[730]{nm}$ was then corrected by an offset and integrated. Here, one used any emission - whereas there should be none - between $\unit[592]{nm}$ and $\unit[612]{nm}$ to calculate an average of the background noise. Afterwards, the 'new' spectrum was evaluated to be the 'old' - say raw - minus the offset. Remaining was an emission profile over time for each wavelength step, which happened to be 291. The integrated spectrum was received by applying the \tilt{explicit Euler method} (see \cite{Wiki:Euler}).\\
-			As already pointed out, \autoref{img:intspec} contains the positions and quantum mechanical transition terms for any peaks of interest in further experiments. Primarily, those are found to be the dominant lines in our spectrum. Especially the transition between $2^3$P-$3^3$S carries the maximum intensity measured. In \autoref{subsec:oes} and \autoref{sec:intro} it is already sketched, what kind of optical line emissions are investigated and which physical processes is behind those. Mainly, the spectrum shows intensity peaks from excited states of helium in singlet or triplet states. To be more precise, $2^3$P$-3^3$D and $2^3$P$-3^3$S contribute to a triplet transition, whereas $2^1$P-$3^3$S and $2^3$P$-3^3$S originate from a singlet. As shown in, e.g. \cite{linratio1_14}, the excitation of named states is induced by impacting electrons, generated in regions of high electric field strength. Therefore, these electrons are non-thermal and hence correspond directly to the field strength and intensity of the given transitions. Furthermore, the intensities are also independent of local densities due to the equal influence of the electron numbers to all excitation states. One should note here, that in \cite{linratio1_14} (Ivkovi{\'c} et al.) also self-absorption, line broadening and Doppler effects are discussed to verify the results. This is not necessary here, as this work is based on the given implementations of the collisional-radiative model.
+			As already pointed out, \autoref{img:intspec} contains the positions and quantum mechanical transition terms for any peaks of interest in further experiments. Primarily, those are found to be the dominant lines in our spectrum. Especially the transition between $2^3$P-$3^3$S carries the maximum intensity measured. In \autoref{subsec:oes} and \autoref{sec:intro} it is already sketched, what kind of optical line emissions are investigated and which physical processes is behind those. Mainly, the spectrum shows intensity peaks from excited states of helium in singlet or triplet states. To be more precise, $3^3$D-$2^3$P and $3^3$S-$2^3$P contribute to a triplet transition, whereas $3^3$S-$2^1$P and $3^3$S-$2^1$P originate from a singlet. As shown in, e.g. \cite{linratio1_14}, the excitation of named states is induced by impacting electrons, generated in regions of high electric field strength. Therefore, these electrons are non-thermal and hence correspond directly to the field strength and intensity of the given transitions. Furthermore, the intensities are also independent of local densities due to the equal influence of the electron numbers to all excitation states. One should note here, that in \cite{linratio1_14} (Ivkovi{\'c} et al.) also self-absorption, line broadening and Doppler effects are discussed to verify the results. This is not necessary here, as this work is based on the given implementations of the collisional-radiative model.
 			
 				\begin{figure}[t]
 					\centering
-					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
+					\includegraphics[width=0.5\textwidth]{figures/results/int_spectrum}
 					\caption{Overview spectrum for a BD of $\unit[100]{sccm}$ He$_2$ and $\unit[0,05]{sccm}$ N$_2$ at a pressure of $\unit[1]{bar}$. Applied Voltage $\unit[1,2]{kV}$ at $\unit[5]{kHz}$.}
 					\label{img:intspec}
 				\end{figure}
@@ -294,7 +294,7 @@
 		
 		\subsection{Spatio-temporally resolved optical emission}\label{subsec:stroe}
 		
-			In this section, the previous obtained results from the overview spectrum and line emission scans for the already highlighted peaks at $\unit[587,65]{nm}$, $\unit[706,66]{nm}$, $\unit[728,31]{nm}$ and $\unit[667.98]{nm}$ will be processed. In particular, we will look at the emission for He I ($2^3$P$-3^3$S) triplet, to investigate different discharge modes and compare their properties in advance to understand the characteristic processes of a BD, e.g. ionization and field strength.
+			In this section, the previous obtained results from the overview spectrum and line emission scans for the already highlighted peaks at $\unit[587,65]{nm}$, $\unit[706,66]{nm}$, $\unit[728,31]{nm}$ and $\unit[667.98]{nm}$ will be processed. In particular, we will look at the emission for He I ($3^3$S-$2^3$P) triplet, to investigate different discharge modes and compare their properties in advance to understand the characteristic processes of a BD, e.g. ionization and field strength.
 
 		\onecolumn
 				
@@ -329,7 +329,7 @@
 
 			\begin{figure}
 				\centering
-				\includegraphics[width=0.5\textwidth]{figures/706nm@square/massinesp3fig5.pdf}
+				\includegraphics[width=0.5\textwidth]{figures/lineratio/massinesp3fig5.pdf}
 				\caption{Calculated space distribution from the anode to the cathode of	the electrical field, the ion and electron densities in a He glow dielectric barrier discharge when the discharge current intensity is maximum. \cite{Massines}}
 				\label{img:massines}
 			\end{figure}
@@ -343,7 +343,7 @@
 		
 			\begin{figure}
 				\centering
-				\includegraphics[width=0.5\textwidth]{figures/706nm@square/golubovskiip47fig9}
+				\includegraphics[width=0.5\textwidth]{figures/lineratio/golubovskiip47fig9}
 				\caption{Three-dimensional plot of the electric field strength in the breakdown phase of glow discharge. \cite{0022-3727-36-1-306}}
 				\label{img:golubovskii}
 			\end{figure}
@@ -353,17 +353,17 @@
 			\begin{figure}
 				\centering
 				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/667u706.pdf}
+					\includegraphics[width=\textwidth]{figures/lineratio/combinations/korr667over728.pdf}
 					\caption*{}
-					\label{img:667u706nm}
+					\label{img:667u728nm}
 				\end{subfigure}
 				\hfill
 				\begin{subfigure}[t]{0.49\textwidth}
-					\includegraphics[width=\textwidth]{figures/lineratio/728u587.pdf}
+					\includegraphics[width=\textwidth]{figures/lineratio/combinations/korr706over587.pdf}
 					\caption*{}
-					\label{img:728u587nm}
+					\label{img:706u587nm}
 				\end{subfigure}
-				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[706,66]{nm}$ (bottom). \fett{(b)}: At $\unit[728,31]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom). The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
+				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[728,31]{nm}$ (bottom). \fett{(b)}: At $\unit[706,66]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom). The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
 				\label{img:comparisonemissionline}
 			\end{figure}
 			
@@ -372,7 +372,7 @@
 				\subsection{Electric field strength measurement by He I line emission ratios}
 				
 					Based off of our findings in the previous section, we will now investigate line emission ratios from already measured transitions. In \autoref{sec:intro}, the connection between spatio-temporal electric field strength development and population of excited states of helium was sketched. Furthermore, it was found that the spectral emission from a singlet line at $\unit[706,66]{nm}$ is directly linked to the ionization process inside the discharge volume and therefore to electric field strength. With respect to \cite{Massines} and \cite{0022-3727-36-1-306}, as well as the results of Ivkovi{\'c} et al. \cite{linratio1_14} \cite{lineratio2_14}, the main goal of this investigation is not only to achieve adequate reproduction of such results, but to adapt the used method to line emission ratios for transitions, of which population is dominated by metastables.\\
-					Here, one will evaluate the line emission ratio of $\unit[667,98]{nm}$ and $\unit[706,66]{nm}$, as well as $\unit[728,31]{nm}$ and $\unit[587,65]{nm}$. Based off of \cite{linratio1_14}, a spatio-temporal resolved electric field strength development will be calculated, using a calibrated polynomial, which only contains the first intensity ratio. For notation, one will refer to the first line emission ratio as LR$\ix{ref}$ and to the second as LR$\ix{ms}$.\\
+					Here, one will evaluate the line emission ratio of $\unit[667,98]{nm}$ and $\unit[728,31]{nm}$, as well as $\unit[706,66]{nm}$ and $\unit[587,65]{nm}$. Based off of \cite{linratio1_14}, a spatio-temporal resolved electric field strength development will be calculated, using a calibrated polynomial, which only contains the first intensity ratio. For notation, one will refer to the first line emission ratio as LR$\ix{ref}$ and to the second as LR$\ix{ms}$.\\
 					That said, \autoref{img:comparisonemissionline} shows the emission profiles for all four wavelengths used in this experiment. Like in the previous section, the figures show the temporal and spatial resolved spectral intensity development between anode and cathode for a short time period around the discharge breakdown. The same procedure was used to process the measured data, yielding a statistically significant result.\\
 					The shown line emissions are received from a square wave discharge, running at the same properties like the experiment investigated in \autoref{subsec:stroe}.
 				
@@ -382,14 +382,14 @@
 		
 				\begin{figure}
 					\centering
-					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/lineratios.pdf}
+					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/combinations/lineratio667over706.pdf}
 					\caption{Comparison of line emission ratios between LR$\ix{ref}$ at the top and LR$\ix{ms}$ at the bottom.}
 					\label{img:comparisonlineratio}
 				\end{figure}
 				
 				\begin{figure}
 					\centering
-					\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/elfield667.pdf}
+					\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/combinations/electricfield667.pdf}
 					\caption{}
 					\label{img:elfield667}
 				\end{figure}
@@ -404,19 +404,21 @@
 
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/stark/stark71combination.pdf}
+					\includegraphics[width=0.5\textwidth]{figures/stark/combinations/starkallheightscombination.pdf}
 					\caption{Comparison of the dicharge properties and spectral emission during stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. }
 					\label{img:stark71comparison}
 				\end{figure}
 
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/stark/stark_shift71in.pdf}
+					\includegraphics[width=0.5\textwidth]{figures/stark/combinations/stark_shiftallheights.pdf}
 					\caption{Extracted emission profile around $\unit[492,2]{nm}$. This is at a relative time of $\unit[0,074]{\mu s}$ to the discharges ignition at $\unit[0]{\mu s}$.}
 					\label{img:starkshift71}
 				\end{figure}
 
-		\subsection{Summary and outlook}
+	\section{Summary and outlook}
+		
+	\clearpage
 		
 	\section{Literature}
 

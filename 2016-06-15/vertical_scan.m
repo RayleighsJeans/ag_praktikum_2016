@@ -4,30 +4,30 @@ warning off;
 
 %% Initialisierung
 
-% e0 = 8.854187817e-12;
-% 
-% g = 3e-3;
-% r = 15e-3/2;
-% 
-% d_glas = 0.7e-3;
-% d_al2o3 = 0.2e-3;
-% d_bso = 0.7e-3;
-% 
-% e_glas = 7.6;
-% e_al2o3 = 10.55;
-% e_bso = 56;
-% 
-% A = pi*(r)^2;
-% 
-% c_ext = 1e-9;
-% c_gap = e0*A/g;
-% c_glas = e_glas*e0*A/d_glas;
-% c_al2o3 = e_al2o3*e0*A/d_al2o3;
-% c_bso = e_bso*e0*A/d_bso;
-% 
-% c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
-% 
-% c_bd = (c_gap*c_diel)/(c_gap+c_diel);
+e0 = 8.854187817e-12;
+
+g = 3e-3;
+r = 15e-3/2;
+
+d_glas = 0.7e-3;
+d_al2o3 = 0.2e-3;
+d_bso = 0.7e-3;
+
+e_glas = 7.6;
+e_al2o3 = 10.55;
+e_bso = 56;
+
+A = pi*(r)^2;
+
+c_ext = 1e-9;
+c_gap = e0*A/g;
+c_glas = e_glas*e0*A/d_glas;
+c_al2o3 = e_al2o3*e0*A/d_al2o3;
+c_bso = e_bso*e0*A/d_bso;
+
+c_diel = 1/(1/c_bso+1/c_glas+1/c_al2o3);
+
+c_bd = (c_gap*c_diel)/(c_gap+c_diel);
 
 
 %% Dateipfade der Messdaten.
@@ -41,141 +41,141 @@ loc_main = 'E:\documents\git\ag_praktikum_2016\2016-06-15\';
 
 
 %% Datei-Nummern und Wellenlängen.
-% 
-%     dat_587 = 1:25:725;
-%     dat_667 = 6:25:725;
-%     dat_690 = 11:25:725;
-%     dat_706 = 16:25:725;
-%     dat_728 = 21:25:725;
-%     
-% data_nmb = [dat_587' dat_667' dat_690' dat_706' dat_728'];
-%     
-% chrg_current = zeros(1999,725);
-% chrg = zeros(2000,725);
-% volt_diff = zeros(1999,725);
-% volt_appl = zeros(2000,725);
-% control = zeros(2000,725);
-% 
-% wavelength = [587.65 667.96 690.0 706.66 728.31];
-% 
-% cd(loc_dat);
-% tmp = importdata('16Jun16001_RTO.dat');
-% tmp = tmp.data;
-% time_volt = tmp(:,1);
-% time_delta = time_volt(2)-time_volt(1);
+
+    dat_587 = 1:25:725;
+    dat_667 = 6:25:725;
+    dat_690 = 11:25:725;
+    dat_706 = 16:25:725;
+    dat_728 = 21:25:725;
+    
+data_nmb = [dat_587' dat_667' dat_690' dat_706' dat_728'];
+    
+chrg_current = zeros(1999,725);
+chrg = zeros(2000,725);
+volt_diff = zeros(1999,725);
+volt_appl = zeros(2000,725);
+control = zeros(2000,725);
+
+wavelength = [587.65 667.96 690.0 706.66 728.31];
+
+cd(loc_dat);
+tmp = importdata('16Jun16001_RTO.dat');
+tmp = tmp.data;
+time_volt = tmp(:,1);
+time_delta = time_volt(2)-time_volt(1);
 
 %% Vertikaler Verfahr-Weg.
 
-% vertical_pos = 5.8:0.05:7.2;
-% vertical_mm = -0.2:0.117:3.1;
-% 
-% cd(loc_dat);
+vertical_pos = 5.8:0.05:7.2;
+vertical_mm = -0.2:0.117:3.1;
+
+cd(loc_dat);
 
 %% Entnehmen der Datein.
 
-% for k=1:5
-%     
-%     for i=1:29
-%         
-%     itr = data_nmb(i,:);
-%     
-%     nmb = num2str(itr(3)-1+k,'%03d');
-%     file = strcat('16Jun16',nmb,'_RTO.dat');
-%     disp(file)
-%     C = importdata(file);
-%     tmp_nm690 = C.data;
-% 
-%     nm690(:,(i-1)*5+k) = tmp_nm690(:,4);
-%     
-%         volt_appl(:,itr(3)-1+k) = tmp_nm690(:,2);
-%         volt_diff(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,2));
-%     
-%         control(:,itr(3)-1+k) = tmp_nm690(:,4);
-%         chrg_current(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,3));
-%         chrg(:,itr(3)-1+k) = tmp_nm690(:,3);
-%         
-%     %587nm
-%     nmb = num2str(itr(1)-1+k,'%03d');
-%     file = strcat('16Jun16',nmb,'_RTO.dat');
-%     disp(file)
-%     A = importdata(file);
-%     tmp_nm587 = A.data;
-%     
-%     nm587(:,(i-1)*5+k) = tmp_nm587(:,4)-offset(:,i)-max(max(tmp_nm587(:,4)-offset(:,i)));
-%     
-%         volt_appl(:,itr(1)-1+k) = tmp_nm587(:,2);
-%         volt_diff(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,2));       
-%     
-%         control(:,itr(1)-1+k) = tmp_nm587(:,4);
-%         chrg_current(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,3));
-%         chrg(:,itr(1)-1+k) = tmp_nm587(:,3);
-%     
-%     %667nm
-%     nmb = num2str(itr(2)-1+k,'%03d');
-%     file = strcat('16Jun16',nmb,'_RTO.dat');
-%     disp(file)
-%     B = importdata(file);
-%     tmp_nm667 = B.data;
-% 
-%     nm667(:,(i-1)*5+k) = tmp_nm667(:,4)-offset(:,i)-max(max(tmp_nm667(:,4)-offset(:,i)));
-%     
-%         volt_appl(:,itr(2)-1+k) = tmp_nm667(:,2);
-%         volt_diff(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,2));
-%         
-%         control(:,itr(2)-1+k) = tmp_nm667(:,4);
-%         chrg_current(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,3));
-%         chrg(:,itr(2)-1+k) = tmp_nm667(:,3);
-% 
-%     %706nm
-%     nmb = num2str(itr(4)-1+k,'%03d');
-%     file = strcat('16Jun16',nmb,'_RTO.dat');
-%     disp(file)
-%     D = importdata(file);
-%     tmp_nm706 = D.data;
-% 
-%     nm706(:,(i-1)*5+k) = tmp_nm706(:,4)-offset(:,i)-max(max(tmp_nm706(:,4)-offset(:,i)));
-%     
-%         volt_appl(:,itr(4)-1+k) = tmp_nm706(:,2);
-%         volt_diff(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,2));
-%     
-%         control(:,itr(4)-1+k) = tmp_nm706(:,4);
-%         chrg_current(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,3));
-%         chrg(:,itr(4)-1+k) = tmp_nm706(:,3);
-% 
-%     %728nm
-%     nmb = num2str(itr(5)-1+k,'%03d');
-%     file = strcat('16Jun16',nmb,'_RTO.dat');
-%     disp(file)
-%     E = importdata(file);
-%     tmp_nm728 = E.data;
-% 
-%     nm728(:,(i-1)*5+k) = tmp_nm728(:,4)-offset(:,i)-max(max(tmp_nm728(:,4)-offset(:,i)));
-%     
-%         volt_appl(:,itr(5)-1+k) = tmp_nm728(:,2);
-%         volt_diff(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,2));
-%     
-%         control(:,itr(5)-1+k) = tmp_nm728(:,4);
-%         chrg_current(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,3));
-%         chrg(:,itr(5)-1+k) = tmp_nm728(:,3);
-%     
-%     end
-%     
-% end
+for k=1:5
+    
+    for i=1:29
+        
+    itr = data_nmb(i,:);
+    
+    nmb = num2str(itr(3)-1+k,'%03d');
+    file = strcat('16Jun16',nmb,'_RTO.dat');
+    disp(file)
+    C = importdata(file);
+    tmp_nm690 = C.data;
+
+    nm690(:,(i-1)*5+k) = tmp_nm690(:,4);
+    
+        volt_appl(:,itr(3)-1+k) = tmp_nm690(:,2);
+        volt_diff(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,2));
+    
+        control(:,itr(3)-1+k) = tmp_nm690(:,4);
+        chrg_current(:,itr(3)-1+k) = 1/time_delta*diff(tmp_nm690(:,3));
+        chrg(:,itr(3)-1+k) = tmp_nm690(:,3);
+        
+    %587nm
+    nmb = num2str(itr(1)-1+k,'%03d');
+    file = strcat('16Jun16',nmb,'_RTO.dat');
+    disp(file)
+    A = importdata(file);
+    tmp_nm587 = A.data;
+    
+    nm587(:,(i-1)*5+k) = tmp_nm587(:,4)-offset(:,i)-max(max(tmp_nm587(:,4)-offset(:,i)));
+    
+        volt_appl(:,itr(1)-1+k) = tmp_nm587(:,2);
+        volt_diff(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,2));       
+    
+        control(:,itr(1)-1+k) = tmp_nm587(:,4);
+        chrg_current(:,itr(1)-1+k) = 1/time_delta*diff(tmp_nm587(:,3));
+        chrg(:,itr(1)-1+k) = tmp_nm587(:,3);
+    
+    %667nm
+    nmb = num2str(itr(2)-1+k,'%03d');
+    file = strcat('16Jun16',nmb,'_RTO.dat');
+    disp(file)
+    B = importdata(file);
+    tmp_nm667 = B.data;
+
+    nm667(:,(i-1)*5+k) = tmp_nm667(:,4)-offset(:,i)-max(max(tmp_nm667(:,4)-offset(:,i)));
+    
+        volt_appl(:,itr(2)-1+k) = tmp_nm667(:,2);
+        volt_diff(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,2));
+        
+        control(:,itr(2)-1+k) = tmp_nm667(:,4);
+        chrg_current(:,itr(2)-1+k) = 1/time_delta*diff(tmp_nm667(:,3));
+        chrg(:,itr(2)-1+k) = tmp_nm667(:,3);
+
+    %706nm
+    nmb = num2str(itr(4)-1+k,'%03d');
+    file = strcat('16Jun16',nmb,'_RTO.dat');
+    disp(file)
+    D = importdata(file);
+    tmp_nm706 = D.data;
+
+    nm706(:,(i-1)*5+k) = tmp_nm706(:,4)-offset(:,i)-max(max(tmp_nm706(:,4)-offset(:,i)));
+    
+        volt_appl(:,itr(4)-1+k) = tmp_nm706(:,2);
+        volt_diff(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,2));
+    
+        control(:,itr(4)-1+k) = tmp_nm706(:,4);
+        chrg_current(:,itr(4)-1+k) = 1/time_delta*diff(tmp_nm706(:,3));
+        chrg(:,itr(4)-1+k) = tmp_nm706(:,3);
+
+    %728nm
+    nmb = num2str(itr(5)-1+k,'%03d');
+    file = strcat('16Jun16',nmb,'_RTO.dat');
+    disp(file)
+    E = importdata(file);
+    tmp_nm728 = E.data;
+
+    nm728(:,(i-1)*5+k) = tmp_nm728(:,4)-offset(:,i)-max(max(tmp_nm728(:,4)-offset(:,i)));
+    
+        volt_appl(:,itr(5)-1+k) = tmp_nm728(:,2);
+        volt_diff(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,2));
+    
+        control(:,itr(5)-1+k) = tmp_nm728(:,4);
+        chrg_current(:,itr(5)-1+k) = 1/time_delta*diff(tmp_nm728(:,3));
+        chrg(:,itr(5)-1+k) = tmp_nm728(:,3);
+    
+    end
+    
+end
 
 %% Berechnen der sauberen Spektren.
 
-% for i=1:29
-%     
-%     mean587(:,i) = 1/5*sum(nm587(:,(i-1)*5+1:(i-1)*5+5),2);
-%     mean667(:,i) = 1/5*sum(nm667(:,(i-1)*5+1:(i-1)*5+5),2);
-%     mean706(:,i) = 1/5*sum(nm706(:,(i-1)*5+1:(i-1)*5+5),2);
-%     mean728(:,i) = 1/5*sum(nm728(:,(i-1)*5+1:(i-1)*5+5),2);
-%     
-% end
+for i=1:29
+    
+    mean587(:,i) = 1/5*sum(nm587(:,(i-1)*5+1:(i-1)*5+5),2);
+    mean667(:,i) = 1/5*sum(nm667(:,(i-1)*5+1:(i-1)*5+5),2);
+    mean706(:,i) = 1/5*sum(nm706(:,(i-1)*5+1:(i-1)*5+5),2);
+    mean728(:,i) = 1/5*sum(nm728(:,(i-1)*5+1:(i-1)*5+5),2);
+    
+end
 
 cd(loc_main);
-% save('base_dat.mat');
-load('base_dat.mat');
+save('base_dat.mat');
+% load('base_dat.mat');
 
 % Für refline in 3D plots.
 
@@ -351,7 +351,7 @@ chrg_current = c_ext*chrg_current;
 
     f = figure;
     hold on;
-    set(gca,'FontSize',24); plot(volt_appl(:,1),chrg(:,1));
+    set(gca,'FontSize',26); plot(volt_appl(:,1),chrg(:,1));
     x = volt_appl(:,1);
     y = chrg(:,1);
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -369,14 +369,14 @@ chrg_current = c_ext*chrg_current;
     hold on;
     xlabel('time in µs');
     yyaxis left
-    set(gca,'FontSize',24); plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'k',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'k-.');
+    set(gca,'FontSize',26); plot(time_volt(1:1999)/1e-6,volt_gap(1:1999,1),'k',time_volt(1:1999)/1e-6,volt_appl(1:1999,1),'k-.');
     x = time_volt/1e-6;
     ylabel('voltage in V');
     axis([min(x) max(x) -250 1250]);
     
-    text(2,630,'U_{app}','FontSize',24,'FontName','L M Roman12');
-    text(-1,950,'U_{gap}','FontSize',24,'FontName','L M Roman12');
-    text(0.3,1000,'I_{dis}','Color','red','FontSize',24,'FontName','L M Roman12');
+    text(2,630,'U_{app}','FontSize',26,'FontName','L M Roman12');
+    text(-1,950,'U_{gap}','FontSize',26,'FontName','L M Roman12');
+    text(0.3,1000,'I_{dis}','Color','red','FontSize',26,'FontName','L M Roman12');
     
     yyaxis right
     plot(time_volt(1:1999)/1e-6,current_dis(1:1999,1)*1000,'r-');

@@ -328,7 +328,7 @@ chrg_diff = c_ext*chrg_diff;
 % Check.
 
     f = figure;hold on; box on;
-    set(gca,'FontSize',24); plot(volt_appl,chrg_tmp);
+    set(gca,'FontSize',26); plot(volt_appl,chrg_tmp);
     x = volt_appl;
     y = chrg_tmp;
     axis([min(x) max(x) min(y)-0.1*max(abs(y)) max(y)+0.1*max(abs(y))]);
@@ -348,17 +348,17 @@ chrg_diff = c_ext*chrg_diff;
     hold on;
     xlabel('time in µs');
     yyaxis left
-    set(gca,'FontSize',24); plot(time_volt(1:1999)/1e-6,volt_gap(1:1999),'k-',time_volt(1:1999)/1e-6,volt_appl(1:1999),'k-.');
+    set(gca,'FontSize',26); plot(time_volt(1:1999)/1e-6,volt_gap(1:1999),'k-',time_volt(1:1999)/1e-6,volt_appl(1:1999),'k-.');
     x = time_volt/1e-6;
     ylabel('voltage in V');
     axis([min(x) max(x) -250 1250]);
     
-    text(9,740,'U_{app}','FontSize',24,'FontName','L M Roman12');
-    text(-3,700,'U_{gap}','FontSize',24,'FontName','L M Roman12');
-    text(0.125,1000,'I_{dis}','Color','red','FontSize',24,'FontName','L M Roman12');
+    text(9,740,'U_{app}','FontSize',26,'FontName','L M Roman12');
+    text(-3,700,'U_{gap}','FontSize',26,'FontName','L M Roman12');
+    text(0.125,1000,'I_{dis}','Color','red','FontSize',26,'FontName','L M Roman12');
     
     yyaxis right
-    set(gca,'FontSize',24); plot(time_volt(1:1999)/1e-6,current_dis(1:1999)*1000,'r-');
+    set(gca,'FontSize',26); plot(time_volt(1:1999)/1e-6,current_dis(1:1999)*1000,'r-');
     ylabel('current in mA');
     x = time_volt/1e-6;
     
