@@ -216,16 +216,16 @@
 					\caption{Electrical equivalent circuit: the discharge gap is represented by the time-dependent resistance $R\ix{gap}(t)$ and $C\ix{gap}$ in parallel.}
 					\label{img:circuit}
 				\end{figure}
-		
-					 s
+				
 			 As shown in \autoref{img:diag}, a function generator (SRS DS345) provides the voltage signal for the upper electrode, which ignites the discharge after amplification of the voltage signal by a factor of 1000 (Trek 615-10), at a frequency of $\unit[5]{kHz}$ and amplitude of $\unit[1,2]{kV}$. The voltage can be a sine or square wave, which has influence on the discharge modes.\\
 			 Applied voltage $U\ix{app}(t)$ and total transported charge $Q\ix{ext}$ are measured via a HV probe of (1000:1) and an external capacitor, $C\ix{ext}=\unit[1]{nF}$. The monitoring and averaging of data is performed by a digital oscilloscope (ROHDE\&SCHWARZ RTO1024) with a bandwidth of $\unit[2]{GHz}$, which is connected through ethernet ports to a PC, running a customized LabView VI. Additionally, a Rogowski coil is attached to the cell, accumulating the flowing current and providing a much faster and higher slope. This signal also is used as the trigger for the oscilloscope.\\
 			 Furthermore, by using Lissajous figures $Q(U)$, one gains access to the transported charge $\Delta Q$ during the breakdown and the determination of the total capacitance of the discharge cell $C\ix{tot}$. By that, the gap voltage between the dielectrics $U\ix{gap}$ and the discharge current $I\ix{dis}$ can be calculated \cite{Kogelschatz2003}. A electrical equivalent circuit can be constructed, as depicted in \autoref{img:circuit}. Here, $C\ix{die}$ and $C\ix{gap}$ denote the capacitance of the dielectrics and discharge gap, taking into account the geometry. The parallel capacitance $C\ix{par}=C\ix{tot}-C\ix{gap}C\ix{die}/\left(C\ix{gap}-C\ix{die}\right)$ comprehends any volume in the cell not ignited by the discharge. Additionally, the barrier discharge capacitance $C\ix{BD}$ is defined as the parallel and dielectric capacitance in series. One can calculate the described quantities and yields \autoref{tab:capac}.
 			 
-				\begin{align*}
-					 &U\ix{gap}(t)=\left(1+\frac{C\ix{par}}{C\ix{die}}\right)U\ix{app}(t)-\frac{Q\ix{ext}(t)}{C\ix{die}} \,\, , \\
-					 &I\ix{dis}(t)=\left(1+\frac{C\ix{gap}}{C\ix{die}}\right)\left(\frac{\diff Q\ix{ext}(t)}{\diff t}-C\ix{tot}\frac{\diff U\ix{app}(t)}{\diff t}\right) \,\, .
-				\end{align*}	
+				\begin{align}
+					 U\ix{gap}(t)=&\left(1+\frac{C\ix{par}}{C\ix{die}}\right)U\ix{app}(t)-\frac{Q\ix{ext}(t)}{C\ix{die}} \,\, , \\
+					 I\ix{dis}(t)=&\left(1+\frac{C\ix{gap}}{C\ix{die}}\right)\times \nonumber \\
+					 &\left(\frac{\diff Q\ix{ext}(t)}{\diff t}-C\ix{tot}\frac{\diff U\ix{app}(t)}{\diff t}\right) \,\, .
+				\end{align}	
 
 				\begin{table}
 					\centering
@@ -287,7 +287,7 @@
 			In \autoref{img:comparisonsinesquare}, a comparative arrangement of discharges with sine (\autoref{img:combsine}) and square wave form (\autoref{img:combsquare}) voltages is shown. Again, the flow rates for the square wave were $\unit[100]{sccm}$ He and $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,, $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ applied voltage and an equivalent optical setup properties as for the overview spectrum in \autoref{subsec:overview}, despite that the vertical slit dimension now was $\unit[1]{mm}$ instead of $\unit[3]{mm}$. In the case of the sine wave,	only He was used - at the same flow rate, voltage amplitude and frequency, respectively. Additionally, an OG1 filter was put into the optical path to exclude the second order emission of the second positive and first negative system of nitrogen.\\
 			For each of the mentioned wavelengths, a full vertical scan was done. That means, after an inner loop of 5 repetitions for a temporal measurement at a fixed height, the slit position was changed between $\unit[5,8]{inch}$ - the anode - and $\unit[7,2]{inch}$ - the cathode - with $\unit[0,05]{inch}$ steps. Therefore, the spatial and temporal resolution was $\unit[1,27]{mm}$ and $\unit[10]{ns}$.\\
 			Data from the oscilloscope were processed to result in \autoref{img:combsine} etc., by averaging over 5 loops and subtracting an offset measured at $\unit[690]{nm}$. Furthermore, the spectra are displayed logarithmic to emphasize gradients.\\
-			First, we will take a closer look at the development of electrical properties of the discharges, which are shown in the top of \autoref{img:combsine} and \autoref{img:combsquare}. Both applied voltages $U\ix{app}$ have a similar trend, whereas their slope differs slightly. For the sine wave, one finds a slope of around $\unit[32]{\frac{V}{\upmu s}}$ and $\unit[175]{\frac{V}{\upmu s}}$ for square wave, respectively. Also, the gap voltage $U\ix{gap}$, which is the effective difference in electrostatic potential between the dielectrics (see \autoref{subsec:electric}), differs in amplitude and slope. Furthermore, the time scale of shown discharges is one order of magnitude smaller for square wave forms.\\
+			First, we will take a closer look at the development of electrical properties of the discharges, which are shown in the top of \autoref{img:combsine} and \autoref{img:combsquare}. Both applied voltages $U\ix{app}$ have a similar trend, whereas their slope differs slightly. For the sine wave, one finds a slope of around $\unit[32]{V/\upmu s}$ and $\unit[175]{V/\upmu s}$ for square wave, respectively. Also, the gap voltage $U\ix{gap}$, which is the effective difference in electrostatic potential between the dielectrics (see \autoref{subsec:electric}), differs in amplitude and slope. Furthermore, the time scale of shown discharges is one order of magnitude smaller for square wave forms.\\
 			Both discharges show a collapse of $U\ix{gap}$ during the breakdown, when the current $I\ix{dis}$ reaches its maximum. This is due to the transport of charges created inside the discharge volume towards the electrodes. They are accumulated on the dielectric surfaces, creating an opposing electric field. Therefore, the gap voltage drops sharply, which is a characteristic of the glow-like discharge mode. Here, strong ionization inside the cell volume is found to cause significant currents of charges onto the dielectric surfaces. Hence, a greater negative slope in $U\ix{gap}$ during the breakdown implies increased ionization, and therefore a stronger discharge. \\
 			In comparison to Townsend-like discharges, where the gap voltage remains constant during the breakdown and secondary electron emission in low electric field regions is significant, the accumulated charges do not fully cancel out the applied field. 
 			
@@ -306,7 +306,7 @@
 						\caption{}
 						\label{img:combsquare}
 					\end{subfigure}
-					\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for BDs excited by a \fett{(a)} sine, or \fett{(b)} square wave. For \fett{(a)} the properties were: $\unit[100]{sccm}$ He + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$\,; $\unit[1,2]{kV}$ at $\unit[5]{kHz}$ sine wave. In \fett{(b)}, only He was used - at the same flow rate, voltage and frequency respectively. The excitation happened to be a square wave here.}
+					\caption{Comparetive arrangement of spatio-temporally resolved emission profiles at $\unit[706,66]{nm}$ and discharge development for BDs excited by a \fett{(a)} sine, or \fett{(b)} square wave.}
 					\label{img:comparisonsinesquare}
 				\end{figure}
 				
@@ -317,19 +317,36 @@
 	\twocolumn
 
 		The discharge currents $I\ix{dis}$ also differ by one oder of magnitude, as well as slope and width of the peak are not the same. This is due to a longer preliminary phase for an applied sinus wave voltage. A lower slope favors the accumulation of more volume charges, therefore the discharge is able to ignite at low breakdown voltages. Furthermore, the sine wave has a longer rising time, therefore the ions have more tome to travel to the cathode and induce secondary electrons from there.\\					
-		Now that the development of the electrical properties for our presented BDs and the different applied voltages has been evaluated, we will put those results in relation to the enclosed spatio-temporally resolved optical emission. The bottom of \autoref{img:combsine} and \autoref{img:combsquare} shows the temporal development of emission intensity at $\unit[706,66]{nm}$ between (dashed white lines) anode and cathode. Above/beyond one can see the reflection from the dielectric surfaces.\\
+		Now that the development of the electrical properties for our presented BDs and the different applied voltages has been evaluated, the results have to be put in relation to the enclosed spatio-temporally resolved optical emission. The bottom of \autoref{img:combsine} and \autoref{img:combsquare} shows the temporal development of emission intensities at $\unit[706,66]{nm}$ between (dashed white lines) anode and cathode. Above/beyond one can see the reflection from the dielectric surfaces.\\
 		During the preliminary Townsend phase, both voltage forms show weak emission in front of the anode, which indicates the starting exponential electron multiplication. Therefore, positive space charges are build up in front of the anode, since heavy ions are not as mobile as electrons. The resulting cathode-directed ionization front culminates in the breakdown, right when the maximum current is flowing (see \autoref{img:massines}). Fast electrons are rushing towards the anode, exciting and ionizing on their path. This causes an emission maximum, which increases over time in towards the cathode. Especially \autoref{img:combsquare} shows this very distinctively.\\
 		Between this negative glow and the cathode, there is space charge with almost no electrons. The ions are accelerated here, like in a gravitational free fall. This cathode fall region yields a very high electric field and high ion density.\\
 		An anode-sided counterpart of the negative glow, which consists of a spatially extended region with hight charge densities - see \autoref{img:massines}, is called positive column. This can only be seen at the emission profile of a square wave discharge. Here, the ionization front moves through the gap very fast. Quasi neutrality is almost satisfied, which means the electric field strength is low and constant. Only shortly before the positive electrode, inside the anode dark space, electron and ion density decrease. Hence, the emission is attenuated there.\\
-		Further on in the temporal development of the discharge, emission is decreasing as excited species are relaxing. The breakdown removes a majority of free charges, which is why flowing current and glow diminish over time. Here, the maximum remains in front of the cathode. This afterglow is much wider and longer for a sine wave discharge, than for the square wave. This is due to the lesser slope in current, voltage and therefore slower charge transportation over the discharge volume.
+		Further on in the temporal development of the discharge, emission is decreasing as excited species are relaxing. The breakdown removes a majority of free charges, which is why flowing current and glow diminish over time. Here, the maximum remains in front of the cathode. This afterglow is much wider and longer for a sine wave discharge, than for the square wave. This is due to the lesser slope in current, voltage and therefore slower charge transportation over the discharge volume.\\
+		One should note here, that the gap voltage is not supposed to become negative throughout the discharge development, as this would invert charge flow. This is though shown in the top of \autoref{img:combsquare}. It has not become clear whatsoever, why this is the case here. 
 		
 	\subsection{Electric field strength measurement by He I line intensity ratios}
 		
 		After characterizing the discharges electrical properties and hence, the corresponding dynamics of the spectral emission, one will evaluate the full intensity profile for all four transitions mentioned above.\\
 		Here, presented results have been received from the discharge of \autoref{img:combsquare}. Hence, this experiment has been executed at a square wave voltage of $\unit[1,2]{kV}$, $\unit[5]{kHz}$ and gas flow rates of $\unit[100]{sccm}$ He + $\unit[0,05]{sccm}$ N$_2$ at $\unit[1]{bar}$. A grating of $\unit[1800]{mm^-1}$ and MC entrance slit height and width of $\unit[0,2]{mm}$ and $\unit[1]{mm}$, respectively, was chosen. Additionally, the OG1 filter remains in the optical path.\\
 		Results are shown in \autoref{img:667u728nm} and \autoref{img:706u587nm}. The $\log\ix{10}$ of all four profiles shows the same trend, whereas the transition $3^3$S-$2^3$P yields intensities one order of magnitude higher than the rest. Also, areas with values of $\tenpo{-2}$ and higher are much broader than, for example at $\unit[667,98]{nm}$. The remaining three, less intense emission profiles for singlet and triplet have about the same order of magnitude for maximum and minimum. Again, slight differences in temporal extend can be seen between the singlet and triplet emissions, as the latter happen to be a little wider.\\
-		As shown \cite{linratio1_14}, \cite{linratio1_14} and discussed in the previous sections, the local electric field strength in helium BDs at elevated pressures is, to some extend, related to the optical emission of excited singlet and/or triplet states. Therefore, one would expect to find similar intensity profiles for singlet and for triplet transitions respectively, as they should be de-/populated by the same processes. And indeed, this is the case for $\unit[667,98]{nm}$ and $\unit[728,31]{nm}$. Here, the upper states are predominantly populated by electron impact, therefore making them good candidates for field strength measurements, as they almost solely depend on the production of energetic electrons. The fast decay of intensity after the discharge breakdown indicates the depopulation, mainly through spontaneous emission, as the mean lifetime is in the nanosecond range \cite{linratio1_14}. Thus it is found, that both profiles are directly influenced by electron temperature. This is also taking into account, that a faster decay in intensity than discharge current indicates such relation \cite{electron_temp}.\\
-		In comparison to the triplet transition, the temporal extend of given emissions in \autoref{img:706u587nm} is between $\unit[0,2]{\upmu s}$ ($3^3$S-$2^3$P) and $\unit[0,7]{\upmu s}$ ($3^3$D-$2^3$P) longer, than those of the singlet states. Hence, de-/populating processes with such rates have to contribute only to those intensities
+		As shown \cite{linratio1_14}, \cite{lineratio2_14} and discussed in the previous sections, the local electric field strength in helium BDs at elevated pressures is, to some extend, related to the optical emission of excited singlet and/or triplet states. Therefore, one would expect to find similar intensity profiles for singlet and for triplet transitions respectively, as they should be de-/populated by the same processes. And indeed, this is the case for $\unit[667,98]{nm}$ and $\unit[728,31]{nm}$. Here, the upper states are predominantly populated by electron impact, therefore making them good candidates for field strength measurements, as they almost solely depend on the production of energetic electrons. It is also shown in \cite{linratio1_14}, \cite{belmonte}, \cite{debreuil} that the main mechanism, which dominates the populations, is the difference in excitation rates for $3^1$D, $3^1$S and $3^1$P levels, which is very effectively transferred to $3^1$D via excitation transfer - see \autoref{img:termnschema}. The fast decay of intensity after the discharge breakdown indicates the depopulation, mainly through spontaneous emission, as the mean lifetime is in the nanosecond range \cite{linratio1_14}. Thus it is found, that both profiles are directly influenced by electron temperature. This is also taking into account, that a faster decay in intensity than discharge current indicates such relation \cite{electron_temp}.\\
+		In comparison to the triplet transitions, the temporal extend of given emissions in \autoref{img:706u587nm} is between $\unit[0,2]{\upmu s}$ ($3^3$S-$2^3$P) and $\unit[0,7]{\upmu s}$ ($3^3$D-$2^3$P) longer, than those of the singlet states. Hence, de-/populating processes with such rates have to contribute only to those intensities. And indeed, it was already discussed that triplet line emission is strongly affected by metastable densities. Furthermore, the excitation from $2^1$S to triplet states is orders of magnitude more probable, than vice versa, contributing to such intensity profiles. Hence, emission from excited triplet states is much higher.\\
+		Overall, all four line intensity profiles show the characteristic temporal development of the ionization front towards the cathode, as well as increasing after glow in high field regions near the negative electrode and a positive column. Other than that, the Townsend phase is clearly distinguishable in front of the anode. At $\unit[706,66]{nm}$, the spatially further extended ionization front already interferes with this phenomenon. Thus it could be concluded, that the metastable density benefits from the developing ionization front, reinforcing emission from $3^3$S. And again, in \cite{linratio1_14} it is mentioned, that for electric field strength values below $\unit[4]{kV/cm}$, excitation from metastable levels becomes significant, which also contributes to the emission early on in the discharge.\\
+		After discussing the individual transitions, line intensity ratios can be calculated from given results. The quotient between the intensities of the singlet and triplet states, respectively, is calculated and shown in \autoref{img:comparisonlineratio}. Here, the quantities are denoted as $R\ix{sing}=I\ix{667}/I\ix{728}$ and $R\ix{trip}=I\ix{706}/I\ix{587}$. Due to the low field values during the preliminary phase of the discharge and diminishing intensities, experimental determination of emission was difficult. Hence, numerical calculation of quotients from values as small as $\tenpo{-6}$ was not pursued. Therefore, intensities of up to 5\% off the maximum have been exclude and set to zero for each line emission.\\
+		As seen for $R\ix{sing}$ in the top of \autoref{img:comparisonlineratio}, the ratio has its maximum of around 2,2 in front of the cathode, decreasing along the trend of the ionization front towards the anode. Inside the positive column during the breakdown, $R\ix{sing}$ is around 1, meaning that populations and the corresponding processes are in some equilibrium for $3^1$S and $3^1$D. Later on in the discharge, the intensity ratio decreases slowly. Hence, in the afterglow, emission from $\unit[667,98]{nm}$ is more attenuated than its counterpart at $\unit[728,31]{nm}$.\\
+		The line intensity ratio in \autoref{img:comparisonlineratio} for the triplet states (bottom) shows a quite different behavior. Here, one finds a much higher maximum at around 14, which is located in the transition between positive column and ionization front. Other than that, the whole positive column carries a high ratio of 12 and more, whereas afterglow, cathode fall and negative glow in front of the upper electrode only reach up to 7. The ratio even decreases to 5 during the breakdown in front of the cathode and remains so.\\
+		In \cite{Massines}, \cite{0022-3727-36-1-306} a theoretically calculated electric field strength - spatio-temporally resolved in \autoref{img:massines} - and densities - between anode and cathode in \autoref{img:golubovskii} - have been achieved. The trend of the local field strength and electron density in Massines' et al. calculations shows, that inside the positive column low excitation rates and energies can be expected, therefore leaving the intensity ratio at around 1 as both states are populated equally. Further on in the discharges development towards the cathode, electron energy - with corresponding electric field - and counts increase dramatically, which is why impact ionization of the energetically higher state is preferred. Hence, the ratio rises and reaches its maximum during the discharge breakdown in front of the negative electrode. Any decrease afterwards is a result to the relief of charges during the breakdown, reducing field strength and densities. Thus, the population of higher states diminishes faster, because remaining electrons might not carry the necessary kinetic energy anymore.\\
+		Applying said theoretical results to the figure for $R\ix{trip}$, it becomes obvious why the ratio shows such a different behavior: when the local field strength, therefore electron energy and density is low, metastable populations significantly influence the excitation rates for $3^3$S. During the Townsend phase and the development of an ionization front, solely the energy of metastable levels is sufficient for electronic excitation from the ground state. As the intensity ratio decreases towards the cathode, the lower $3^3$D level benefits from an increase in electron number, hence $R\ix{trip}$ is reduced. Overall, the emission at $\unit[706,66]{nm}$ is much higher because of the effective excitation transition from singlet ground states $2^1$S.\\
+		Finally, after evaluation of given line intensity ratios with respect to density and electric field development, one can utilize a collisional-radiative model for singlet transitions \cite{linratio1_14} to quantify such field strength. If all of the above mentioned effects are taken into account, a fourth-order polynomial can be acquired:
+		
+			\begin{align}
+				E\ix{LR}\left[\frac{kV}{cm}\right] =\,\, &2,224-20,18R\ix{sing}+45,07R\ix{sing}^2 \nonumber \\ 
+				&-19,98R\ix{sing}^3+3,369R\ix{sing}^4\,\,. \label{eq:elfield}
+			\end{align}
+				
+		This equation can be used, according to Ivkovi{\'c} et al. \cite{linratio1_14}, for calculations of electric fields in the range $\unit[3-40]{kV/cm}$ at atmospheric pressures and $\unit[310]{K}$. Again, an uncertainty between 1,5\% and 10\% is claimed. The result is shown in \autoref{img:elfield667}.\\
+		Comparing the achieved values to the results of Golubovskii et al. \cite{0022-3727-36-1-306} in \autoref{img:golubovskii}, one finds great agreement for the spatio-temporal development. A maximum field strength is reached in front of the cathode during the discharge breakdown. Also, the ionization front is characterized by an increasing field towards the upper electrode, as one would have expected. Inside the positive column, densities and therefore electric field are low and constant. Also, very small values are calculated for areas between the positive column and near the negative glow and cathode fall region, whereas this is also found in \autoref{img:massines} and \autoref{img:golubovskii}. This is because of strong local space charges, compensating the applied electric field.\\
+		The temporal evolution of the field strength shows great gradients towards its maximum and breakdown, but not in the afterglow. This might be due to the fast advance in exponential ionization until the breakdown voltage is applied and accumulated charges are drained by the discharge current. If the resulting quantities in field strength are indeed realistic has to be verified, e.g. stark spectroscopy.
 		
 	\onecolumn
 			
@@ -347,7 +364,7 @@
 					\label{img:706u587nm}
 				\end{subfigure}
 				\vspace{0.3cm}
-				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[728,31]{nm}$ (bottom). \fett{(b)}: At $\unit[706,66]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom). The discharge properties can be collected from \autoref{img:comparisonsinesquare}, as they happen to be the same experiments.}
+				\caption{\fett{(a)}: Spatio-temporally resolved line emission profiles for $\unit[667,98]{nm}$ (top) and $\unit[728,31]{nm}$ (bottom). \fett{(b)}: At $\unit[706,66]{nm}$ (top) and $\unit[587,65]{nm}$ (bottom).}
 				\label{img:comparisonemissionline}
 			\end{figure}
 			
@@ -360,15 +377,22 @@
 				\begin{figure}
 					\centering
 					\hspace{-0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/combinations/lineratio667over706.pdf}
-					\caption{Comparison of line emission ratios between LR$\ix{sing}$ at the top and LR$\ix{trip}$ at the bottom.}
+					\caption{Comparison of line emission ratios between singlet lines at the top and triplet at the bottom.}
 					\label{img:comparisonlineratio}
 				\end{figure}
 				
 				\begin{figure}
 					\centering
 					\hspace{0.5cm}\includegraphics[width=0.5\textwidth]{figures/lineratio/combinations/electricfield667.pdf}
-					\caption{}
+					\caption{Electric field strength between anode and cathode in a He+N$_2$ BD at atmospheric pressure. Calculated via \autoref{eq:elfield} from \cite{linratio1_14}.}
 					\label{img:elfield667}
+				\end{figure}
+		
+				\begin{figure}
+					\centering
+					\includegraphics[width=0.5\textwidth]{figures/lineratio/massinesp3fig5.pdf}
+					\caption{Calculated space distribution from the anode to the cathode of	the electrical field, the ion and electron densities in a He glow dielectric barrier discharge when the discharge current intensity is maximum. \cite{Massines}}
+					\label{img:massines}
 				\end{figure}
 		
 				\begin{figure}
@@ -378,20 +402,42 @@
 					\label{img:golubovskii}
 				\end{figure}
 				
-				
+		\subsection{Electric field strength measurement by stark spectroscopy}
+		
+		In continuation of the previous experiments, electric field strengths will be calculated through measurement of stark splitting. This method is applied to the cathode sheath region, between $\unit[6,8-7,1]{inch}$ for a $\unit[100]{sccm}$ He + $\unit[0,05]{sccn}$ N$_2$ square wave discharge of $\unit[1,2]{kV}$ and $\unit[5]{kHz}$. Here, the optical setup is adjusted for a higher spectral resolution of $\unit[0,02]{nm}$ with a MC grating of $\unit[2400]{mm^-1}$. The entrance and exit slit height have been at $\unit[0,1]{mm}$, while the horizontal opening was $\unit[0,2]{mm}$. Here, a window of $\unit[0,7]{nm}$ around $\unit[492,2]{nm}$ is chosen. The para-helium transition at this wavelength, 2p$^1$P$^0$ - 4d$^1$D$^0$ and its forbidden counterparts, 2p$^1$P$^0$-4p$^1$P$^0$ and 2p$^1$P$^0$-4f$^1$F$^0$ are target of this investigation.\\
+		To start off, the unprocessed results of a stark spectroscopy at $\unit[7,1]{inch}$, right in front of the cathode are shown in \autoref{img:rawdata}. This is already after averaging over 50000 cycles for each of the measured wavelengths. This shows how fragile this experiment was, and that further work has to be put into the received data.\\
+		Each acquired discharge yields a dark region between $\unit[-0,6]{\upmu s}$ and $\unit[-0,2]{\upmu s}$ before the breakdown. At first, this temporal segment and the full profile are Fourier-transformed via numerical FFT and then subtracted from each other. Ensuring that no unnecessary noise remains, values for very high and low frequencies in the transformed spectrum are set to zero. An inverse transformation, IFFT again yields a temporal and spectral resolved emission profile. Each measurement is than again averaged over 15 inner cycles for all wavelengths, ruling out long-term perturbations in the experiment. As there is no emission between $\unit[491,8]{nm}$ and $\unit[491,96]{nm}$, one calculated an offset, which is again subtracted from the full spectrum. Finally, a Savitzky-Golay-Filter of the order of 2 and step width of $\unit[0,063]{\upmu s}$ is applied. The end result is shown in, for $\unit[7,1]{inch}$ particularly, the bottom of \autoref{img:stark71comparison} and for other heights upwards, successively.\\
+		For reference, the electrical properties of such discharges is included in the far top if this figure. Following that, the MC height increases $\unit[0,15]{inch}$ with each measurement, reaching the cathode in the last emission profile. On first glance, one finds that the intensities of $\tenpo{-5}$ differ from only some points - $\unit[6,8]{inch}$ to $\unit[6,95]{inch}$ by $\unit[0,3]{a.u.}$ at max - to one order of magnitude for $\unit[7,1]{inch}$. At the lowest height, no splitting around the allowed transition is found. Furthermore, temporal extended oscillations in intensity are seen at $\unit[492,2]{nm}$. On the next setup, an additional structure with only half of the maximum intensity shows at around $\unit[492,03]{nm}$. Again, small oscillations propagate along the temporal course of the main transition. At $\unit[7,1]{inch}$, line splitting is clearly distinguishable. The overall intensity is double of the previous, whereas the second peak carries half of the maximum emission. Beforehand observed perturbations are not seen here.\\
+		The change in magnetic quantum number is $\Delta m=0$, which is why the transition of interest is part of the $\Pi$-polarized spectrum \cite{starkshiftmeas}. Those are more sensitive to local field changes, as they are polarized in electric field direction. The transitions of chosen allowed-forbidden pairs originate from the lower 2P level, which has negligible stark displacement for reasonable field values. Furthermore, the forbidden transitions have significant intensities even at low electric field strengths. A corresponding field strength dependence of presented stark shift is shown in \autoref{img:fieldependence}.\\
+		One should note here, that for exceptionally low values, applicability of the linear stark theory is determined by the combination of atomic number $n$ and orbital number $l$, but no longer field strengths. Here,the quadratic Stark effect describes line splitting field dependencies best.\\		
+		Like Cvetanovi{\'c} et al. discussed \cite{starkshiftmeas}, a functional dependency of line splitting and local field strength can be achieved. For anticipated values in APGDs between $\unit[1-100]{kV/cm}$, one can use a simplified polynomial, instead of various fitting procedures, given as:
+		
+			\begin{align}
+				E\ix{stark}^2\left[\frac{\tenpo{6}V^2}{cm^2}\right]=&-58,557+18,116\Delta\lambda\ix{pp} \nonumber \\
+				&+3130,96\Delta\lambda\ix{pp}^2+815,6\Delta\lambda\ix{pp}^3 \,\,.
+			\end{align}
+		
+		Here, $\Delta\lambda\ix{pp}$ denotes the peak-to-peak difference in $\unit{nm}$, between the maxima of the profile received from stark spectroscopy. In \autoref{img:starkshift71} an excerpt from the full profile in \autoref{img:stark71comparison} at all heights is shown. Those plots are achieved by searching for moment of time and wavelength of the maximum emission for a given height. Thus, a temporal resolved profile can be extracted, as displayed in \autoref{img:starkshift71}.\\
+		Though not recognizable for lower vertical adjustments, stark splitting is clearly seen for a height of $\unit[7,1]{inch}$. Two, well distinguishable peaks are indicated with each their spectral position, finding $\Delta\lambda\ix{pp}=\unit[0,2]{nm}$. Therefore, one can calculate:
+		
+			\begin{align}
+				E=\unit[8,7652]{kV/cm} \,\,.\nonumber
+			\end{align}
+		
+		This result is one order of magnitude smaller than those received from the helium line intensity ratios. Furthermore, results from \cite{Massines}, \cite{0022-3727-36-1-306} in \autoref{img:massines} and following support those findings, as their calculations utilize comparable configurations to this experiment and bring up similar values of electric field strength.
+		
 				\begin{figure}
 					\centering
-					\includegraphics[width=0.5\textwidth]{figures/lineratio/massinesp3fig5.pdf}
-					\caption{Calculated space distribution from the anode to the cathode of	the electrical field, the ion and electron densities in a He glow dielectric barrier discharge when the discharge current intensity is maximum. \cite{Massines}}
-					\label{img:massines}
+					\includegraphics[width=0.5\textwidth]{figures/stark/starkshiftfielddependence.pdf}
+					\caption{Calculated field dependences of $\Pi$-component shift. Wavelength shift is given with respect to the non-shifted allowed line. The difference in magnetic quantum number is coded with dots for $[1-1]$ or with solid lines for $[0-0]$ transitions. \cite{starkshiftmeas}}
+					\label{img:fieldependence}
 				\end{figure}
-		
-		\subsection{Electric field strength measurement by stark spectroscopy}
 		
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.5\textwidth]{figures/stark/stark_71inraw.pdf}
 					\caption{Raw data from the temporally resolved stark spectroscopy at a vertical position of $\unit[7,1]{inch}$. The gathered information have not been processed any further, as only to be displayed here.}
+					\label{img:rawdata}
 				\end{figure}
 
 				\begin{figure}
